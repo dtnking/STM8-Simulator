@@ -1,17 +1,28 @@
 #ifndef _SIMULATOR_H
 #define _SIMULATOR_H
 
-typedef unsigned char	uint8_t;
-#define nxt_byte(p)  (p & 0x00FF)
+#define KB 								1024
+#define least_byte(byte)  (byte & 0x00FF)
 
+
+char memor[20*KB];
+
+typedef unsigned char	uint8_t;
 
 typedef struct Memory Memory;
 struct Memory{
-	uint8_t Accumulator;
+	uint8_t A;
+	uint8_t Xh;
+	uint8_t XL;
+	uint8_t YH;
+	uint8_t YL;
+	uint8_t PCE;
+	uint8_t PCH;
+	uint8_t PCL;
 };
+Memory value;
 
-Memory a;
+static uint8_t *a = &memor[0x007F00];
 
-	
 
 #endif // _SIMULATOR_H
