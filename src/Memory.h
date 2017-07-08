@@ -2,8 +2,9 @@
 #define _MEMORY_H
 
 #define KB 		1024
+
 typedef unsigned char	uint8_t;
-char memory =[20*KB];
+char memory[20*KB];
 
 typedef struct Stm8Registers Stm8Registers;
 struct Stm8Registers {
@@ -20,8 +21,6 @@ struct Stm8Registers {
   uint8_t CCR;
 };
 
-Stm8Registers *cpuRegisters;
-
-
+extern Stm8Registers *cpuRegisters;
 
 #endif // _MEMORY_H
