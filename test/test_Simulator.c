@@ -8,7 +8,6 @@ void setUp(void){}
 
 void tearDown(void){}
 
-
 // ADD A,#$55
 void test_Add_1_byte_given_A_0x01_with_0x55_expected_0x56(void){
 	cpuRegisters->A = 0x01;																// Accumulator = 0x01.

@@ -4,8 +4,3 @@
 
 
 #include <stdint.h>
-
-/*uint* add_byte(*opcode){
-
-}
-*/

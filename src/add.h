@@ -9,6 +9,4 @@ uint32_t   add_shortmem      (uint32_t code);
 uint32_t   add_shortmem      (uint32_t code);
 uint32_t   add_longmem      (uint32_t code);
 
-
-
 #endif // _ADD_H
