@@ -4,6 +4,7 @@
 #define KB 		1024
 
 typedef unsigned char	uint8_t;
+typedef unsigned int  uint32_t;
 char memory[20*KB];
 
 typedef struct Stm8Registers Stm8Registers;
