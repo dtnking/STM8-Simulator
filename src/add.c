@@ -9,13 +9,11 @@ void add_byte (uint8_t *opcodePtr){
 	cpuRegisters->A = cpuRegisters->A + val;			  			// result = A + src
 }
 
-//need to get the value in the specify memory..
 void add_shortmem	(uint8_t *opcodePtr){
 	uint8_t addrs		=	 opcodePtr[1];	 							// the address is at the least byte of the opcode
 	cpuRegisters->A	= cpuRegisters->A + memory[addrs];
 }
 
-//
 void add_longmem (uint8_t *opcodePtr){
 	uint16_t addrs  = combineTwoAddrs(opcodePtr[1],opcodePtr[2]);
 	cpuRegisters->A =	cpuRegisters->A + memory[addrs];
@@ -61,7 +59,6 @@ void add_shortoff_SP (uint8_t *opcodePtr){
 	cpuRegisters->A			 = cpuRegisters->A + memory[addrsBase+addrsSP];
 }
 
-// short pointer to long pointer
 void add_shortptr_w(uint8_t *opcodePtr){
 	uint8_t addrsOfFirstPtr = opcodePtr[2];
 	uint8_t val1=memory[addrsOfFirstPtr];
