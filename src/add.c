@@ -4,53 +4,106 @@
 #include <stdio.h>
 #include <stdint.h>
 
-
-
-uint32_t add_byte(uint32_t code){
-	uint32_t val = least_byte(code);											// the value is at least byte of the opcode
-	uint32_t result = cpuRegisters->A + val;			  			// result = A + src
-	return result;
+void add_byte (uint8_t *opcodePtr){
+	uint8_t val = opcodePtr[1];											// the value is at least byte of the opcode
+	cpuRegisters->A = cpuRegisters->A + val;			  			// result = A + src
 }
 
 //need to get the value in the specify memory..
-uint32_t add_shortmem	(uint32_t code){
-	uint32_t val		=	 least_byte(code);	 							// the address is at the least byte of the opcode
-	uint32_t result	= cpuRegisters->A + memory[val];
-	return result;
+void add_shortmem	(uint8_t *opcodePtr){
+	uint8_t addrs		=	 opcodePtr[1];	 							// the address is at the least byte of the opcode
+	cpuRegisters->A	= cpuRegisters->A + memory[addrs];
 }
 
 //
-uint32_t add_longmem		(uint32_t code){
-	uint32_t addrs  = 	two_Middlebyte(code);
-	uint32_t result =	cpuRegisters->A + memory[addrs];
-	return result;
+void add_longmem (uint8_t *opcodePtr){
+	uint16_t addrs  = combineTwoAddrs(opcodePtr[1],opcodePtr[2]);
+	cpuRegisters->A =	cpuRegisters->A + memory[addrs];
 }
 
-uint32_t add_x (uint32_t code){
-	uint32_t addrs 	= combineTwo(cpuRegisters->XH,cpuRegisters->XL);
-	uint32_t result = cpuRegisters->A + memory[addrs];
-	return result;
+void add_x (uint8_t *opcodePtr){
+	uint16_t addrs 	= combineTwoAddrs(cpuRegisters->XH,cpuRegisters->XL);
+	cpuRegisters->A = cpuRegisters->A + memory[addrs];
 }
 
-uint32_t add_y (uint32_t code){
-	uint32_t addrs 	= combineTwo(cpuRegisters->YH,cpuRegisters->YL);
-	uint32_t result = cpuRegisters->A + memory[addrs];
-	return result;
+void add_y (uint8_t *opcodePtr){
+	uint16_t addrs 	= combineTwoAddrs(cpuRegisters->YH,cpuRegisters->YL);
+	cpuRegisters->A = cpuRegisters->A + memory[addrs];
 }
 
-uint32_t add_x_offset(uint32_t code){
-	uint32_t val 		= least_byte(code);
-	uint32_t addrs 	= combineTwo(cpuRegisters->XH,cpuRegisters->XL);
-	uint32_t result = cpuRegisters->A + memory[addrs+val];
-	return result;
+void add_x_shortset (uint8_t *opcodePtr){
+	uint8_t val 		= opcodePtr[1];
+	uint16_t addrs 	= combineTwoAddrs(cpuRegisters->XH,cpuRegisters->XL);
+	cpuRegisters->A = cpuRegisters->A + memory[addrs+val];
 }
 
-uint32_t add_y_offset(uint32_t code){
-	uint32_t val 		= least_byte(code);
-	uint32_t addrs 	= combineTwo(cpuRegisters->YH,cpuRegisters->YL);
-	uint32_t result = cpuRegisters->A + memory[addrs+val];
-	printf("%x\n",memory[addrs+val]);
-	printf("%x\n",val);
-	printf("%x\n",addrs);
-	return result;
+void add_y_shortset (uint8_t *opcodePtr){
+	uint8_t val 		= opcodePtr[2];
+	uint16_t addrs 	= combineTwoAddrs(cpuRegisters->YH,cpuRegisters->YL);
+	cpuRegisters->A = cpuRegisters->A + memory[addrs+val];
+}
+
+void add_x_longset (uint8_t *opcodePtr){
+	uint16_t addrsOffset = combineTwoAddrs(opcodePtr[1],opcodePtr[2]);
+	uint16_t addrsBase	 = combineTwoAddrs(cpuRegisters->XH,cpuRegisters->XL);
+	cpuRegisters->A			 =	cpuRegisters->A + memory[addrsOffset+addrsBase];
+}
+
+void add_y_longset (uint8_t *opcodePtr){
+	uint16_t addrsOffset = combineTwoAddrs(opcodePtr[1],opcodePtr[2]);
+	uint16_t addrsBase	 = combineTwoAddrs(cpuRegisters->YH,cpuRegisters->YL);
+	cpuRegisters->A			 =	cpuRegisters->A + memory[addrsOffset+addrsBase];
+}
+
+void add_shortoff_SP (uint8_t *opcodePtr){
+	uint8_t addrsSP			 = opcodePtr[1];
+	uint16_t addrsBase	 = combineTwoAddrs(cpuRegisters->SPH,cpuRegisters->SPL);
+	cpuRegisters->A			 = cpuRegisters->A + memory[addrsBase+addrsSP];
+}
+
+// short pointer to long pointer
+void add_shortptr_w(uint8_t *opcodePtr){
+	uint8_t addrsOfFirstPtr = opcodePtr[2];
+	uint8_t val1=memory[addrsOfFirstPtr];
+	uint8_t val2=memory[addrsOfFirstPtr+1];
+	uint16_t addrsOfSecondPtr = combineTwoAddrs(val1,val2);
+	cpuRegisters->A = cpuRegisters->A + memory[addrsOfSecondPtr];
+}
+
+void add_longptr_w(uint8_t *opcodePtr){
+	uint16_t addrsOfFirstPtr = combineTwoAddrs(opcodePtr[2],opcodePtr[3]);
+	uint8_t val1 = memory[addrsOfFirstPtr];
+	uint8_t val2 = memory[addrsOfFirstPtr+1];
+	uint16_t addrsOfSecondPtr = combineTwoAddrs(val1,val2);
+	cpuRegisters->A = cpuRegisters->A + memory[addrsOfSecondPtr];
+}
+
+void add_shortptr_w_X(uint8_t *opcodePtr){
+	uint8_t addrsOfFirstPtr = opcodePtr[2];
+	uint8_t val1 = memory[addrsOfFirstPtr];
+	uint8_t val2 = memory[addrsOfFirstPtr+1];
+	uint16_t X	 = combineTwoAddrs(cpuRegisters->XH,cpuRegisters->XL);
+	uint16_t addrsOfSecondPtr = combineTwoAddrs(val1,val2) + X;
+	cpuRegisters->A = cpuRegisters->A + memory[addrsOfSecondPtr];
+}
+
+void add_longptr_w_X(uint8_t *opcodePtr){
+	uint16_t addrsOfFirstPtr = combineTwoAddrs(opcodePtr[2],opcodePtr[3]);
+	uint8_t val1 = memory[addrsOfFirstPtr];
+	uint8_t val2 = memory[addrsOfFirstPtr+1];
+	uint16_t X	 = combineTwoAddrs(cpuRegisters->XH,cpuRegisters->XL);
+	printf("%x\n",X);
+	printf("%x\n",combineTwoAddrs(val1,val2));
+	printf("%x\n",combineTwoAddrs(val1,val2)+X);
+	uint16_t addrsOfSecondPtr = combineTwoAddrs(val1,val2) + X;
+	cpuRegisters->A = cpuRegisters->A + memory[addrsOfSecondPtr];
+}
+
+void add_shortptr_w_Y(uint8_t *opcodePtr){
+	uint8_t addrsOfFirstPtr = opcodePtr[2];
+	uint8_t val1 = memory[addrsOfFirstPtr];
+	uint8_t val2 = memory[addrsOfFirstPtr+1];
+	uint16_t Y	 = combineTwoAddrs(cpuRegisters->YH,cpuRegisters->YL);
+	uint16_t addrsOfSecondPtr = combineTwoAddrs(val1,val2) + Y;
+	cpuRegisters->A = cpuRegisters->A + memory[addrsOfSecondPtr];
 }
