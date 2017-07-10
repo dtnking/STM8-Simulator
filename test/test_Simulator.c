@@ -11,7 +11,7 @@ void tearDown(void){}
 
 // ADD A,#$55		value of Accumulator + given value
 void test_Add_1_byte_given_A_0x01_with_0x55_expected_0x56(void){
-	cpuRegisters->A = 0x01;																// Accumulator = 0x01.
+	cpuRegisters->A  = 0x01;																// Accumulator = 0x01.
 	uint8_t instrc[] = {0xAB,0x55};											// Opcode : 0xAB55
 	add_byte((uint8_t *)&instrc);
 	TEST_ASSERT_EQUAL_HEX8 (0x56,cpuRegisters->A);
@@ -19,8 +19,8 @@ void test_Add_1_byte_given_A_0x01_with_0x55_expected_0x56(void){
 
 // ADD A,$10		value of Accumulator + value of a short memory
 void test_Add_shortmen_given_A_0x01_with_0x55_within_addrs_0x10_expected_0x56(void){
-	cpuRegisters->A = 0x01;																// Accumulator = 0x01.
-	memory[0x10]		=	0x55;																// store 0x55 into memory location 0x10.
+	cpuRegisters->A  = 0x01;																// Accumulator = 0x01.
+	memory[0x10]		 =	0x55;																// store 0x55 into memory location 0x10.
 	uint8_t instrc[] = {0xBB,0x10};											// Opcode : 0xBB10
 	add_shortmem((uint8_t *)&instrc);
 	TEST_ASSERT_EQUAL_HEX8 (0x56, cpuRegisters->A);
@@ -28,8 +28,8 @@ void test_Add_shortmen_given_A_0x01_with_0x55_within_addrs_0x10_expected_0x56(vo
 
 // ADD A,$1000		value of Accumulator + value of a long memory
 void test_Add_longmem_given_A_0x01_with_0x55_within_addrs_0x1000_expected_0x56(void){
-	cpuRegisters->A = 0x01;																// Accumulator = 0x01.
-	memory[0x1000]	=	0x55;																// store 0x55 into memory location 0x1000.
+	cpuRegisters->A  = 0x01;																// Accumulator = 0x01.
+	memory[0x1000]	 =	0x55;																// store 0x55 into memory location 0x1000.
 	uint8_t instrc[] = {0xCB,0x10,0x00};									// Opcode : 0xCB1000
 	add_longmem((uint8_t *)&instrc);
 	TEST_ASSERT_EQUAL_HEX16 (0x56, cpuRegisters->A);
