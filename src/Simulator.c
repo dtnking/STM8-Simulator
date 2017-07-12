@@ -8,3 +8,7 @@ uint16_t combineTwoAddrs(uint8_t val1, uint8_t val2){
   uint16_t result  = newVal1 + val2;
   return result;
 }
+
+void naked_add(uint8_t val){
+  cpuRegisters->A	= cpuRegisters->A + val;
+}

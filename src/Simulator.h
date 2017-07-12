@@ -9,4 +9,6 @@
 #define two_Middlebyte(byte1,byte2)    ((byte1<<8 +byte2) & 0xFFFF)
 
 uint16_t combineTwoAddrs(uint8_t val1, uint8_t val2);
+void naked_add(uint8_t val);
+
 #endif // _SIMULATOR_H
