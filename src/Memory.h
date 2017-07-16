@@ -3,6 +3,36 @@
 #include <stdint.h>
 
 #define KB 		1024
+
+// define bits of R (Result)
+#define R0        (result & 0x1)
+#define R1        (result & 0x2)     >>  1
+#define R2        (result & 0x4)     >>  2
+#define R3        (result & 0x8)     >>  3
+#define R4        (result & 0x10)    >>  4
+#define R5        (result & 0x20)    >>  5
+#define R6        (result & 0x40)    >>  6
+#define R7        (result & 0x80)    >>  7
+
+// define bits of A (Accumulator)
+#define A0        ((cpuRegisters->A) & 0x1)
+#define A1        ((cpuRegisters->A) & 0x2)     >>  1
+#define A2        ((cpuRegisters->A) & 0x4)     >>  2
+#define A3        ((cpuRegisters->A) & 0x8)     >>  3
+#define A4        ((cpuRegisters->A) & 0x10)    >>  4
+#define A5        ((cpuRegisters->A) & 0x20)    >>  5
+#define A6        ((cpuRegisters->A) & 0x40)    >>  6
+#define A7        ((cpuRegisters->A) & 0x80)    >>  7
+
+// define bits of M (value)
+#define M0        (val & 0x1)
+#define M1        (val & 0x2)     >>  1
+#define M2        (val & 0x4)     >>  2
+#define M3        (val & 0x8)     >>  3
+#define M4        (val & 0x10)    >>  4
+#define M5        (val & 0x20)    >>  5
+#define M6        (val & 0x40)    >>  6
+#define M7        (val & 0x80)    >>  7
 //typedef unsigned char	uint8_t;
 unsigned char memory[20*KB];
 

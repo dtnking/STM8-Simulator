@@ -6,6 +6,7 @@
 
 Stm8Registers *cpuRegisters=(Stm8Registers *)&memory[0x7f00];
 
+
 uint8_t get_valueByte(uint8_t *opcode){
   uint8_t val = opcode[1];                    // the value is at least byte of the opcode
   return val;

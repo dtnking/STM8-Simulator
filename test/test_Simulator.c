@@ -175,5 +175,11 @@ void test_Add_shortptr_w_Y_given_A_0x01_and_the_value_of_the_address_0xaa_expect
 	memory[0x8a]			= 0x11;
 	memory[0x2922]		= 0xaa;
 	add_shortptr_w_Y((uint8_t *)&instrc);
+	
+	printf("Negative bit = %x\n",cpuRegisters->CCR.N);
+	printf("Carry bit = %x\n",cpuRegisters->CCR.C);
+	printf("Half Carry bit = %x\n",cpuRegisters->CCR.H);
+	printf("Zero bit = %x\n",cpuRegisters->CCR.Z);
+
 	TEST_ASSERT_EQUAL_HEX16(0xab,cpuRegisters->A);
 }
