@@ -264,13 +264,13 @@ void test_Add_longptr_w_X_given_A_0x01_and_the_value_of_the_address_0x40_expecte
 
 // 		ADD A,[($10.w),Y]
 void test_Add_shortptr_w_Y_given_A_0x8_and_the_value_of_the_address_0x8_expected_0x10(void){
-	cpuRegisters->A 	= 0x8;
+	cpuRegisters->A 	= 0x0;
 	cpuRegisters->YH	=	0x11;
 	cpuRegisters->YL	=	0x11;
 	uint8_t instrc[]	= {0x91,0xDB,0x89};
 	memory[0x89]			= 0x18;
 	memory[0x8a]			= 0x11;
-	memory[0x2922]		= 0x8;
+	memory[0x2922]		= 0x0;
 	add_shortptr_w_Y((uint8_t *)&instrc);
 
 	printf("Overflow bit = %x\n",cpuRegisters->CCR.V);
@@ -279,5 +279,5 @@ void test_Add_shortptr_w_Y_given_A_0x8_and_the_value_of_the_address_0x8_expected
 	printf("Half Carry bit = %x\n",cpuRegisters->CCR.H);
 	printf("Zero bit = %x\n\n",cpuRegisters->CCR.Z);
 
-	TEST_ASSERT_EQUAL_HEX16(0x10,cpuRegisters->A);
+	TEST_ASSERT_EQUAL_HEX16(0x0,cpuRegisters->A);
 }

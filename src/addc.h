@@ -1,5 +1,6 @@
 #ifndef _ADDC_H
 #define _ADDC_H
+#include <stdint.h>
 
 void    addc_byte          (uint8_t *opcodePtr);
 void    addc_shortmem      (uint8_t *opcodePtr);

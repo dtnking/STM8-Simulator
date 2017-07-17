@@ -38,13 +38,13 @@ unsigned char memory[20*KB];
 
 typedef struct flags flags;
 struct flags{
-  uint8_t V;
-  uint8_t I1;
-  uint8_t H;
-  uint8_t I0;
-  uint8_t N;
-  uint8_t Z;
-  uint8_t C;
+  uint8_t C:1;
+  uint8_t Z:1;
+  uint8_t N:1;
+  uint8_t I0:1;
+  uint8_t H:1;
+  uint8_t I1:1;
+  uint8_t V:1;
 };
 
 typedef struct Stm8Registers Stm8Registers;
