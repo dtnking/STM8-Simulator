@@ -41,3 +41,13 @@ void naked_sub(uint8_t val){
   cpuRegisters->CCR.C = (!(A7))&M7|(!(A7))&(R7)|A7&M7&R7;
   cpuRegisters->A     = result;
 }
+
+void naked_sbc(uint8_t val){
+  uint8_t result	= cpuRegisters->A - val - cpuRegisters->CCR.C;
+
+  cpuRegisters->CCR.V = ((!(A7)) & M7|(!(A7)) & R7|A7 & M7 & R7)^((!(A6)) & M6|(!(A6)) & R6|A6 & M6 & R6);
+  cpuRegisters->CCR.N = R7;
+  cpuRegisters->CCR.Z = (!(R7)) & (!(R6)) & (!(R5)) & (!(R4)) & (!(R3)) & (!(R2)) & (!(R1)) & (!(R0));
+  cpuRegisters->CCR.C = (!(A7))&M7|(!(A7))&(R7)|A7&M7&R7;
+  cpuRegisters->A     = result;
+}

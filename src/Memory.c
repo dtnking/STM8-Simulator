@@ -6,6 +6,20 @@
 
 Stm8Registers *cpuRegisters=(Stm8Registers *)&memory[0x7f00];
 
+void set_X(uint8_t xh,uint8_t xl){
+  cpuRegisters->XH = xh;
+  cpuRegisters->XL = xl;
+}
+
+void set_Y(uint8_t yh,uint8_t yl){
+  cpuRegisters->YH = yh;
+  cpuRegisters->YL = yl;
+}
+
+void set_SP(uint8_t sph,uint8_t spl){
+  cpuRegisters->SPH = sph;
+  cpuRegisters->SPL = spl;
+}
 
 uint8_t get_valueByte(uint8_t *opcode){
   uint8_t val = opcode[1];                    // the value is at least byte of the opcode

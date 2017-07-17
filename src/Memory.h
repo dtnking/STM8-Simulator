@@ -79,6 +79,11 @@ uint8_t get_longptr_w(uint8_t *opcode);
 uint8_t get_shortptr_w_X(uint8_t *opcode);
 uint8_t get_longptr_w_X(uint8_t *opcode);
 uint8_t get_shortptr_w_Y(uint8_t *opcode);
+void    set_X(uint8_t xh,uint8_t xl);
+void    set_Y(uint8_t yh,uint8_t yl);
+void    set_SP(uint8_t sph,uint8_t spl);
+
+
 
 
 #endif // _MEMORY_H
