@@ -9,57 +9,58 @@ void add_byte (uint8_t *opcodePtr){
 }
 
 void add_shortmem	(uint8_t *opcodePtr){
-	naked_add(get_shortmem(opcodePtr));
+	naked_add(memory[get_shortmem(opcodePtr)]);
 }
 
 void add_longmem (uint8_t *opcodePtr){
-	naked_add(get_longmem(opcodePtr));
+	naked_add(memory[get_longmem(opcodePtr)]);
+	
 }
 
 void add_x (uint8_t *opcodePtr){
-	naked_add(get_x());
+	naked_add(memory[get_x_value()]);
 }
 
 void add_y (uint8_t *opcodePtr){
-	naked_add(get_y());
+	naked_add(memory[get_y_value()]);
 }
 
 void add_x_shortset (uint8_t *opcodePtr){
-	naked_add(get_x_shortset(opcodePtr));
+	naked_add(memory[get_x_shortset(opcodePtr)]);
 }
 
 void add_y_shortset (uint8_t *opcodePtr){
-	naked_add(get_y_shortset(opcodePtr));
+	naked_add(memory[get_y_shortset(opcodePtr)]);
 }
 
 void add_x_longset (uint8_t *opcodePtr){
-	naked_add(get_x_longset(opcodePtr));
+	naked_add(memory[get_x_longset(opcodePtr)]);
 }
 
 void add_y_longset (uint8_t *opcodePtr){
-	naked_add(get_y_longset(opcodePtr));
+	naked_add(memory[get_y_longset(opcodePtr)]);
 }
 
 void add_shortoff_SP (uint8_t *opcodePtr){
-	naked_add(get_shortoff_SP(opcodePtr));
+	naked_add(memory[get_shortoff_SP(opcodePtr)]);
 }
 
 void add_shortptr_w(uint8_t *opcodePtr){
-	naked_add(get_shortptr_w(opcodePtr));
+	naked_add(memory[get_shortptr_w(opcodePtr)]);
 }
 
 void add_longptr_w(uint8_t *opcodePtr){
-	naked_add(get_longptr_w(opcodePtr));
+	naked_add(memory[get_longptr_w(opcodePtr)]);
 }
 
 void add_shortptr_w_X(uint8_t *opcodePtr){
-	naked_add(get_shortptr_w_X(opcodePtr));
+	naked_add(memory[get_shortptr_w_X(opcodePtr)]);
 }
 
 void add_longptr_w_X(uint8_t *opcodePtr){
-	naked_add(get_longptr_w_X(opcodePtr));
+	naked_add(memory[get_longptr_w_X(opcodePtr)]);
 }
 
 void add_shortptr_w_Y(uint8_t *opcodePtr){
-	naked_add(get_shortptr_w_Y(opcodePtr));
+	naked_add(memory[get_shortptr_w_Y(opcodePtr)]);
 }

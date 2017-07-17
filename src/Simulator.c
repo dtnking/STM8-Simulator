@@ -51,3 +51,8 @@ void naked_sbc(uint8_t val){
   cpuRegisters->CCR.C = (!(A7))&M7|(!(A7))&(R7)|A7&M7&R7;
   cpuRegisters->A     = result;
 }
+
+void naked_inc(uint8_t *addrs){
+  uint8_t result = *addrs + 0x01;
+  *addrs = result;
+}
