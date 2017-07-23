@@ -6,6 +6,17 @@
 
 Stm8Registers *cpuRegisters=(Stm8Registers *)&memory[0x7f00];
 
+
+void clearCCRflag(){
+  cpuRegisters->CCR.C   = 0;
+  cpuRegisters->CCR.Z   = 0;
+  cpuRegisters->CCR.N   = 0;
+  cpuRegisters->CCR.I0  = 0;
+  cpuRegisters->CCR.H   = 0;
+  cpuRegisters->CCR.I1  = 0;
+  cpuRegisters->CCR.V   = 0;
+}
+
 void set_X(uint8_t xh,uint8_t xl){
   cpuRegisters->XH = xh;
   cpuRegisters->XL = xl;

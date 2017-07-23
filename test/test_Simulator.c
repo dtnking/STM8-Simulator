@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <stdint.h>
 
-void setUp(void){}
+void setUp(void){
+}
 
 void tearDown(void){}

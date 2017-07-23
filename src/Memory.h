@@ -82,6 +82,7 @@ uint16_t get_shortptr_w_Y(uint8_t *opcode);
 void    set_X(uint8_t xh,uint8_t xl);
 void    set_Y(uint8_t yh,uint8_t yl);
 void    set_SP(uint8_t sph,uint8_t spl);
+void    clearCCRflag();
 
 
 

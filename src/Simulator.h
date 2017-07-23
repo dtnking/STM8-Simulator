@@ -7,10 +7,10 @@
 
 uint16_t combineTwoAddrs(uint8_t val1, uint8_t val2);
 
-void naked_add(uint8_t val);
-void naked_addc(uint8_t val);
-void naked_sub(uint8_t val);
-void naked_sbc(uint8_t val);
-void naked_inc(uint8_t *addrs);
+void raw_add(uint8_t val);
+void raw_addc(uint8_t val);
+void raw_sub(uint8_t val);
+void raw_sbc(uint8_t val);
+void raw_inc(uint8_t *addrs);
 
 #endif // _SIMULATOR_H
