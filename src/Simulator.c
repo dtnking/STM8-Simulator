@@ -22,7 +22,7 @@ void raw_add(uint8_t val){
   cpuRegisters->A     = result;
 }
 
-void raw_addc(uint8_t val){
+void raw_adc(uint8_t val){
   uint8_t result	= cpuRegisters->A + val + cpuRegisters->CCR.C;
 
   cpuRegisters->CCR.V = (A7&M7|M7&(!(R7))|R7&A7)^(A6&M6|M6&(!(R6))|(!(R6))&A6);
