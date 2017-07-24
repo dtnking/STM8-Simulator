@@ -5,7 +5,13 @@
 #define KB 		1024
 
 //define CCR
-
+#define c         (cpuRegisters->CCR.C)
+#define z         (cpuRegisters->CCR.Z)   <<  1
+#define n         (cpuRegisters->CCR.N)   <<  2
+#define i0        (cpuRegisters->CCR.I0)  <<  3
+#define h         (cpuRegisters->CCR.H)   <<  4
+#define i1        (cpuRegisters->CCR.I1)  <<  5
+#define v         (cpuRegisters->CCR.V)   <<  6
 
 // define bits of R (Result)
 #define R0        (result & 0x1)
@@ -16,6 +22,7 @@
 #define R5        (result & 0x20)    >>  5
 #define R6        (result & 0x40)    >>  6
 #define R7        (result & 0x80)    >>  7
+#define R8        (result & 0x100)    >>  8
 
 // define bits of A (Accumulator)
 #define A0        ((cpuRegisters->A) & 0x1)
@@ -82,10 +89,11 @@ uint16_t get_longptr_w(uint8_t *opcode);
 uint16_t get_shortptr_w_X(uint8_t *opcode);
 uint16_t get_longptr_w_X(uint8_t *opcode);
 uint16_t get_shortptr_w_Y(uint8_t *opcode);
-void    set_X(uint8_t xh,uint8_t xl);
-void    set_Y(uint8_t yh,uint8_t yl);
-void    set_SP(uint8_t sph,uint8_t spl);
-void    clearCCRflag();
+
+void     set_X(uint8_t xh,uint8_t xl);
+void     set_Y(uint8_t yh,uint8_t yl);
+void     set_SP(uint8_t sph,uint8_t spl);
+void     clearCCRflag();
 
 
 
