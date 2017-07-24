@@ -1,7 +1,7 @@
 #include "unity.h"
 #include "Memory.h"
 #include "Simulator.h"
-#include "adc.h"
+#include "sub.h"
 #include <stdio.h>
 #include <stdint.h>
 
