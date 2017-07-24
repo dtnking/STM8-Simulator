@@ -4,6 +4,9 @@
 
 #define KB 		1024
 
+//define CCR
+
+
 // define bits of R (Result)
 #define R0        (result & 0x1)
 #define R1        (result & 0x2)     >>  1

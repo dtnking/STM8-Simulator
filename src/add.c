@@ -14,7 +14,6 @@ void add_shortmem	(uint8_t *opcodePtr){
 
 void add_longmem (uint8_t *opcodePtr){
 	raw_add(memory[get_longmem(opcodePtr)]);
-
 }
 
 void add_x (uint8_t *opcodePtr){

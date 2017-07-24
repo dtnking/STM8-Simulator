@@ -53,7 +53,12 @@ void raw_sbc(uint8_t val){
   cpuRegisters->A     = result;
 }
 
-void raw_inc(uint8_t *addrs){
-  uint8_t result = *addrs + 0x01;
-  *addrs = result;
+void raw_inc(uint8_t *valptr){
+  uint8_t result = *valptr + 0x01;
+  uint8_t val = *valptr;
+  *valptr = result;
+
+  cpuRegisters->CCR.V = (A7&M7|M7&(!(R7))|(!(R7))&A7)^(A6&M6|M6&(!(R6))|(!(R6))&A6);
+  cpuRegisters->CCR.N = R7;
+  cpuRegisters->CCR.Z = (!(R7))&(!(R6))&(!(R5))&(!(R4))&(!(R3))&(!(R2))&(!(R1))&(!(R0));
 }

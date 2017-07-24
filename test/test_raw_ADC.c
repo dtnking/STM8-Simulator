@@ -22,6 +22,7 @@ void test_raw_adc_given_value_0x00_add_with_0x00_and_carry_bit_is_1_expected_0x0
   TEST_ASSERT_EQUAL(0,cpuRegisters->CCR.N);
   TEST_ASSERT_EQUAL(0,cpuRegisters->CCR.V);
   TEST_ASSERT_EQUAL(0,cpuRegisters->CCR.Z);
+  printf("%08x",cpuRegisters->CCR);
 }
 
 void test_raw_adc_given_value_0x00_add_with_0x00_and_carry_bit_is_0_expected_0x00_with_zero_flag_equal_1(void){
@@ -34,6 +35,7 @@ void test_raw_adc_given_value_0x00_add_with_0x00_and_carry_bit_is_0_expected_0x0
   TEST_ASSERT_EQUAL(0,cpuRegisters->CCR.N);
   TEST_ASSERT_EQUAL(0,cpuRegisters->CCR.V);
   TEST_ASSERT_EQUAL(1,cpuRegisters->CCR.Z);
+  printf("%08x",cpuRegisters->CCR);
 }
 
 void test_raw_adc_given_value_0x81_add_with_0x01_and_carry_bit_is_1_expected_0x83_negative_overflow_flag_equal_1(void){
