@@ -7,7 +7,7 @@
 //define CCR
 #define c         (cpuRegisters->CCR.C)
 #define z         (cpuRegisters->CCR.Z)   <<  1
-#define n         (cpuRegisters->CCR.N)   <<  2
+#define l         (cpuRegisters->CCR.N)   <<  2
 #define i0        (cpuRegisters->CCR.I0)  <<  3
 #define h         (cpuRegisters->CCR.H)   <<  4
 #define i1        (cpuRegisters->CCR.I1)  <<  5
@@ -43,6 +43,7 @@
 #define M5        (val & 0x20)    >>  5
 #define M6        (val & 0x40)    >>  6
 #define M7        (val & 0x80)    >>  7
+
 //typedef unsigned char	uint8_t;
 unsigned char memory[20*KB];
 
