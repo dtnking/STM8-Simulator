@@ -13,6 +13,7 @@ void inc_shortmem(uint8_t *opcodePtr){
 }
 
 void inc_longmem(uint8_t *opcodePtr){
+  
   raw_inc(&memory[get_longmem(opcodePtr)]);
 }
 

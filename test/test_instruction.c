@@ -8,7 +8,7 @@ void setUp(void){}
 
 void tearDown(void){}
 
-void test_instruction_table_of_ADD_given_value_0x23_add_with_0x01_expected_0x24_and_(void){
+void test_instruction_table(void){
   uint8_t *code = memory;
   int length = 0;
   memory[0] = 0xAB;             //add_byte
@@ -34,5 +34,5 @@ void test_instruction_table_of_ADD_given_value_0x23_add_with_0x01_expected_0x24_
   memory[0x1000]	 =	0x10;
   length = instruction(&code);
   TEST_ASSERT_EQUAL_HEX8 (0x13,cpuRegisters->A);
-  TEST_ASSERT_EQUAL_INT (2,length);
+  TEST_ASSERT_EQUAL_INT (3,length);
 }
