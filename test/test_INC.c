@@ -66,7 +66,7 @@ void test_INC_shortoff_Y_given_value_0x7D_expect_0x7E(void){
     set_Y(0x23,0x23);
     uint8_t instrc[]={0x6C,0x22};
     memory[0x2345]  = 0x7D;
-    inc_shortoff_Y((uint8_t *)&instrc);
+      inc_shortoff_Y((uint8_t *)&instrc);
     TEST_ASSERT_EQUAL_HEX8(0x7E,memory[0x2345]);
 }
 
