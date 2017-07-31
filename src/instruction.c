@@ -12,6 +12,7 @@ struct Opcode{
   int cycle;
 };
 
+
 Opcode opcodeTable[256] = {
   [0xAB] = {add_byte,2,1},
   [0xBB] = {add_shortmem,2,1},
@@ -28,11 +29,13 @@ int isOpcodePrefix(uint8_t *code){
   return 0;
 }
 
-void instruction(uint8_t **codePtr){
+uint8_t instruction(uint8_t **codePtr){
   int (*execute)(uint8_t *code);
   uint8_t *code = *codePtr;
   if(!isOpcodePrefix(code)){
     opcodeTable[*code].execute(code);
-    codePtr += opcodeTable[*code].length;
+    *codePtr += opcodeTable[*code].length;
   }
+
+  return opcodeTable[*code].length;
 }

@@ -6,10 +6,12 @@
 
 void add_byte (uint8_t *opcodePtr){
 	raw_add(get_valueByte(opcodePtr));
+	printf("abc\n");
 }
 
 void add_shortmem	(uint8_t *opcodePtr){
 	raw_add(memory[get_shortmem(opcodePtr)]);
+	printf("cba\n");
 }
 
 void add_longmem (uint8_t *opcodePtr){
