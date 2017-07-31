@@ -23,7 +23,7 @@ cpuRegisters->A = 0x01;
 cpuRegisters->CCR.C = 1;
 raw_sub(0x01);
 TEST_ASSERT_EQUAL_HEX16(0x00,cpuRegisters->A);
-TEST_ASSERT_EQUAL_HEX16(0x02,c|z|n|i0|h|i1|v);
+TEST_ASSERT_EQUAL_HEX16(0x02,c|z|l|i0|h|i1|v);
 }
 
 
@@ -38,7 +38,7 @@ cpuRegisters->A = 0x01;
 cpuRegisters->CCR.C = 0;
 raw_sub(0x00);
 TEST_ASSERT_EQUAL_HEX16(0x01,cpuRegisters->A);
-TEST_ASSERT_EQUAL_HEX16(0x00,c|z|n|i0|h|i1|v);
+TEST_ASSERT_EQUAL_HEX16(0x00,c|z|l|i0|h|i1|v);
 }
 
 
@@ -53,5 +53,5 @@ cpuRegisters->A = 0x00;
 cpuRegisters->CCR.C = 1;
 raw_sub(0x01);
 TEST_ASSERT_EQUAL_HEX16(0xff,cpuRegisters->A);
-TEST_ASSERT_EQUAL_HEX16(0x05,c|z|n|i0|h|i1|v);
+TEST_ASSERT_EQUAL_HEX16(0x05,c|z|l|i0|h|i1|v);
 }

@@ -21,7 +21,7 @@ void test_raw_add_given_value_0x00_add_with_0x00_expected_0x00_with_zero_flag_eq
   cpuRegisters->A = 0x00;
   raw_add(0x00);
   TEST_ASSERT_EQUAL_HEX16(0,cpuRegisters->A);
-  TEST_ASSERT_EQUAL_HEX16(0x02,c|z|n|i0|h|i1|v);
+  TEST_ASSERT_EQUAL_HEX16(0x02,c|z|l|i0|h|i1|v);
 }
 
 /*        0000 0000
@@ -33,7 +33,7 @@ void test_raw_add_given_value_0x00_add_with_0x01_expected_0x01_with_all_CCR_flag
   cpuRegisters->A = 0x00;
   raw_add(0x01);
   TEST_ASSERT_EQUAL_HEX16(0x01,cpuRegisters->A);
-  TEST_ASSERT_EQUAL_HEX16(0,c|z|n|i0|h|i1|v);
+  TEST_ASSERT_EQUAL_HEX16(0,c|z|l|i0|h|i1|v);
 }
 
 
@@ -46,7 +46,7 @@ void test_raw_add_given_value_0xff_add_with_0x01_expected_0x0_carry_zero_and_hal
   cpuRegisters->A = 0x01;
   raw_add(0xff);
   TEST_ASSERT_EQUAL_HEX16(0x00,cpuRegisters->A);
-  TEST_ASSERT_EQUAL_HEX16(0x13,c|z|n|i0|h|i1|v);
+  TEST_ASSERT_EQUAL_HEX16(0x13,c|z|l|i0|h|i1|v);
 }
 
 
@@ -59,5 +59,5 @@ void test_raw_add_given_value_0x81_add_with_0x01_expected_0x82_negative_overflow
   cpuRegisters->A = 0x81;
   raw_add(0x01);
   TEST_ASSERT_EQUAL_HEX16(0x82,cpuRegisters->A);
-  TEST_ASSERT_EQUAL_HEX16(0x04,c|z|n|i0|h|i1|v);
+  TEST_ASSERT_EQUAL_HEX16(0x04,c|z|l|i0|h|i1|v);
 }

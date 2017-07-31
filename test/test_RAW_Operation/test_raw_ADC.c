@@ -23,7 +23,7 @@ void test_raw_adc_given_value_0x00_add_with_0x00_and_carry_bit_is_1_expected_0x0
   cpuRegisters->CCR.C = 1;
   raw_adc(0x00);
   TEST_ASSERT_EQUAL_HEX16(0x01,cpuRegisters->A);
-  TEST_ASSERT_EQUAL_HEX16(0x00,c|z|n|i0|h|i1|v);
+  TEST_ASSERT_EQUAL_HEX16(0x00,c|z|l|i0|h|i1|v);
 }
 
 
@@ -38,7 +38,7 @@ void test_raw_adc_given_value_0x00_add_with_0x00_and_carry_bit_is_0_expected_0x0
   cpuRegisters->CCR.C = 0;
   raw_adc(0x00);
   TEST_ASSERT_EQUAL_HEX16(0x00,cpuRegisters->A);
-  TEST_ASSERT_EQUAL_HEX16(0x02,c|z|n|i0|h|i1|v);
+  TEST_ASSERT_EQUAL_HEX16(0x02,c|z|l|i0|h|i1|v);
 }
 
 
@@ -53,7 +53,7 @@ void test_raw_adc_given_value_0x81_add_with_0x01_and_carry_bit_is_1_expected_0x8
   cpuRegisters->CCR.C = 1;
   raw_adc(0x01);
   TEST_ASSERT_EQUAL_HEX16(0x83,cpuRegisters->A);
-  TEST_ASSERT_EQUAL_HEX16(0x04,c|z|n|i0|h|i1|v);
+  TEST_ASSERT_EQUAL_HEX16(0x04,c|z|l|i0|h|i1|v);
 }
 
 
@@ -68,5 +68,5 @@ void test_raw_adc_given_value_0xff_add_with_0x00_and_carry_bit_is_1_expected_0x0
   cpuRegisters->CCR.C = 1;
   raw_adc(0xff);
   TEST_ASSERT_EQUAL_HEX16(0x00,cpuRegisters->A);
-  TEST_ASSERT_EQUAL_HEX16(0x13,c|z|n|i0|h|i1|v);
+  TEST_ASSERT_EQUAL_HEX16(0x13,c|z|l|i0|h|i1|v);
 }

@@ -54,7 +54,7 @@ void test_sub_Y_given_A_0x01_with_Y_having_value_0x05_expected_0xfc(void){
 	cpuRegisters->A 	= 0x01;
 	set_Y(0x12,0x10);
 	memory[0x1210] 		= 0x05;
-	uint8_t instrc[] 	= {0x90,0xFB};					// 	Opcode : 90FB
+	uint8_t instrc[] 	= {0xFB};					// 	Opcode : 90FB
 	sub_y((uint8_t *)&instrc);
 
 	TEST_ASSERT_EQUAL_HEX16(0xfc,cpuRegisters->A);
@@ -80,7 +80,7 @@ void test_sub_shortoff_with_x_given_A_0xA0_and_the_value_of_the_address_0x02_exp
 void test_sub_shortoff_with_y_given_A_0xAD_and_the_value_of_the_address_0x01_expected_0xAC(void){
 	cpuRegisters->A 	= 0xAD;
 	set_Y(0x23,0x23);
-	uint8_t instrc[] 	= {0x90,0xEB,0x22};		// 	Opcode : 90EB22
+	uint8_t instrc[] 	= {0xEB,0x22};		// 	Opcode : 90EB22
 	memory[0x2345] 		= 0x01; 								//	Y: 0x2323   offset: 0x22   (Y - offset = 0x2345)
 	sub_y_shortset((uint8_t *)&instrc);
 
@@ -123,7 +123,7 @@ void test_sub_shortoff_SP_given_A_0xAB_and_the_value_of_the_SP_0xA0_expected_0x0
 // 		sub A,($10.w)
 void test_sub_shortptr_w_given_A_0xAB_and_the_value_of_the_address_0x11_expected_0x9A(void){
 	cpuRegisters->A		= 0xAB;
-	uint8_t instrc[]	= {0x92,0xcb,0x40};
+	uint8_t instrc[]	= {0xcb,0x40};
 	memory[0x40]			= 0x42;
 	memory[0x41]			= 0xe5;
 	memory[0x42e5]		= 0x11;
@@ -135,7 +135,7 @@ void test_sub_shortptr_w_given_A_0xAB_and_the_value_of_the_address_0x11_expected
 // 		sub A,($1000.w)
 void test_sub_longptr_w_given_A_0x11_and_the_value_of_the_address_0x01_expected_0x10(void){
 	cpuRegisters->A		= 0x11;
-	uint8_t instrc[]	= {0x72,0xcb,0x10,0x40};
+	uint8_t instrc[]	= {0xcb,0x10,0x40};
 	memory[0x1040]		= 0x42;
 	memory[0x1041]		= 0xe5;
 	memory[0x42e5]		= 0x01;
@@ -148,7 +148,7 @@ void test_sub_longptr_w_given_A_0x11_and_the_value_of_the_address_0x01_expected_
 void test_sub_shortptr_w_X_given_A_0xFF_and_the_value_of_the_address_0x01_expected_0xFE(void){
 	cpuRegisters->A 	= 0xFF;
 	set_X(0x00,0x03);
-	uint8_t instrc[]	= {0x92,0xDB,0x89};
+	uint8_t instrc[]	= {0xDB,0x89};
 	memory[0x89]			= 0x08;
 	memory[0x8a]			= 0x01;
 	memory[0x0804]		= 0x01;
@@ -161,7 +161,7 @@ void test_sub_shortptr_w_X_given_A_0xFF_and_the_value_of_the_address_0x01_expect
 void test_sub_longptr_w_X_given_A_0x90_and_the_value_of_the_address_0x05_expected_0x8B(void){
 	cpuRegisters->A 	= 0x90;
 	set_X(0x01,0x03);
-	uint8_t instrc[]	= {0x72,0xDB,0x10,0x89};
+	uint8_t instrc[]	= {0xDB,0x10,0x89};
 	memory[0x1089]		= 0x18;
 	memory[0x108a]		= 0x01;
 	memory[0x1904]		= 0x05;
@@ -174,7 +174,7 @@ void test_sub_longptr_w_X_given_A_0x90_and_the_value_of_the_address_0x05_expecte
 void test_sub_shortptr_w_Y_given_A_0x8B_and_the_value_of_the_address_0x08_expected_0x83(void){
 	cpuRegisters->A 	= 0x8B;
 	set_Y(0x11,0x11);
-	uint8_t instrc[]	= {0x91,0xDB,0x89};
+	uint8_t instrc[]	= {0xDB,0x89};
 	memory[0x89]			= 0x18;
 	memory[0x8a]			= 0x11;
 	memory[0x2922]		= 0x08;

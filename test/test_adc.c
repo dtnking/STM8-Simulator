@@ -59,7 +59,7 @@ void test_adc_Y_given_A_0x01_with_Y_having_value_0x05_expected_0x07(void){
   cpuRegisters->CCR.C = 0x1;
 	set_Y(0x12,0x10);
 	memory[0x1210] 		= 0x05;
-	uint8_t instrc[] 	= {0x90,0xF9};					// 	Opcode : 90FB
+	uint8_t instrc[] 	= {0xF9};					// 	Opcode : 90FB
 	adc_y((uint8_t *)&instrc);
 
 	TEST_ASSERT_EQUAL_HEX16(0x07,cpuRegisters->A);
@@ -87,7 +87,7 @@ void test_adc_shortoff_with_y_given_A_0x01_and_the_value_of_the_address_0xAD_exp
 	cpuRegisters->A 	= 0x01;
   cpuRegisters->CCR.C = 0x1;
 	set_Y(0x23,0x23);
-	uint8_t instrc[] 	= {0x90,0xE9,0x22};		// 	Opcode : 90EB22
+	uint8_t instrc[] 	= {0xE9,0x22};		// 	Opcode : 90EB22
 	memory[0x2345] 		= 0x7D; 								//	Y: 0x2323   offset: 0x22   (Y + offset = 0x2345)
 	adc_y_shortset((uint8_t *)&instrc);
 
@@ -134,7 +134,7 @@ void test_adc_shortoff_SP_given_A_0x01_and_the_value_of_the_SP_0xaa_expected_0xa
 void test_adc_shortptr_w_given_A_0x01_and_the_value_of_the_address_0x11_expected_0x13(void){
 	cpuRegisters->A		= 0x01;
   cpuRegisters->CCR.C = 0x1;
-	uint8_t instrc[]	= {0x92,0xc9,0x40};
+	uint8_t instrc[]	= {0xc9,0x40};
 	memory[0x40]			= 0x42;
 	memory[0x41]			= 0xe5;
 	memory[0x42e5]		= 0x11;
@@ -147,7 +147,7 @@ void test_adc_shortptr_w_given_A_0x01_and_the_value_of_the_address_0x11_expected
 void test_adc_longptr_w_given_A_0x01_and_the_value_of_the_address_0x11_expected_0x13(void){
 	cpuRegisters->A		= 0x01;
   cpuRegisters->CCR.C = 0x1;
-	uint8_t instrc[]	= {0x72,0xc9,0x10,0x40};
+	uint8_t instrc[]	= {0xc9,0x10,0x40};
 	memory[0x1040]		= 0x42;
 	memory[0x1041]		= 0xe5;
 	memory[0x42e5]		= 0x11;
@@ -161,7 +161,7 @@ void test_adc_shortptr_w_X_given_A_0x01_and_the_value_of_the_address_0x40_expect
 	cpuRegisters->A 	= 0x01;
   cpuRegisters->CCR.C = 0x1;
 	set_X(0x00,0x03);
-	uint8_t instrc[]	= {0x92,0xD9,0x89};
+	uint8_t instrc[]	= {0xD9,0x89};
 	memory[0x89]			= 0x08;
 	memory[0x8a]			= 0x01;
 	memory[0x0804]		= 0x40;
@@ -175,7 +175,7 @@ void test_adc_longptr_w_X_given_A_0x01_and_the_value_of_the_address_0x40_expecte
 	cpuRegisters->A 	= 0x01;
   cpuRegisters->CCR.C = 0x1;
 	set_X(0x01,0x03);
-	uint8_t instrc[]	= {0x72,0xD9,0x10,0x89};
+	uint8_t instrc[]	= {0xD9,0x10,0x89};
 	memory[0x1089]		= 0x18;
 	memory[0x108a]		= 0x01;
 	memory[0x1904]		= 0x40;
@@ -189,7 +189,7 @@ void test_adc_shortptr_w_Y_given_A_0x80_and_the_value_of_the_address_0x80_expect
 	cpuRegisters->A 	= 0x80;
   cpuRegisters->CCR.C = 0x1;
 	set_Y(0x11,0x11);
-	uint8_t instrc[]	= {0x91,0xD9,0x89};
+	uint8_t instrc[]	= {0xD9,0x89};
 	memory[0x89]			= 0x18;
 	memory[0x8a]			= 0x11;
 	memory[0x2922]		= 0x80;

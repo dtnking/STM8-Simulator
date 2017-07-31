@@ -2,6 +2,10 @@
 #include "Simulator.h"
 
 #include "add.h"
+#include "adc.h"
+#include "sub.h"
+#include "sbc.h"
+#include "INC.h"
 #include <stdint.h>
 #include <stdio.h>
 
@@ -22,22 +26,6 @@ Opcode opcodeTable[256] = {
   [0xEB] = {add_x_shortset,2,1},
   [0xDB] = {add_x_longset,3,1},
   [0x1B] = {add_shortoff_SP,2,1},
-
-  //ADC
-  [0xA9] = {adc_byte,2,1},
-  [0xB9] = {adc_shortmem,2,1},
-  [0xC9] = {adc_longmem,3,1},
-  [0xF9] = {adc_x,1,1},
-  [0xE9] = {adc_x_shortset,2,1},
-  [0xD9] = {adc_x_longset,3,1},
-  [0x19] = {adc_shortoff_SP,2,1},
-
-  //INC
-  [0x4C] = {inc_A,1,1},
-  [0x3C] = {inc_shortmem,2,1},
-  [0x7C] = {inc_X,1,1},
-  [0x6C] = {inc_shortoff_X,2,1},
-  [0x0C]
 
 };
 
