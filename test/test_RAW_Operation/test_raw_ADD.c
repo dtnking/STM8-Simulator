@@ -49,7 +49,7 @@ void test_raw_ADD_overflow_given_negative_plus_negative_value_get_positive_value
 /* -----------------------------------------------------------
 **            (expected)         |          (real)
 **  (iii)   -1 + 120 = 119       |         1111 1111     (-1)
-**                               |     +   0111 1111    (120)
+**                               |     +   0111 1000    (120)
 **                               |    ------------------
 **                               |         0111 0111    (119)
 **                               |    ------------------
@@ -60,6 +60,22 @@ void test_raw_ADD_overflow_given_negative_plus_positive_value_get_positive_value
   raw_add(0x78);
   TEST_ASSERT_EQUAL_HEX16(0x77,cpuRegisters->A);
   TEST_ASSERT_EQUAL_HEX16(0x011,c|z|l|i0|h|i1|v);
+}
+
+/* -----------------------------------------------------------
+**            (expected)         |          (real)
+**  (iv)    1 + (-120) = -119    |         0000 0001       (1)
+**                               |     +   1000 1000    (-120)
+**                               |    ------------------
+**                               |         1000 1001    (-119)
+**                               |    ------------------
+**  ( CCR flags = 0x11) ----> Negative is set.
+*/
+void test_raw_ADD_overflow_given_positive_plus_negative_value_get_negative_value_expected_no_overflow(void){
+  cpuRegisters->A = 0x1;
+  raw_add(0x88);
+  TEST_ASSERT_EQUAL_HEX16(0x89,cpuRegisters->A);
+  TEST_ASSERT_EQUAL_HEX16(0x04,c|z|l|i0|h|i1|v);
 }
 
 

@@ -82,7 +82,7 @@ void test_raw_ADC_overflow_given_negative_plus_positive_value_get_positive_value
 **        ^
 **      carry
 **
-**  ( CCR flags = 0x43) ----> Overflow, Carry are set.
+**  ( CCR flags = 0x41) ----> Overflow, Carry are set.
  */
 void test_raw_ADC_carry_given_value_0x80_plus_with_0x80_expected_Carry_is_set(void){
  cpuRegisters->A = 0x80;

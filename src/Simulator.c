@@ -34,7 +34,7 @@ void raw_adc(uint8_t val){
 void raw_sub(uint8_t val){
   uint8_t result   	= cpuRegisters->A - val;
 
-  cpuRegisters->CCR.V = (A7 & M7|A7 & R7|A7 & M7 & R7)^(A6 & M6|A6 & R6|A6 & M6 & R6);
+  cpuRegisters->CCR.V = ((!(A7)) & M7|(!(A7)) & R7|A7 & M7 & R7)^((!(A6)) & M6|(!(A6)) & R6|A6 & M6 & R6);
   cpuRegisters->CCR.N = R7;
   cpuRegisters->CCR.Z = result==0?1:0;
   cpuRegisters->CCR.C = (!(A7))&M7|(!(A7))&(R7)|A7&M7&R7;
