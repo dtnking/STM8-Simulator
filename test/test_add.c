@@ -171,7 +171,7 @@ void test_Add_longptr_w_X_given_A_0x01_and_the_value_of_the_address_0x40_expecte
 }
 
 // 		ADD A,[($10.w),Y]
-void test_Add_shortptr_w_Y_given_A_0x8_and_the_value_of_the_address_0x8_expected_0x10(void){
+void test_Add_shortptr_w_Y_given_A_0x00_and_the_value_of_the_address_0x00_expected_0x00(void){
 	cpuRegisters->A 	= 0x0;
 	set_Y(0x11,0x11);
 	uint8_t instrc[]	= {0xDB,0x89};

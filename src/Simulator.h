@@ -12,5 +12,6 @@ void raw_adc(uint8_t val);
 void raw_sub(uint8_t val);
 void raw_sbc(uint8_t val);
 void raw_inc(uint8_t *addrs);
+void raw_and(uint8_t val);
 
 #endif // _SIMULATOR_H
