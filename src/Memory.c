@@ -3,7 +3,7 @@
 #include "add.h"
 #include <stdint.h>
 
-
+unsigned char memory[20*KB];
 Stm8Registers *cpuRegisters=(Stm8Registers *)&memory[0x7f00];
 
 

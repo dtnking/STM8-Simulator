@@ -44,9 +44,6 @@
 #define M6        (val & 0x40)    >>  6
 #define M7        (val & 0x80)    >>  7
 
-//typedef unsigned char	uint8_t;
-unsigned char memory[20*KB];
-
 typedef struct flags flags;
 struct flags{
   uint8_t C:1;
@@ -73,7 +70,9 @@ struct Stm8Registers {
   flags CCR;
 };
 
-Stm8Registers *cpuRegisters;
+//typedef unsigned char	uint8_t;
+extern unsigned char memory[];
+extern Stm8Registers *cpuRegisters;
 
 uint8_t get_valueByte(uint8_t *opcode);
 uint8_t get_shortmem(uint8_t *opcode);
