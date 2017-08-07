@@ -67,3 +67,10 @@ void raw_and(uint8_t val){
   cpuRegisters->CCR.Z = result==0?1:0;
   cpuRegisters->A     = result;
 }
+
+void raw_or(uint8_t val){
+  uint8_t result = cpuRegisters->A | val;
+  cpuRegisters->CCR.N = R7;
+  cpuRegisters->CCR.Z = result==0?1:0;
+  cpuRegisters->A     = result;
+}

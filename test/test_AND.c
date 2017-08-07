@@ -5,13 +5,9 @@
 #include <stdio.h>
 #include <stdint.h>
 
-void setUp(void)
-{
-}
+void setUp(void){}
 
-void tearDown(void)
-{
-}
+void tearDown(void){}
 
 void test_AND_1_byte_given_A_0x23_with_0x23_expected_0x23(void){
 	cpuRegisters->A  = 0x23;														// Accumulator = 0x23.
