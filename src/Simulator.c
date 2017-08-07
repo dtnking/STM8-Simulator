@@ -81,3 +81,10 @@ void raw_xor(uint8_t val){
   cpuRegisters->CCR.Z = result==0?1:0;
   cpuRegisters->A     = result;
 }
+
+void raw_ldA(uint8_t val){
+  uint8_t result = val;
+  cpuRegisters->CCR.N = R7;
+  cpuRegisters->CCR.Z = result==0?1:0;
+  cpuRegisters->A     = result;
+}

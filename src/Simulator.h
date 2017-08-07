@@ -15,5 +15,6 @@ void raw_inc(uint8_t *addrs);
 void raw_and(uint8_t val);
 void raw_or (uint8_t val);
 void raw_xor(uint8_t val);
+void raw_ldA(uint8_t val);
 
 #endif // _SIMULATOR_H

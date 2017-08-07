@@ -13,7 +13,7 @@ void tearDown(void){}
 void test_adc_1_byte_given_A_0x01_with_0x55_expected_0x57(void){
 	cpuRegisters->A  = 0x01;																// Accumulator = 0x01.
   cpuRegisters->CCR.C = 0x1;
-	uint8_t instrc[] = {0xA9,0x55};											// Opcode : 0xAB55
+	uint8_t instrc[] = {0xA9,0x55};											   // Opcode : 0xA955
 	adc_byte(instrc);
 
 	TEST_ASSERT_EQUAL_HEX8 (0x57,cpuRegisters->A);
@@ -24,7 +24,7 @@ void test_adc_shortmen_given_A_0x01_with_0x55_within_addrs_0x10_expected_0x57(vo
 	cpuRegisters->A  = 0x01;																// Accumulator = 0x01.
   cpuRegisters->CCR.C = 0x1;
 	memory[0x10]		 =	0x55;																// store 0x55 into memory location 0x10.
-	uint8_t instrc[] = {0xB9,0x10};											// Opcode : 0xBB10
+	uint8_t instrc[] = {0xB9,0x10};											    // Opcode : 0xB910
 	adc_shortmem(instrc);
 
 	TEST_ASSERT_EQUAL_HEX8 (0x57, cpuRegisters->A);
@@ -35,7 +35,7 @@ void test_adc_longmem_given_A_0x01_with_0x55_within_addrs_0x1000_expected_0x57(v
 	cpuRegisters->A  = 0x01;																// Accumulator = 0x01.
   cpuRegisters->CCR.C = 0x1;
 	memory[0x1000]	 =	0x55;																// store 0x55 into memory location 0x1000.
-	uint8_t instrc[] = {0xC9,0x10,0x00};									// Opcode : 0xCB1000
+	uint8_t instrc[] = {0xC9,0x10,0x00};									  // Opcode : 0xC91000
 	adc_longmem(instrc);
 
 	TEST_ASSERT_EQUAL_HEX16 (0x57, cpuRegisters->A);
@@ -47,7 +47,7 @@ void test_adc_X_given_A_0x01_with_X_having_value_0x55_expected_0x57(void){
   cpuRegisters->CCR.C = 0x1;
 	set_X(0x11,0x10);
 	memory[0x1110] 		= 0x55;
-	uint8_t instrc[] 	= {0xF9};									// 	Opcode : FB
+	uint8_t instrc[] 	= {0xF9};						// 	Opcode : F9
 	adc_x(instrc);
 
 	TEST_ASSERT_EQUAL_HEX16(0x57,cpuRegisters->A);
@@ -59,7 +59,7 @@ void test_adc_Y_given_A_0x01_with_Y_having_value_0x05_expected_0x07(void){
   cpuRegisters->CCR.C = 0x1;
 	set_Y(0x12,0x10);
 	memory[0x1210] 		= 0x05;
-	uint8_t instrc[] 	= {0xF9};					// 	Opcode : 90FB
+	uint8_t instrc[] 	= {0xF9};					// 	Opcode : F9
 	adc_y(instrc);
 
 	TEST_ASSERT_EQUAL_HEX16(0x07,cpuRegisters->A);
@@ -75,7 +75,7 @@ void test_adc_shortoff_with_x_given_A_0x01_and_the_value_of_the_address_0x10_exp
 	cpuRegisters->A 	= 0x01;
   cpuRegisters->CCR.C = 0x1;
 	set_X(0x12,0x12);
-	uint8_t instrc[] 	= {0xE9,0x01};			// 	Opcode : EB01
+	uint8_t instrc[] 	= {0xE9,0x01};			// 	Opcode : E901
 	memory[0x1213] 		= 0xA0;								//	X: 0x1212   offset: 0x01   (X + offset = 0x1213)
 	adc_x_shortset(instrc);
 
