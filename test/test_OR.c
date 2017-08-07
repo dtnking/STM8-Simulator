@@ -9,7 +9,7 @@ void setUp(void){}
 
 void tearDown(void){}
 
-void test_OR_1_byte_given_A_0xFF_with_0xFF_expected_0xFF(void){
+void test_OR_1_byte_given_A_0xFF_OR_0xFF_expected_0xFF(void){
 	cpuRegisters->A  = 0xFF;														// Accumulator = 0xFF.
 	uint8_t instrc[] = {0xAB,0xFF};											// Opcode : 0xABFF
 	or_byte(instrc);
@@ -17,7 +17,7 @@ void test_OR_1_byte_given_A_0xFF_with_0xFF_expected_0xFF(void){
 	TEST_ASSERT_EQUAL_HEX8 (0xFF,cpuRegisters->A);
 }
 
-void test_OR_1_byte_given_A_0x00_with_0x00_expected_0x00(void){
+void test_OR_1_byte_given_A_0x00_OR_0x00_expected_0x00(void){
 	cpuRegisters->A  = 0x00;														// Accumulator = 0x00.
 	uint8_t instrc[] = {0xAB,0x00};											// Opcode : 0xAB00
 	or_byte(instrc);
@@ -25,7 +25,7 @@ void test_OR_1_byte_given_A_0x00_with_0x00_expected_0x00(void){
 	TEST_ASSERT_EQUAL_HEX8 (0x00,cpuRegisters->A);
 }
 
-void test_OR_1_byte_given_A_0xFF_with_0x00_expected_0xFF(void){
+void test_OR_1_byte_given_A_0xFF_OR_0x00_expected_0xFF(void){
 	cpuRegisters->A  = 0xFF;														// Accumulator = 0xFF.
 	uint8_t instrc[] = {0xAB,0x00};											// Opcode : 0xAB00
 	or_byte(instrc);
@@ -33,7 +33,7 @@ void test_OR_1_byte_given_A_0xFF_with_0x00_expected_0xFF(void){
 	TEST_ASSERT_EQUAL_HEX8 (0xFF,cpuRegisters->A);
 }
 
-void test_OR_shortmen_given_A_0xFF_with_0xFF_expected_0xFF(void){
+void test_OR_shortmen_given_A_0xFF_OR_0xFF_expected_0xFF(void){
 	cpuRegisters->A  = 0xFF;															// Accumulator = 0xFF.
 	memory[0x10]		 =	0xFF;															// store 0xFF into memory location 0x10.
 	uint8_t instrc[] = {0xBB,0x10};											  // Opcode : 0xBB10
@@ -42,7 +42,7 @@ void test_OR_shortmen_given_A_0xFF_with_0xFF_expected_0xFF(void){
 	TEST_ASSERT_EQUAL_HEX8 (0xFF, cpuRegisters->A);
 }
 
-void test_OR_shortmen_given_A_0x00_with_0x00_expected_0x00(void){
+void test_OR_shortmen_given_A_0x00_OR_0x00_expected_0x00(void){
 	cpuRegisters->A  = 0x00;															// Accumulator = 0x00.
 	memory[0x10]		 =	0x00;															// store 0x00 into memory location 0x10.
 	uint8_t instrc[] = {0xBB,0x10};											  // Opcode : 0xBB10
@@ -51,7 +51,7 @@ void test_OR_shortmen_given_A_0x00_with_0x00_expected_0x00(void){
 	TEST_ASSERT_EQUAL_HEX8 (0x00, cpuRegisters->A);
 }
 
-void test_OR_shortmen_given_A_0xFF_with_0x00_expected_0xFF(void){
+void test_OR_shortmen_given_A_0xFF_OR_0x00_expected_0xFF(void){
 	cpuRegisters->A  = 0xFF;															// Accumulator = 0xFF.
 	memory[0x10]		 =	0x00;															// store 0x00 into memory location 0x10.
 	uint8_t instrc[] = {0xBB,0x10};											  // Opcode : 0xBB10
@@ -60,7 +60,7 @@ void test_OR_shortmen_given_A_0xFF_with_0x00_expected_0xFF(void){
 	TEST_ASSERT_EQUAL_HEX8 (0xFF, cpuRegisters->A);
 }
 
-void test_OR_longmem_given_A_0xFF_with_0xFF_expected_0xFF(void){
+void test_OR_longmem_given_A_0xFF_OR_0xFF_expected_0xFF(void){
 	cpuRegisters->A  = 0xFF;																// Accumulator = 0xFF.
 	memory[0x1000]	 =	0xFF;															  // store 0xFF into memory location 0x1000.
 	uint8_t instrc[] = {0xCB,0x10,0x00};									  // Opcode : 0xCB1000
@@ -69,7 +69,7 @@ void test_OR_longmem_given_A_0xFF_with_0xFF_expected_0xFF(void){
 	TEST_ASSERT_EQUAL_HEX16 (0xFF, cpuRegisters->A);
 }
 
-void test_OR_longmem_given_A_0x00_with_0x00_expected_0x00(void){
+void test_OR_longmem_given_A_0x00_OR_0x00_expected_0x00(void){
 	cpuRegisters->A  = 0x00;																// Accumulator = 0x00.
 	memory[0x1000]	 =	0x00;																// store 0x00 into memory location 0x1000.
 	uint8_t instrc[] = {0xCB,0x10,0x00};									  // Opcode : 0xCB1000
@@ -78,7 +78,7 @@ void test_OR_longmem_given_A_0x00_with_0x00_expected_0x00(void){
 	TEST_ASSERT_EQUAL_HEX16 (0x00, cpuRegisters->A);
 }
 
-void test_OR_longmem_given_A_0xFF_with_0x00_expected_0xFF(void){
+void test_OR_longmem_given_A_0xFF_OR_0x00_expected_0xFF(void){
 	cpuRegisters->A  = 0xFF;																// Accumulator = 0xFF.
 	memory[0x1000]	 =	0x00;																// store 0x00 into memory location 0x1000.
 	uint8_t instrc[] = {0xCB,0x10,0x00};									  // Opcode : 0xCB1000
@@ -87,7 +87,7 @@ void test_OR_longmem_given_A_0xFF_with_0x00_expected_0xFF(void){
 	TEST_ASSERT_EQUAL_HEX16 (0xFF, cpuRegisters->A);
 }
 
-void test_OR_X_given_A_0xFF_with_X_having_value_0xFF_expected_0xFF(void){
+void test_OR_X_given_A_0xFF_OR_X_having_value_0xFF_expected_0xFF(void){
 	cpuRegisters->A 	= 0xFF;                   // Accumulator = 0xFF.
 	set_X(0x11,0x10);
 	memory[0x1110] 		= 0xFF;                   // store 0xFF into memory location 0x1100.
@@ -97,7 +97,7 @@ void test_OR_X_given_A_0xFF_with_X_having_value_0xFF_expected_0xFF(void){
 	TEST_ASSERT_EQUAL_HEX16(0xFF,cpuRegisters->A);
 }
 
-void test_OR_X_given_A_0x00_with_X_having_value_0x00_expected_0x00(void){
+void test_OR_X_given_A_0x00_OR_X_having_value_0x00_expected_0x00(void){
 	cpuRegisters->A 	= 0x00;                   // Accumulator = 0x00.
 	set_X(0x11,0x10);
 	memory[0x1110] 		= 0x00;                   // store 0x00 into memory location 0x1110.
@@ -107,7 +107,7 @@ void test_OR_X_given_A_0x00_with_X_having_value_0x00_expected_0x00(void){
 	TEST_ASSERT_EQUAL_HEX16(0x00,cpuRegisters->A);
 }
 
-void test_OR_X_given_A_0xFF_with_X_having_value_0x00_expected_0xFF(void){
+void test_OR_X_given_A_0xFF_OR_X_having_value_0x00_expected_0xFF(void){
 	cpuRegisters->A 	= 0xFF;
 	set_X(0x11,0x10);
 	memory[0x1110] 		= 0x00;
@@ -117,7 +117,7 @@ void test_OR_X_given_A_0xFF_with_X_having_value_0x00_expected_0xFF(void){
 	TEST_ASSERT_EQUAL_HEX16(0xFF,cpuRegisters->A);
 }
 
-void test_OR_Y_given_A_0xFF_with_Y_having_value_0xFF_expected_0xFF(void){
+void test_OR_Y_given_A_0xFF_OR_Y_having_value_0xFF_expected_0xFF(void){
 	cpuRegisters->A 	= 0xFF;
 	set_Y(0x12,0x10);
 	memory[0x1210] 		= 0xFF;
@@ -127,7 +127,7 @@ void test_OR_Y_given_A_0xFF_with_Y_having_value_0xFF_expected_0xFF(void){
 	TEST_ASSERT_EQUAL_HEX16(0xFF,cpuRegisters->A);
 }
 
-void test_OR_Y_given_A_0x00_with_Y_having_value_0x00_expected_0x00(void){
+void test_OR_Y_given_A_0x00_OR_Y_having_value_0x00_expected_0x00(void){
 	cpuRegisters->A 	= 0x00;
 	set_Y(0x12,0x10);
 	memory[0x1210] 		= 0x00;
@@ -137,7 +137,7 @@ void test_OR_Y_given_A_0x00_with_Y_having_value_0x00_expected_0x00(void){
 	TEST_ASSERT_EQUAL_HEX16(0x00,cpuRegisters->A);
 }
 
-void test_OR_Y_given_A_0xFF_with_Y_having_value_0x00_expected_0xFF(void){
+void test_OR_Y_given_A_0xFF_OR_Y_having_value_0x00_expected_0xFF(void){
 	cpuRegisters->A 	= 0xFF;
 	set_Y(0x12,0x10);
 	memory[0x1210] 		= 0x00;
@@ -147,7 +147,7 @@ void test_OR_Y_given_A_0xFF_with_Y_having_value_0x00_expected_0xFF(void){
 	TEST_ASSERT_EQUAL_HEX16(0xFF,cpuRegisters->A);
 }
 
-void test_OR_shortoff_with_x_given_A_0xFF_and_the_value_of_the_address_0xFF_expected_0xFF(void){
+void test_OR_shortoff_with_x_given_A_0xFF_OR_the_value_of_the_address_0xFF_expected_0xFF(void){
 	cpuRegisters->A 	= 0xFF;
 	set_X(0x12,0x12);
 	uint8_t instrc[] 	= {0xEB,0x01};			// 	Opcode : EB01
@@ -157,7 +157,7 @@ void test_OR_shortoff_with_x_given_A_0xFF_and_the_value_of_the_address_0xFF_expe
 	TEST_ASSERT_EQUAL_HEX16(0xFF,cpuRegisters->A);
 }
 
-void test_OR_shortoff_with_x_given_A_0x00_and_the_value_of_the_address_0x00_expected_0x00(void){
+void test_OR_shortoff_with_x_given_A_0x00_OR_the_value_of_the_address_0x00_expected_0x00(void){
 	cpuRegisters->A 	= 0x00;
 	set_X(0x12,0x12);
 	uint8_t instrc[] 	= {0xEB,0x01};			// 	Opcode : EB01
@@ -167,7 +167,7 @@ void test_OR_shortoff_with_x_given_A_0x00_and_the_value_of_the_address_0x00_expe
 	TEST_ASSERT_EQUAL_HEX16(0x00,cpuRegisters->A);
 }
 
-void test_OR_shortoff_with_x_given_A_0xFF_and_the_value_of_the_address_0x00_expected_0xFF(void){
+void test_OR_shortoff_with_x_given_A_0xFF_OR_the_value_of_the_address_0x00_expected_0xFF(void){
 	cpuRegisters->A 	= 0xFF;
 	set_X(0x12,0x12);
 	uint8_t instrc[] 	= {0xEB,0x01};			// 	Opcode : EB01
@@ -177,7 +177,7 @@ void test_OR_shortoff_with_x_given_A_0xFF_and_the_value_of_the_address_0x00_expe
 	TEST_ASSERT_EQUAL_HEX16(0xFF,cpuRegisters->A);
 }
 
-void test_OR_shortoff_with_y_given_A_0xFF_and_the_value_of_the_address_0xFF_expected_0xFF(void){
+void test_OR_shortoff_with_y_given_A_0xFF_OR_the_value_of_the_address_0xFF_expected_0xFF(void){
 	cpuRegisters->A 	= 0xFF;
 	set_Y(0x23,0x23);
 	uint8_t instrc[] 	= {0xEB,0x22};		// 	Opcode : 90EB22
@@ -188,7 +188,7 @@ void test_OR_shortoff_with_y_given_A_0xFF_and_the_value_of_the_address_0xFF_expe
 }
 
 
-void test_OR_shortoff_with_y_given_A_0x00_and_the_value_of_the_address_0x00_expected_0x00(void){
+void test_OR_shortoff_with_y_given_A_0x00_OR_the_value_of_the_address_0x00_expected_0x00(void){
 	cpuRegisters->A 	= 0x00;
 	set_Y(0x23,0x23);
 	uint8_t instrc[] 	= {0xEB,0x22};		// 	Opcode : 90EB22
@@ -198,7 +198,7 @@ void test_OR_shortoff_with_y_given_A_0x00_and_the_value_of_the_address_0x00_expe
 	TEST_ASSERT_EQUAL_HEX16(0x00,cpuRegisters->A);
 }
 
-void test_OR_shortoff_with_y_given_A_0xFF_and_the_value_of_the_address_0x00_expected_0xFF(void){
+void test_OR_shortoff_with_y_given_A_0xFF_OR_the_value_of_the_address_0x00_expected_0xFF(void){
 	cpuRegisters->A 	= 0xFF;
 	set_Y(0x23,0x23);
 	uint8_t instrc[] 	= {0xEB,0x22};		// 	Opcode : 90EB22
@@ -208,7 +208,7 @@ void test_OR_shortoff_with_y_given_A_0xFF_and_the_value_of_the_address_0x00_expe
 	TEST_ASSERT_EQUAL_HEX16(0xFF,cpuRegisters->A);
 }
 
-void test_OR_longoff_with_X_given_A_0xFF_and_the_value_of_the_address_0xFF_expected_0xFF(void){
+void test_OR_longoff_with_X_given_A_0xFF_OR_the_value_of_the_address_0xFF_expected_0xFF(void){
 	cpuRegisters->A 	= 0xFF;
 	set_X(0x34,0x34);
 	uint8_t instrc[] 	= {0xDB,0x10,0x10};
@@ -218,7 +218,7 @@ void test_OR_longoff_with_X_given_A_0xFF_and_the_value_of_the_address_0xFF_expec
 	TEST_ASSERT_EQUAL_HEX16(0xFF,cpuRegisters->A);
 }
 
-void test_OR_longoff_with_X_given_A_0x00_and_the_value_of_the_address_0x00_expected_0x00(void){
+void test_OR_longoff_with_X_given_A_0x00_OR_the_value_of_the_address_0x00_expected_0x00(void){
 	cpuRegisters->A 	= 0x00;
 	set_X(0x34,0x34);
 	uint8_t instrc[] 	= {0xDB,0x10,0x10};
@@ -228,7 +228,7 @@ void test_OR_longoff_with_X_given_A_0x00_and_the_value_of_the_address_0x00_expec
 	TEST_ASSERT_EQUAL_HEX16(0x00,cpuRegisters->A);
 }
 
-void test_OR_longoff_with_X_given_A_0xFF_and_the_value_of_the_address_0x00_expected_0xFF(void){
+void test_OR_longoff_with_X_given_A_0xFF_OR_the_value_of_the_address_0x00_expected_0xFF(void){
 	cpuRegisters->A 	= 0xFF;
 	set_X(0x34,0x34);
 	uint8_t instrc[] 	= {0xDB,0x10,0x10};
@@ -238,7 +238,7 @@ void test_OR_longoff_with_X_given_A_0xFF_and_the_value_of_the_address_0x00_expec
 	TEST_ASSERT_EQUAL_HEX16(0xFF,cpuRegisters->A);
 }
 
-void test_OR_longoff_with_Y_given_A_0xFF_and_the_value_of_the_address_0xFF_expected_0xFF(void){
+void test_OR_longoff_with_Y_given_A_0xFF_OR_the_value_of_the_address_0xFF_expected_0xFF(void){
 	cpuRegisters->A 	= 0xFF;
 	set_Y(0x34,0x34);
 	uint8_t instrc[] 	= {0xDB,0x29,0x29};
@@ -248,7 +248,7 @@ void test_OR_longoff_with_Y_given_A_0xFF_and_the_value_of_the_address_0xFF_expec
 	TEST_ASSERT_EQUAL_HEX16(0xFF,cpuRegisters->A);
 }
 
-void test_OR_longoff_with_Y_given_A_0x00_and_the_value_of_the_address_0x00_expected_0x00(void){
+void test_OR_longoff_with_Y_given_A_0x00_OR_the_value_of_the_address_0x00_expected_0x00(void){
 	cpuRegisters->A 	= 0x00;
 	set_Y(0x34,0x34);
 	uint8_t instrc[] 	= {0xDB,0x29,0x29};
@@ -258,7 +258,7 @@ void test_OR_longoff_with_Y_given_A_0x00_and_the_value_of_the_address_0x00_expec
 	TEST_ASSERT_EQUAL_HEX16(0x00,cpuRegisters->A);
 }
 
-void test_OR_longoff_with_Y_given_A_0xFF_and_the_value_of_the_address_0x00_expected_0xFF(void){
+void test_OR_longoff_with_Y_given_A_0xFF_OR_the_value_of_the_address_0x00_expected_0xFF(void){
 	cpuRegisters->A 	= 0xFF;
 	set_Y(0x34,0x34);
 	uint8_t instrc[] 	= {0xDB,0x29,0x29};
@@ -268,7 +268,7 @@ void test_OR_longoff_with_Y_given_A_0xFF_and_the_value_of_the_address_0x00_expec
 	TEST_ASSERT_EQUAL_HEX16(0xFF,cpuRegisters->A);
 }
 
-void test_OR_shortoff_SP_given_A_0xFF_and_the_value_of_the_SP_0xFF_expected_0xFF(void){
+void test_OR_shortoff_SP_given_A_0xFF_OR_the_value_of_the_SP_0xFF_expected_0xFF(void){
 	cpuRegisters->A		= 0xFF;
 	set_SP(0x88,0x88);
 	uint8_t instrc[]	= {0x1B,0x22};
@@ -278,7 +278,7 @@ void test_OR_shortoff_SP_given_A_0xFF_and_the_value_of_the_SP_0xFF_expected_0xFF
 	TEST_ASSERT_EQUAL_HEX16(0xFF,cpuRegisters->A);
 }
 
-void test_OR_shortoff_SP_given_A_0x00_and_the_value_of_the_SP_0x00_expected_0x00(void){
+void test_OR_shortoff_SP_given_A_0x00_OR_the_value_of_the_SP_0x00_expected_0x00(void){
 	cpuRegisters->A		= 0x00;
 	set_SP(0x88,0x88);
 	uint8_t instrc[]	= {0x1B,0x22};
@@ -288,7 +288,7 @@ void test_OR_shortoff_SP_given_A_0x00_and_the_value_of_the_SP_0x00_expected_0x00
 	TEST_ASSERT_EQUAL_HEX16(0x00,cpuRegisters->A);
 }
 
-void test_OR_shortoff_SP_given_A_0xFF_and_the_value_of_the_SP_0x00_expected_0xFF(void){
+void test_OR_shortoff_SP_given_A_0xFF_OR_the_value_of_the_SP_0x00_expected_0xFF(void){
 	cpuRegisters->A		= 0xFF;
 	set_SP(0x88,0x88);
 	uint8_t instrc[]	= {0x1B,0x22};
@@ -298,7 +298,7 @@ void test_OR_shortoff_SP_given_A_0xFF_and_the_value_of_the_SP_0x00_expected_0xFF
 	TEST_ASSERT_EQUAL_HEX16(0xFF,cpuRegisters->A);
 }
 
-void test_OR_shortptr_w_given_A_0xFF_and_the_value_of_the_address_0xFF_expected_0xFF(void){
+void test_OR_shortptr_w_given_A_0xFF_OR_the_value_of_the_address_0xFF_expected_0xFF(void){
 	cpuRegisters->A		= 0xFF;
 	uint8_t instrc[]	= {0xcb,0x40};
 	memory[0x40]			= 0x42;
@@ -309,7 +309,7 @@ void test_OR_shortptr_w_given_A_0xFF_and_the_value_of_the_address_0xFF_expected_
 	TEST_ASSERT_EQUAL_HEX16(0xFF,cpuRegisters->A);
 }
 
-void test_OR_shortptr_w_given_A_0x00_and_the_value_of_the_address_0x00_expected_0x00(void){
+void test_OR_shortptr_w_given_A_0x00_OR_the_value_of_the_address_0x00_expected_0x00(void){
 	cpuRegisters->A		= 0x00;
 	uint8_t instrc[]	= {0xcb,0x40};
 	memory[0x40]			= 0x42;
@@ -320,7 +320,7 @@ void test_OR_shortptr_w_given_A_0x00_and_the_value_of_the_address_0x00_expected_
 	TEST_ASSERT_EQUAL_HEX16(0x00,cpuRegisters->A);
 }
 
-void test_OR_shortptr_w_given_A_0xFF_and_the_value_of_the_address_0x00_expected_0xFF(void){
+void test_OR_shortptr_w_given_A_0xFF_OR_the_value_of_the_address_0x00_expected_0xFF(void){
 	cpuRegisters->A		= 0xFF;
 	uint8_t instrc[]	= {0xcb,0x40};
 	memory[0x40]			= 0x42;
@@ -331,7 +331,7 @@ void test_OR_shortptr_w_given_A_0xFF_and_the_value_of_the_address_0x00_expected_
 	TEST_ASSERT_EQUAL_HEX16(0xFF,cpuRegisters->A);
 }
 
-void test_OR_longptr_w_given_A_0xFF_and_the_value_of_the_address_0xFF_expected_0xFF(void){
+void test_OR_longptr_w_given_A_0xFF_OR_the_value_of_the_address_0xFF_expected_0xFF(void){
 	cpuRegisters->A		= 0xFF;
 	uint8_t instrc[]	= {0xcb,0x10,0x40};
 	memory[0x1040]		= 0x42;
@@ -342,7 +342,7 @@ void test_OR_longptr_w_given_A_0xFF_and_the_value_of_the_address_0xFF_expected_0
 	TEST_ASSERT_EQUAL_HEX16(0xFF,cpuRegisters->A);
 }
 
-void test_OR_longptr_w_given_A_0x00_and_the_value_of_the_address_0x00_expected_0x00(void){
+void test_OR_longptr_w_given_A_0x00_OR_the_value_of_the_address_0x00_expected_0x00(void){
 	cpuRegisters->A		= 0x00;
 	uint8_t instrc[]	= {0xcb,0x10,0x40};
 	memory[0x1040]		= 0x42;
@@ -353,7 +353,7 @@ void test_OR_longptr_w_given_A_0x00_and_the_value_of_the_address_0x00_expected_0
 	TEST_ASSERT_EQUAL_HEX16(0x00,cpuRegisters->A);
 }
 
-void test_OR_longptr_w_given_A_0xFF_and_the_value_of_the_address_0x00_expected_0x00(void){
+void test_OR_longptr_w_given_A_0xFF_OR_the_value_of_the_address_0x00_expected_0x00(void){
 	cpuRegisters->A		= 0xFF;
 	uint8_t instrc[]	= {0xcb,0x10,0x40};
 	memory[0x1040]		= 0x42;
@@ -364,7 +364,7 @@ void test_OR_longptr_w_given_A_0xFF_and_the_value_of_the_address_0x00_expected_0
 	TEST_ASSERT_EQUAL_HEX16(0xFF,cpuRegisters->A);
 }
 
-void test_OR_shortptr_w_X_given_A_0xFF_and_the_value_of_the_address_0xFF_expected_0xFF(void){
+void test_OR_shortptr_w_X_given_A_0xFF_OR_the_value_of_the_address_0xFF_expected_0xFF(void){
 	cpuRegisters->A 	= 0xFF;
 	set_X(0x00,0x03);
 	uint8_t instrc[]	= {0xDB,0x89};
@@ -377,7 +377,7 @@ void test_OR_shortptr_w_X_given_A_0xFF_and_the_value_of_the_address_0xFF_expecte
 }
 
 
-void test_OR_shortptr_w_X_given_A_0x00_and_the_value_of_the_address_0x00_expected_0x00(void){
+void test_OR_shortptr_w_X_given_A_0x00_OR_the_value_of_the_address_0x00_expected_0x00(void){
 	cpuRegisters->A 	= 0x00;
 	set_X(0x00,0x03);
 	uint8_t instrc[]	= {0xDB,0x89};
@@ -389,7 +389,7 @@ void test_OR_shortptr_w_X_given_A_0x00_and_the_value_of_the_address_0x00_expecte
 	TEST_ASSERT_EQUAL_HEX16(0x00,cpuRegisters->A);
 }
 
-void test_OR_shortptr_w_X_given_A_0xFF_and_the_value_of_the_address_0x00_expected_0xFF(void){
+void test_OR_shortptr_w_X_given_A_0xFF_OR_the_value_of_the_address_0x00_expected_0xFF(void){
 	cpuRegisters->A 	= 0xFF;
 	set_X(0x00,0x03);
 	uint8_t instrc[]	= {0xDB,0x89};
@@ -401,7 +401,7 @@ void test_OR_shortptr_w_X_given_A_0xFF_and_the_value_of_the_address_0x00_expecte
 	TEST_ASSERT_EQUAL_HEX16(0xFF,cpuRegisters->A);
 }
 
-void test_OR_longptr_w_X_given_A_0xFF_and_the_value_of_the_address_0xFF_expected_0xFF(void){
+void test_OR_longptr_w_X_given_A_0xFF_OR_the_value_of_the_address_0xFF_expected_0xFF(void){
 	cpuRegisters->A 	= 0xFF;
 	set_X(0x01,0x03);
 	uint8_t instrc[]	= {0xDB,0x10,0x89};
@@ -413,7 +413,7 @@ void test_OR_longptr_w_X_given_A_0xFF_and_the_value_of_the_address_0xFF_expected
 	TEST_ASSERT_EQUAL_HEX16(0xFF,cpuRegisters->A);
 }
 
-void test_OR_longptr_w_X_given_A_0x00_and_the_value_of_the_address_0x00_expected_0x00(void){
+void test_OR_longptr_w_X_given_A_0x00_OR_the_value_of_the_address_0x00_expected_0x00(void){
 	cpuRegisters->A 	= 0x00;
 	set_X(0x01,0x03);
 	uint8_t instrc[]	= {0xDB,0x10,0x89};
@@ -425,7 +425,7 @@ void test_OR_longptr_w_X_given_A_0x00_and_the_value_of_the_address_0x00_expected
 	TEST_ASSERT_EQUAL_HEX16(0x00,cpuRegisters->A);
 }
 
-void test_OR_longptr_w_X_given_A_0xFF_and_the_value_of_the_address_0x00_expected_0xFF(void){
+void test_OR_longptr_w_X_given_A_0xFF_OR_the_value_of_the_address_0x00_expected_0xFF(void){
 	cpuRegisters->A 	= 0xFF;
 	set_X(0x01,0x03);
 	uint8_t instrc[]	= {0xDB,0x10,0x89};
@@ -437,7 +437,7 @@ void test_OR_longptr_w_X_given_A_0xFF_and_the_value_of_the_address_0x00_expected
 	TEST_ASSERT_EQUAL_HEX16(0xFF,cpuRegisters->A);
 }
 
-void test_OR_shortptr_w_Y_given_A_0xFF_and_the_value_of_the_address_0xFF_expected_0xFF(void){
+void test_OR_shortptr_w_Y_given_A_0xFF_OR_the_value_of_the_address_0xFF_expected_0xFF(void){
 	cpuRegisters->A 	= 0xFF;
 	set_Y(0x11,0x11);
 	uint8_t instrc[]	= {0xDB,0x89};
@@ -449,7 +449,7 @@ void test_OR_shortptr_w_Y_given_A_0xFF_and_the_value_of_the_address_0xFF_expecte
 	TEST_ASSERT_EQUAL_HEX16(0xFF,cpuRegisters->A);
 }
 
-void test_OR_shortptr_w_Y_given_A_0x00_and_the_value_of_the_address_0x0_expected_0x00(void){
+void test_OR_shortptr_w_Y_given_A_0x00_OR_the_value_of_the_address_0x0_expected_0x00(void){
 	cpuRegisters->A 	= 0x00;
 	set_Y(0x11,0x11);
 	uint8_t instrc[]	= {0xDB,0x89};
@@ -461,7 +461,7 @@ void test_OR_shortptr_w_Y_given_A_0x00_and_the_value_of_the_address_0x0_expected
 	TEST_ASSERT_EQUAL_HEX16(0x00,cpuRegisters->A);
 }
 
-void test_OR_shortptr_w_Y_given_A_0xFF_and_the_value_of_the_address_0x0_expected_0xFF(void){
+void test_OR_shortptr_w_Y_given_A_0xFF_OR_the_value_of_the_address_0x0_expected_0xFF(void){
 	cpuRegisters->A 	= 0xFF;
 	set_Y(0x11,0x11);
 	uint8_t instrc[]	= {0xDB,0x89};
