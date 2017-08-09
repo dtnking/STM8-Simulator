@@ -2,6 +2,7 @@
 #include "Memory.h"
 #include "add.h"
 #include <stdint.h>
+#include <stdio.h>
 
 uint16_t combineTwoAddrs(uint8_t val1, uint8_t val2){
   uint16_t newVal1 = val1<<8;
@@ -82,9 +83,10 @@ void raw_xor(uint8_t val){
   cpuRegisters->A     = result;
 }
 
-void raw_ld(uint8_t val){
-  uint8_t result = val;
+void raw_ld(uint8_t *srcAddrss, uint8_t *dstAddrss){
+  uint8_t result = *srcAddrss;
+
   cpuRegisters->CCR.N = R7;
   cpuRegisters->CCR.Z = result==0?1:0;
-  cpuRegisters->A     = result;
+  *dstAddrss = result;
 }

@@ -6,61 +6,62 @@
 
 // LOAD from memory to register
 void ldMemToReg_byte(uint8_t *opcodePtr){
-	raw_ld(get_valueByte(opcodePtr));
+	uint8_t byteVal = get_valueByte(opcodePtr);
+	raw_ld(&byteVal, &cpuRegisters->A);
 }
 
 void ldMemToReg_shortmem(uint8_t *opcodePtr){
-	raw_ld(memory[get_shortmem(opcodePtr)]);
+	raw_ld(&memory[get_shortmem(opcodePtr)], &cpuRegisters->A);
 }
 
 void ldMemToReg_longmem(uint8_t *opcodePtr){
-	raw_ld(memory[get_longmem(opcodePtr)]);
+	raw_ld(&memory[get_longmem(opcodePtr)], &cpuRegisters->A);
 }
 
 void ldMemToReg_x(uint8_t *opcodePtr){
-	raw_ld(memory[get_x_value()]);
+	raw_ld(&memory[get_x_value()], &cpuRegisters->A);
 }
 
 void ldMemToReg_y(uint8_t *opcodePtr){
-	raw_ld(memory[get_y_value()]);
+	raw_ld(&memory[get_y_value()], &cpuRegisters->A);
 }
 
 void ldMemToReg_x_shortset(uint8_t *opcodePtr){
-	raw_ld(memory[get_x_shortset(opcodePtr)]);
+	raw_ld(&memory[get_x_shortset(opcodePtr)], &cpuRegisters->A);
 }
 
 void ldMemToReg_y_shortset(uint8_t *opcodePtr){
-	raw_ld(memory[get_y_shortset(opcodePtr)]);
+	raw_ld(&memory[get_y_shortset(opcodePtr)], &cpuRegisters->A);
 }
 
 void ldMemToReg_x_longset(uint8_t *opcodePtr){
-	raw_ld(memory[get_x_longset(opcodePtr)]);
+	raw_ld(&memory[get_x_longset(opcodePtr)], &cpuRegisters->A);
 }
 
 void ldMemToReg_y_longset(uint8_t *opcodePtr){
-	raw_ld(memory[get_y_longset(opcodePtr)]);
+	raw_ld(&memory[get_y_longset(opcodePtr)], &cpuRegisters->A);
 }
 
 void ldMemToReg_shortoff_SP(uint8_t *opcodePtr){
-	raw_ld(memory[get_shortoff_SP(opcodePtr)]);
+	raw_ld(&memory[get_shortoff_SP(opcodePtr)], &cpuRegisters->A);
 }
 
 void ldMemToReg_shortptr_w(uint8_t *opcodePtr){
-	raw_ld(memory[get_shortptr_w(opcodePtr)]);
+	raw_ld(&memory[get_shortptr_w(opcodePtr)], &cpuRegisters->A);
 }
 
 void ldMemToReg_longptr_w(uint8_t *opcodePtr){
-	raw_ld(memory[get_longptr_w(opcodePtr)]);
+	raw_ld(&memory[get_longptr_w(opcodePtr)], &cpuRegisters->A);
 }
 
 void ldMemToReg_shortptr_w_X(uint8_t *opcodePtr){
-	raw_ld(memory[get_shortptr_w_X(opcodePtr)]);
+	raw_ld(&memory[get_shortptr_w_X(opcodePtr)], &cpuRegisters->A);
 }
 
 void ldMemToReg_longptr_w_X(uint8_t *opcodePtr){
-	raw_ld(memory[get_longptr_w_X(opcodePtr)]);
+	raw_ld(&memory[get_longptr_w_X(opcodePtr)], &cpuRegisters->A);
 }
 
 void ldMemToReg_shortptr_w_Y(uint8_t *opcodePtr){
-	raw_ld(memory[get_shortptr_w_Y(opcodePtr)]);
+	raw_ld(&memory[get_shortptr_w_Y(opcodePtr)], &cpuRegisters->A);
 }
