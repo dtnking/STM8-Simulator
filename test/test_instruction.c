@@ -25,7 +25,7 @@ void test_instruction_table(void){
   memory[6] = 0x00;
   memory[7] = 0x90;             //sub_y
   memory[8] = 0xF0;
-  memory[9] = 0x92;             //sub_shortptr_w
+  memory[9] = 0x90;             //sub_shortptr_w
   memory[10]= 0xC0;
   memory[11]= 0x40;
 
@@ -46,10 +46,10 @@ void test_instruction_table(void){
   TEST_ASSERT_EQUAL_HEX8 (0x13,cpuRegisters->A);
   TEST_ASSERT_EQUAL_INT (3,length);
 
-  /*cpuRegisters->A 	= 0x01;
+  cpuRegisters->A 	= 0x0b;
 	set_Y(0x22,0x20);
-	memory[0x2020] 		= 0x05;
+	memory[0x2220] 		= 0x05;
   length = instruction(&code);
   TEST_ASSERT_EQUAL_HEX8 (0x06,cpuRegisters->A);
-  TEST_ASSERT_EQUAL_INT (2,length);*/
+  TEST_ASSERT_EQUAL_INT (2,length);
 }

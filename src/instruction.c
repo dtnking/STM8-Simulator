@@ -11,7 +11,7 @@
 
 typedef struct Opcode Opcode;
 struct Opcode{
-  int (*execute)(uint8_t *code);
+  void (*execute)(uint8_t *code);
   int length;
   int cycle;
 };
@@ -159,31 +159,36 @@ int isOpcodePrefix(uint8_t *code){
   return 0;
 }
 
-uint8_t instruction(uint8_t **codePtr){
+int instruction(uint8_t **codePtr){
   int (*execute)(uint8_t *code);
   uint8_t *code = *codePtr;
   if(!isOpcodePrefix(code)){
     opcodeTable[*code].execute(code);
     *codePtr += opcodeTable[*code].length;
+    return opcodeTable[*code].length;
   }
-  /*else{
+  else{
     if(*code == 0x90){
-      opcodeTable90[*code].execute(code);
-      *codePtr += opcodeTable[*code].length;
+      opcodeTable90[*(code+1)].execute(code);
+      *codePtr += opcodeTable[*(code+1)].length;
+      return opcodeTable[*(code+1)].length;
     }
     else if(*code == 0x91){
-      opcodeTable91[*code].execute(code);
-      *codePtr += opcodeTable[*code].length;
+      opcodeTable91[*(code+1)].execute(code);
+      *codePtr += opcodeTable[*(code+1)].length;
+      return opcodeTable[*(code+1)].length;
     }
     else if(*code == 0x72){
-      opcodeTable72[*code].execute(code);
-      *codePtr += opcodeTable[*code].length;
+      opcodeTable72[*(code+1)].execute(code);
+      *codePtr += opcodeTable[*(code+1)].length;
+      return opcodeTable[*(code+1)].length;
     }
-    else{
-      opcodeTable92[*code].execute(code);
-      *codePtr += opcodeTable[*code].length;
+    else if(*code == 0x92){
+      opcodeTable92[*(code+1)].execute(code);
+      *codePtr += opcodeTable[*(code+1)].length;
+      return opcodeTable[*(code+1)].length;
     }
-  }*/
+  }
 
-  return opcodeTable[*code].length;
+
 }
