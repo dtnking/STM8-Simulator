@@ -4,7 +4,9 @@
 #include <stdint.h>
 #include <stdio.h>
 
-// LOAD from memory to register
+/*
+** ###################< LOAD from memory to register >###########################
+*/
 void ldMemToReg_byte(uint8_t *opcodePtr){
 	uint8_t byteVal = get_valueByte(opcodePtr);
 	raw_ld(&byteVal, &cpuRegisters->A);
@@ -67,7 +69,7 @@ void ldMemToReg_shortptr_w_Y(uint8_t *opcodePtr){
 }
 
 /*
-** ################### LOAD from register to memory ###########################
+** ###################< LOAD from register to memory >###########################
 */
 void ldRegToMem_shortmem(uint8_t *opcodePtr){
 	raw_ld(&cpuRegisters->A,&memory[get_shortmem(opcodePtr)]);
@@ -123,4 +125,40 @@ void ldRegToMem_longptr_w_X(uint8_t *opcodePtr){
 
 void ldRegToMem_shortptr_w_Y(uint8_t *opcodePtr){
 	raw_ld(&cpuRegisters->A,&memory[get_shortptr_w_Y(opcodePtr)]);
+}
+
+
+/*
+** ###################< LOAD from register to register >###########################
+*/
+void ldRegToReg_A_to_XL(uint8_t *opcodePtr){
+	raw_ld(&cpuRegisters->A,&cpuRegisters->XL);
+}
+
+void ldRegToReg_XL_to_A(uint8_t *opcodePtr){
+	raw_ld(&cpuRegisters->XL,&cpuRegisters->A);
+}
+
+void ldRegToReg_A_to_YL(uint8_t *opcodePtr){
+	raw_ld(&cpuRegisters->A,&cpuRegisters->YL);
+}
+
+void ldRegToReg_YL_to_A(uint8_t *opcodePtr){
+	raw_ld(&cpuRegisters->YL,&cpuRegisters->A);
+}
+
+void ldRegToReg_A_to_XH(uint8_t *opcodePtr){
+	raw_ld(&cpuRegisters->A,&cpuRegisters->XH);
+}
+
+void ldRegToReg_XH_to_A(uint8_t *opcodePtr){
+	raw_ld(&cpuRegisters->XH,&cpuRegisters->A);
+}
+
+void ldRegToReg_A_to_YH(uint8_t *opcodePtr){
+	raw_ld(&cpuRegisters->A,&cpuRegisters->YH);
+}
+
+void ldRegToReg_YH_to_A(uint8_t *opcodePtr){
+	raw_ld(&cpuRegisters->YH,&cpuRegisters->A);
 }

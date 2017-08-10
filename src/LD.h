@@ -38,4 +38,14 @@ void    ldRegToMem_longptr_w_X   (uint8_t *opcodePtr);
 void    ldRegToMem_shortptr_w_Y  (uint8_t *opcodePtr);
 
 
+// LOAD from Register to Register
+void    ldRegToReg_A_to_XL       (uint8_t *opcodePtr);
+void    ldRegToReg_XL_to_A       (uint8_t *opcodePtr);
+void    ldRegToReg_A_to_YL       (uint8_t *opcodePtr);
+void    ldRegToReg_YL_to_A       (uint8_t *opcodePtr);
+void    ldRegToReg_A_to_XH       (uint8_t *opcodePtr);
+void    ldRegToReg_XH_to_A       (uint8_t *opcodePtr);
+void    ldRegToReg_A_to_YH       (uint8_t *opcodePtr);
+void    ldRegToReg_YH_to_A       (uint8_t *opcodePtr);
+
 #endif // _LD_H
