@@ -68,6 +68,7 @@ void test_LD_reg_to_reg_YL_to_A_0x22_expected_0x22(void){
 	TEST_ASSERT_EQUAL_HEX8 (0x22, cpuRegisters->A);
 }
 
+
 /*    Load byte from Accumulator to XH
 **  ====================================
 **   |   Name   : A to XH     |
@@ -81,6 +82,7 @@ void test_LD_reg_to_reg_A_to_XH_0xaa_expected_0xaa(void){
 
 	TEST_ASSERT_EQUAL_HEX8 (0xaa, cpuRegisters->XH);
 }
+
 
 /*    Load byte from XH to Accumulator
 **  ====================================

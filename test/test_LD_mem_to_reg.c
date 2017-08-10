@@ -22,6 +22,7 @@ void test_LD_mem_to_reg_byte_0x55_expected_0x55(void){
 	TEST_ASSERT_EQUAL_HEX8 (0x55, cpuRegisters->A);
 }
 
+
 /*    Load byte from short memory to register
 **  =======================================
 **   |   Name   : shortMem |
@@ -36,6 +37,7 @@ void test_LD_mem_to_reg_shortmen_0x55_expected_0x55(void){
 	TEST_ASSERT_EQUAL_HEX8 (0x55, cpuRegisters->A);
 }
 
+
 /*   Load byte from long memory to register
 ** =======================================
 **   |   Name   : LongMem |
@@ -49,6 +51,7 @@ void test_LD_mem_to_reg_longmen_0xCC_expected_0xCC(void){
 
 	TEST_ASSERT_EQUAL_HEX8 (0xCC, cpuRegisters->A);
 }
+
 
 /*   Load byte from X to register
 ** =======================================
@@ -65,6 +68,7 @@ void test_LD_mem_to_reg_X_0xDD_expected_0xDD(void){
 	TEST_ASSERT_EQUAL_HEX8 (0xDD, cpuRegisters->A);
 }
 
+
 /*   Load byte from Y to register
 ** =======================================
 **   |   Name   : Y      |
@@ -79,6 +83,7 @@ void test_LD_mem_to_reg_Y_0xEE_expected_0xEE(void){
 
 	TEST_ASSERT_EQUAL_HEX8 (0xEE, cpuRegisters->A);
 }
+
 
 /*   Load byte from shortoff_X to register
 ** =========================================
@@ -95,6 +100,7 @@ void test_LD_mem_to_reg_shortoff_X_0xFF_expected_0xFF(void){
 	TEST_ASSERT_EQUAL_HEX8 (0xFF, cpuRegisters->A);
 }
 
+
 /*   Load byte from shortoff_Y to register
 ** =========================================
 **   |   Name   : ShortOff Y      |
@@ -109,6 +115,7 @@ void test_LD_mem_to_reg_shortoff_Y_0x7D_expected_0x7D(void){
 
 	TEST_ASSERT_EQUAL_HEX8 (0x7D, cpuRegisters->A);
 }
+
 
 /*   Load byte from longoff_X to register
 ** =========================================
@@ -125,6 +132,7 @@ void test_LD_mem_to_reg_longoff_X_0xBB_expected_0xBB(void){
 	TEST_ASSERT_EQUAL_HEX8 (0xBB, cpuRegisters->A);
 }
 
+
 /*   Load byte from longoff_Y to register
 ** =========================================
 **   |   Name   : LongOff Y        |
@@ -139,6 +147,7 @@ void test_LD_mem_to_reg_longoff_Y_0x12_expected_0x12(void){
 
 	TEST_ASSERT_EQUAL_HEX8 (0x12, cpuRegisters->A);
 }
+
 
 /*   Load byte from shortoff_SP to register
 ** =========================================
@@ -155,12 +164,13 @@ void test_LD_mem_to_reg_shortoff_SP_0xac_expected_0xac(void){
 	TEST_ASSERT_EQUAL_HEX8 (0xac, cpuRegisters->A);
 }
 
+
 /*         Load byte from shortptr_W to register
 ** =======================================================
 **   |   Name   : Shortptr W                               |
-**   | Location : (0x40 hold 0x42)+(0x40+1 hold 0xe5)      |       [Accumulator]
-**   |                       [^--(combine)-------^]=0x42e5 |            ^
-**   |  Value   : 0x11                                     |--(load)----|
+**   | Location : (0x40 hold 0x42)+(0x40+1 hold 0xe5)      |
+**   |                       [^--(combine)-------^]=0x42e5 |       [Accumulator]
+**   |  Value   : 0x11                                     |--(load)----^
 */
 void test_LD_mem_to_reg_shortptr_W_0x11_expected_0x11(void){
   uint8_t instrc[]	= {0xc6,0x40};         // Opcode : 0xc640
@@ -171,6 +181,7 @@ void test_LD_mem_to_reg_shortptr_W_0x11_expected_0x11(void){
 
 	TEST_ASSERT_EQUAL_HEX8 (0x11, cpuRegisters->A);
 }
+
 
 /*         Load byte from longptr_W to register
 ** ===========================================================
@@ -208,6 +219,7 @@ void test_LD_mem_to_reg_shortptr_W_X_0x40_expected_0x40(void){
 	TEST_ASSERT_EQUAL_HEX8 (0x40, cpuRegisters->A);
 }
 
+
 /*         Load byte from longptr_W_X to register
 ** ==========================================================================
 **   |   Name   : Longptr W X                                                |
@@ -225,6 +237,7 @@ void test_LD_mem_to_reg_longptr_W_X_0x42_expected_0x42(void){
 
 	TEST_ASSERT_EQUAL_HEX8 (0x42, cpuRegisters->A);
 }
+
 
 /*         Load byte from shortptr_W_Y to register
 ** ========================================================================

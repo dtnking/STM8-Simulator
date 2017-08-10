@@ -24,6 +24,7 @@ void test_LD_reg_to_mem_shortmen_0x55_expected_0x55(void){
 	TEST_ASSERT_EQUAL_HEX8 (0x55, memory[0x10]);
 }
 
+
 /*   Load byte from Accumulator to longMemory
 ** =======================================
 **   |   Name   : LongMem      |
@@ -37,6 +38,7 @@ void test_LD_reg_to_mem_longmen_0xCC_expected_0xCC(void){
 
 	TEST_ASSERT_EQUAL_HEX8 (0xCC, memory[0x1000]);
 }
+
 
 /*   Load byte from Accumulator to X
 ** =======================================
@@ -53,6 +55,7 @@ void test_LD_reg_to_mem_X_0xDD_expected_0xDD(void){
 	TEST_ASSERT_EQUAL_HEX8 (0xDD, memory[0x1110]);
 }
 
+
 /*   Load byte from Accumulator to Y
 ** =======================================
 **   |   Name   : Y           |
@@ -67,6 +70,7 @@ void test_LD_reg_to_mem_Y_0xEE_expected_0xEE(void){
 
 	TEST_ASSERT_EQUAL_HEX8 (0xEE, memory[0x1210]);
 }
+
 
 /*   Load byte from Accumulator to shortoff_X
 ** =========================================
@@ -83,6 +87,7 @@ void test_LD_reg_to_mem_shortoff_X_0xFF_expected_0xFF(void){
 	TEST_ASSERT_EQUAL_HEX8 (0xFF, memory[0x1213]);
 }
 
+
 /*   Load byte from Accumulator to shortoff_Y
 ** =========================================
 **   |   Name   : ShortOff Y      |
@@ -97,6 +102,7 @@ void test_LD_reg_to_mem_shortoff_Y_0x7D_expected_0x7D(void){
 
 	TEST_ASSERT_EQUAL_HEX8 (0x7D, memory[0x2345]);
 }
+
 
 /*   Load byte from Accumulator to longoff_X
 ** =========================================
@@ -113,6 +119,7 @@ void test_LD_reg_to_mem_longoff_X_0xBB_expected_0xBB(void){
 	TEST_ASSERT_EQUAL_HEX8 (0xBB, memory[0x3434]);
 }
 
+
 /*   Load byte from Accumulator to longoff_Y
 ** =========================================
 **   |   Name   : LongOff Y        |
@@ -128,6 +135,7 @@ void test_LD_reg_to_mem_longoff_Y_0x12_expected_0x12(void){
 	TEST_ASSERT_EQUAL_HEX8 (0x12, memory[0x5656]);
 }
 
+
 /*   Load byte from  Accumulator to shortOff_SP
 ** =========================================
 **   |   Name   : ShortOff SP      |
@@ -142,6 +150,7 @@ void test_LD_reg_to_mem_shortoff_SP_0xac_expected_0xac(void){
 
 	TEST_ASSERT_EQUAL_HEX8 (0xac,memory[0x88aa]);
 }
+
 
 /*  Load byte from  Accumulator to shortptr_W
 ** ===========================================

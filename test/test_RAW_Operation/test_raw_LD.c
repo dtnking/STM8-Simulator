@@ -20,9 +20,10 @@ void tearDown(void){}
 **  ( CCR flags = 0x04) ----> Negative is set.
 */
 void test_raw_LD_negative_given_0xaa_expected_negative(void){
-  raw_ld(0xaa);
+  memory[0x03] = 0xaa;
+  raw_ld(&memory[0x03],&cpuRegisters->A);      // memory to register
   TEST_ASSERT_EQUAL_HEX16(0xaa,cpuRegisters->A);
-  TEST_ASSERT_EQUAL_HEX16(0x04,c|z|l|i0|h|i1|v);
+  TEST_ASSERT_EQUAL_HEX16(0x04,c|z|l|i0|h|i1|v); // c=carry, z=zero, l=negative, i0=interrupt0, i1=interrupt1, h=half-carry, v=overflow
 }
 
 
@@ -33,9 +34,10 @@ void test_raw_LD_negative_given_0xaa_expected_negative(void){
 **  ( CCR flags = 0x00) ----> None of the CCR is set.
 */
 void test_raw_LD_negative_given_0x2a_expected_no_negative(void){
-  raw_ld(0x2a);
-  TEST_ASSERT_EQUAL_HEX16(0x2a,cpuRegisters->A);
-  TEST_ASSERT_EQUAL_HEX16(0x00,c|z|l|i0|h|i1|v);
+  cpuRegisters->A = 0x2a;
+  raw_ld(&cpuRegisters->A,&memory[0x02]);         // register to memory
+  TEST_ASSERT_EQUAL_HEX16(0x2a,memory[0x02]);
+  TEST_ASSERT_EQUAL_HEX16(0x00,c|z|l|i0|h|i1|v); // c=carry, z=zero, l=negative, i0=interrupt0, i1=interrupt1, h=half-carry, v=overflow
 }
 
 
@@ -47,9 +49,10 @@ void test_raw_LD_negative_given_0x2a_expected_no_negative(void){
 **  ( CCR flags = 0x04) ----> Negative is set.
 */
 void test_raw_LD_zero_given_0xff_expected_no_zero(void){
-  raw_ld(0xff);
+  cpuRegisters->XH = 0xff;
+  raw_ld(&cpuRegisters->XH,&cpuRegisters->A);     // register to register
   TEST_ASSERT_EQUAL_HEX16(0xff,cpuRegisters->A);
-  TEST_ASSERT_EQUAL_HEX16(0x04,c|z|l|i0|h|i1|v);
+  TEST_ASSERT_EQUAL_HEX16(0x04,c|z|l|i0|h|i1|v); // c=carry, z=zero, l=negative, i0=interrupt0, i1=interrupt1, h=half-carry, v=overflow
 }
 
 
@@ -59,7 +62,8 @@ void test_raw_LD_zero_given_0xff_expected_no_zero(void){
 **  ( CCR flags = 0x02) ----> Zero is set.
 */
 void test_raw_LD_zero_given_0x00_expected_zero(void){
-  raw_ld(0x00);
-  TEST_ASSERT_EQUAL_HEX16(0x00,cpuRegisters->A);
-  TEST_ASSERT_EQUAL_HEX16(0x02,c|z|l|i0|h|i1|v);
+  cpuRegisters->A = 0x00;
+  raw_ld(&cpuRegisters->A,&cpuRegisters->YH);       // register to register
+  TEST_ASSERT_EQUAL_HEX16(0x00,cpuRegisters->YH);
+  TEST_ASSERT_EQUAL_HEX16(0x02,c|z|l|i0|h|i1|v);    // c=carry, z=zero, l=negative, i0=interrupt0, i1=interrupt1, h=half-carry, v=overflow
 }
