@@ -11,7 +11,7 @@ void tearDown(void){}
 
 /*    Load byte directly to register
 **  =======================================
-**   |   Name   : shortMem |
+**   |   Name   : byte     |
 **   | Location : -        |     [Accumulator]
 **   |  Value   : 0x55     |---------^
 */

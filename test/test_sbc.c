@@ -114,7 +114,7 @@ void test_sbc_longoff_with_Y_given_A_0x02_and_the_value_of_the_address_0x1_expec
   cpuRegisters->CCR.C = 0x1;
 	set_Y(0x5d,0x5d);
 	uint8_t instrc[] 	= {0xD2,0x29,0x29};
-	memory[0x5d5d]		=	0x01;
+	memory[0x8686]		=	0x01;
 	sbc_y_longset(instrc);
 
 	TEST_ASSERT_EQUAL_HEX16(0x00,cpuRegisters->A);
