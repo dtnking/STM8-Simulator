@@ -65,7 +65,7 @@ void test_LD_reg_to_mem_X_0xDD_expected_0xDD(void){
 void test_LD_reg_to_mem_Y_0xEE_expected_0xEE(void){
   set_Y(0x12,0x10);
   cpuRegisters->A	 	= 0xEE;            // store 0xEE into Accumulator.
-	uint8_t instrc[]  = {0xF6};					 // Opcode : 0xF7
+	uint8_t instrc[]  = {0x90,0xF6};		 // Opcode : 0x90F7
 	ldRegToMem_y(instrc);
 
 	TEST_ASSERT_EQUAL_HEX8 (0xEE, memory[0x1210]);
@@ -96,7 +96,7 @@ void test_LD_reg_to_mem_shortoff_X_0xFF_expected_0xFF(void){
 */
 void test_LD_reg_to_mem_shortoff_Y_0x7D_expected_0x7D(void){
   set_Y(0x23,0x23);
-	uint8_t instrc[] 	= {0xE7,0x22};				// Opcode : 0xE722
+	uint8_t instrc[] 	= {0x90,0xE7,0x22};		  // Opcode : 0x90E722
   cpuRegisters->A 	= 0x7D;               // store 0x7D into Accumulator.
   ldRegToMem_y_shortset(instrc);
 
@@ -128,7 +128,7 @@ void test_LD_reg_to_mem_longoff_X_0xBB_expected_0xBB(void){
 */
 void test_LD_reg_to_mem_longoff_Y_0x12_expected_0x12(void){
   set_Y(0x34,0x34);
-	uint8_t instrc[] 	= {0xD7,0x22,0x22};				 // Opcode : 0xD72222
+	uint8_t instrc[] 	= {0x90,0xD7,0x22,0x22};		 // Opcode : 0x90D72222
   cpuRegisters->A		= 0x12;                    // store 0x12 into Accumulator.
   ldRegToMem_y_longset(instrc);
 
@@ -159,7 +159,7 @@ void test_LD_reg_to_mem_shortoff_SP_0xac_expected_0xac(void){
 **   |  Value   : 0x11              |--(load)------^
 */
 void test_LD_reg_to_mem_shortptr_W_0x11_expected_0x11(void){
-  uint8_t instrc[]	= {0xc7,0x40};           // Opcode : 0xc740
+  uint8_t instrc[]	= {0x92,0xc7,0x40};      // Opcode : 0x92c740
 	memory[0x40]			= 0x42;                  // (0x40 hold 0x42)+(0x40+1 hold 0xe5)
 	memory[0x41]			= 0xe5;                  //             [^--(combine)-------^]= 0x42e5
 	cpuRegisters->A 	= 0x11;                  // store 0x11 into Accumulator
@@ -175,7 +175,7 @@ void test_LD_reg_to_mem_shortptr_W_0x11_expected_0x11(void){
 **   |  Value   : 0x13              |--(load)-----^
 */
 void test_LD_reg_to_mem_longptr_W_0x13_expected_0x13(void){
-  uint8_t instrc[]	= {0xc7,0x10,0x40};      // Opcode : 0xc71040
+  uint8_t instrc[]	= {0x72,0xc7,0x10,0x40};    // Opcode : 0x72c71040
 	memory[0x1040]		= 0x42;                  // (0x1040 hold 0x42)+(0x1040+1 hold 0xe5)
 	memory[0x1041]		= 0xe5;                  //               [^--(combine)-------^]= 0x42e5
 	cpuRegisters->A 	= 0x13;                  // store 0x13 into register location 0x42e5.
@@ -193,7 +193,7 @@ void test_LD_reg_to_mem_longptr_W_0x13_expected_0x13(void){
 */
 void test_LD_reg_to_mem_shortptr_W_X_0x40_expected_0x40(void){
   set_X(0x00,0x03);
-  uint8_t instrc[] = {0xd7,0x89};         // Opcode : 0xd789
+  uint8_t instrc[] = {0x92,0xd7,0x89};    // Opcode : 0x92d789
 	memory[0x89]		 = 0x08;                // (0x89 hold 0x08)+(0x89+1 hold 0x01)
 	memory[0x8a]		 = 0x01;                //               [^--(combine)----^]=0x0801 + 0x03[offset]
 	cpuRegisters->A	 = 0x40;                // store 0x40 into Accumulator.
@@ -210,7 +210,7 @@ void test_LD_reg_to_mem_shortptr_W_X_0x40_expected_0x40(void){
 */
 void test_LD_reg_to_mem_longptr_W_X_0x42_expected_0x42(void){
   set_X(0x00,0x10);
-  uint8_t instrc[] = {0xd7,0x10,0x89};     // Opcode : 0xd71089
+  uint8_t instrc[] = {0x72,0xd7,0x10,0x89};   // Opcode : 0x72d71089
 	memory[0x1089]	 = 0x18;                 // (0x1089 hold 0x18)+(0x1089+1 hold 0x01)
 	memory[0x108a]	 = 0x01;                 //                [^--(combine)-------^]=0x1801 + 0x10[offset]
 	cpuRegisters->A	 = 0x42;                 // store 0x42 in Accumulator.
@@ -227,7 +227,7 @@ void test_LD_reg_to_mem_longptr_W_X_0x42_expected_0x42(void){
 */
 void test_LD_reg_to_mem_shortptr_W_Y_0xaa_expected_0xaa(void){
   set_Y(0x11,0x11);
-  uint8_t instrc[] = {0xd7,0x89};       // Opcode : 0xd789
+  uint8_t instrc[] = {0x91,0xd7,0x89};  // Opcode : 0x91d789
 	memory[0x89]		 = 0x08;              // (0x89 hold 0x08)+(0x89+1 hold 0x01)
 	memory[0x8a]		 = 0x01;              //             [^--(combine)----^]=0x0801 + 0x1111[offset]
 	cpuRegisters->A	 = 0xaa;              // store 0xaa into Accumulator.

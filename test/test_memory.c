@@ -51,7 +51,7 @@ void test_get_xShortset_given_opcode_0xAB10_and_XH_0x01_XL_0x10_expect_returned_
 }
 
 void test_get_yShortset_given_opcode_0xABBB10_and_YH_0x10_YL_0x01_expect_returned_value_is_0x1011(void){
-  uint8_t instrc[] = {0xAB,0x10};
+  uint8_t instrc[] = {0x90,0xAB,0x10};
   cpuRegisters->YH  = 0x10;
   cpuRegisters->YL  = 0x01;
   uint16_t result   = get_y_shortset((uint8_t *)&instrc);

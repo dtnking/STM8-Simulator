@@ -13,8 +13,8 @@ void inc_shortmem(uint8_t *opcodePtr){
 }
 
 void inc_longmem(uint8_t *opcodePtr){
-  
-  raw_inc(&memory[get_longmem(opcodePtr)]);
+  uint8_t *code = opcodePtr+1;
+  raw_inc(&memory[get_longmem(code)]);
 }
 
 void inc_X(uint8_t *opcodePtr){
@@ -26,7 +26,8 @@ void inc_shortoff_X(uint8_t *opcodePtr){
 }
 
 void inc_longoff_X(uint8_t *opcodePtr){
-  raw_inc(&memory[get_x_longset(opcodePtr)]);
+  uint8_t *code = opcodePtr+1;
+  raw_inc(&memory[get_x_longset(code)]);
 }
 
 void inc_Y(uint8_t *opcodePtr){

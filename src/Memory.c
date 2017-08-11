@@ -64,7 +64,7 @@ uint16_t get_x_shortset(uint8_t *opcode){
 }
 
 uint16_t get_y_shortset(uint8_t *opcode){
-  uint8_t val 		= opcode[1];
+  uint8_t val 		= opcode[2];
 	uint16_t addrs 	= combineTwoAddrs(cpuRegisters->YH,cpuRegisters->YL);
   return addrs+val;
 }
@@ -76,7 +76,7 @@ uint16_t get_x_longset(uint8_t *opcode){
 }
 
 uint16_t get_y_longset(uint8_t *opcode){
-  uint16_t addrsOffset = combineTwoAddrs(opcode[1],opcode[2]);
+  uint16_t addrsOffset = combineTwoAddrs(opcode[2],opcode[3]);
 	uint16_t addrsBase	 = combineTwoAddrs(cpuRegisters->YH,cpuRegisters->YL);
   return addrsOffset+addrsBase;
 }
@@ -88,7 +88,7 @@ uint16_t get_shortoff_SP(uint8_t *opcode){
 }
 
 uint16_t get_shortptr_w(uint8_t *opcode){
-  uint8_t addrsOfFirstPtr = opcode[1];
+  uint8_t addrsOfFirstPtr = opcode[2];
 	uint8_t val1=memory[addrsOfFirstPtr];
 	uint8_t val2=memory[addrsOfFirstPtr+1];
 	uint16_t addrsOfSecondPtr = combineTwoAddrs(val1,val2);
@@ -96,7 +96,7 @@ uint16_t get_shortptr_w(uint8_t *opcode){
 }
 
 uint16_t get_longptr_w(uint8_t *opcode){
-  uint16_t addrsOfFirstPtr = combineTwoAddrs(opcode[1],opcode[2]);
+  uint16_t addrsOfFirstPtr = combineTwoAddrs(opcode[2],opcode[3]);
 	uint8_t val1 = memory[addrsOfFirstPtr];
 	uint8_t val2 = memory[addrsOfFirstPtr+1];
 	uint16_t addrsOfSecondPtr = combineTwoAddrs(val1,val2);
@@ -104,7 +104,7 @@ uint16_t get_longptr_w(uint8_t *opcode){
 }
 
 uint16_t get_shortptr_w_X(uint8_t *opcode){
-  uint8_t addrsOfFirstPtr = opcode[1];
+  uint8_t addrsOfFirstPtr = opcode[2];
   uint8_t val1 = memory[addrsOfFirstPtr];
   uint8_t val2 = memory[addrsOfFirstPtr+1];
   uint16_t X	 = combineTwoAddrs(cpuRegisters->XH,cpuRegisters->XL);
@@ -113,7 +113,7 @@ uint16_t get_shortptr_w_X(uint8_t *opcode){
 }
 
 uint16_t get_longptr_w_X(uint8_t *opcode){
-  uint16_t addrsOfFirstPtr = combineTwoAddrs(opcode[1],opcode[2]);
+  uint16_t addrsOfFirstPtr = combineTwoAddrs(opcode[2],opcode[3]);
   uint8_t val1 = memory[addrsOfFirstPtr];
   uint8_t val2 = memory[addrsOfFirstPtr+1];
   uint16_t X	 = combineTwoAddrs(cpuRegisters->XH,cpuRegisters->XL);
@@ -122,7 +122,7 @@ uint16_t get_longptr_w_X(uint8_t *opcode){
 }
 
 uint16_t get_shortptr_w_Y(uint8_t *opcode){
-  uint8_t addrsOfFirstPtr = opcode[1];
+  uint8_t addrsOfFirstPtr = opcode[2];
 	uint8_t val1 = memory[addrsOfFirstPtr];
 	uint8_t val2 = memory[addrsOfFirstPtr+1];
 	uint16_t Y	 = combineTwoAddrs(cpuRegisters->YH,cpuRegisters->YL);
