@@ -77,7 +77,7 @@ void test_raw_ADC_overflow_given_negative_plus_positive_value_get_positive_value
 **                               |    ------------------
 **                               |         1100 0110    (-58)
 **                               |    ------------------
-**  ( CCR flags = 0x11) ----> Half-Carry, Negative are set.
+**  ( CCR flags = 0x14) ----> Half-Carry, Negative are set.
 */
 void test_raw_ADC_overflow_given_positive_plus_negative_value_get_negative_value_expected_no_overflow(void){
   cpuRegisters->A = 0x3D;
