@@ -130,20 +130,6 @@ void test_raw_INC_given_0x80_increment_by_1_get_0x81_expect_Negative(void){
 void test_raw_INC_given_0x01_increment_by_1_get_0x03_expect_Non_negative(void){
   cpuRegisters->A = 0x01;
   raw_inc(&cpuRegisters->A);
-  TEST_ASSERT_EQUAL_HEX16(0x03,cpuRegisters->A);
+  TEST_ASSERT_EQUAL_HEX16(0x02,cpuRegisters->A);
   TEST_ASSERT_EQUAL_HEX16(0x00,c|z|l|i0|h|i1|v);
-}
-
-
-
-/*        1111 1111
-**    +   0000 0001
-**    -------------------
-**      1 0000 0000               ( CCR flags = 0x04 )
- */
-void test_raw_INC_given_value_0xff_expected_0x00_negative_flag_equal_1(void){
-  cpuRegisters->A = 0xff;
-  raw_inc(&cpuRegisters->A);
-  TEST_ASSERT_EQUAL_HEX16(0x00,cpuRegisters->A);
-  TEST_ASSERT_EQUAL_HEX16(0x02,c|z|l|i0|h|i1|v);
 }
