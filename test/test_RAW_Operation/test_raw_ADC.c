@@ -55,20 +55,37 @@ void test_raw_ADC_overflow_given_negative_plus_negative_value_get_positive_value
 **            (expected)         |          (real)
 **  (iii)   -1 + 120 + 1 = 120   |         0000 0001      (1) <---Carry value
 **                               |         1111 1111     (-1)
-**                               |     +   0111 1111    (120)
+**                               |     +   0111 1000    (120)
 **                               |    ------------------
-**                               |         0111 0111    (120)
+**                               |         0111 1000    (120)
 **                               |    ------------------
 **  ( CCR flags = 0x11) ----> Half-Carry, Carry are set.
 */
 void test_raw_ADC_overflow_given_negative_plus_positive_value_get_positive_value_expected_no_overflow(void){
   cpuRegisters->A = 0xff;
   cpuRegisters->CCR.C = 0x01;
-  raw_add(0x78);
-  TEST_ASSERT_EQUAL_HEX16(0x77,cpuRegisters->A);
-  TEST_ASSERT_EQUAL_HEX16(0x011,c|z|l|i0|h|i1|v);
+  raw_adc(0x78);
+  TEST_ASSERT_EQUAL_HEX16(0x78,cpuRegisters->A);
+  TEST_ASSERT_EQUAL_HEX16(0x11,c|z|l|i0|h|i1|v);
 }
 
+/* -----------------------------------------------------------
+**            (expected)         |          (real)
+**  (iv)  61 + (-120) + 1 = -58  |         0000 0001      (1) <---Carry value
+**                               |         0011 1101     (61)
+**                               |     +   1000 1000   (-120)
+**                               |    ------------------
+**                               |         1100 0110    (-58)
+**                               |    ------------------
+**  ( CCR flags = 0x11) ----> Half-Carry, Negative are set.
+*/
+void test_raw_ADC_overflow_given_positive_plus_negative_value_get_negative_value_expected_no_overflow(void){
+  cpuRegisters->A = 0x3D;
+  cpuRegisters->CCR.C = 0x01;
+  raw_adc(0x88);
+  TEST_ASSERT_EQUAL_HEX16(0xc6,cpuRegisters->A);
+  TEST_ASSERT_EQUAL_HEX16(0x14,c|z|l|i0|h|i1|v);
+}
 
 
 //            TEST FOR CARRY

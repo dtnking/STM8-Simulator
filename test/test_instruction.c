@@ -33,23 +33,27 @@ void test_instruction_table(void){
   memory[10]= 0xC7;
   memory[11]= 0x23;
 
+// test for instruction add 1 byte directly into Accumulator expected counter pointer +2
   cpuRegisters->A  = 0x01;
   length = instruction(&code);
 	TEST_ASSERT_EQUAL_HEX8 (0x24,cpuRegisters->A);
   TEST_ASSERT_EQUAL_INT (2,length);
 
+// test for instruction add with shortmemory expected counter pointer +2
   cpuRegisters->A  = 0x02;
   memory[0x30]		 =	0x55;
   length = instruction(&code);
 	TEST_ASSERT_EQUAL_HEX8 (0x57,cpuRegisters->A);
   TEST_ASSERT_EQUAL_INT (2,length);
 
+// test for instruction add with longmemory expected counter pointer +3
   cpuRegisters->A  = 0x03;
   memory[0x1000]	 =	0x10;
   length = instruction(&code);
   TEST_ASSERT_EQUAL_HEX8 (0x13,cpuRegisters->A);
   TEST_ASSERT_EQUAL_INT (3,length);
 
+// test for instruction subtract with offset Y expected counter pointer +2
   cpuRegisters->A 	= 0x0b;
 	set_Y(0x22,0x20);
 	memory[0x2220] 		= 0x05;
@@ -57,6 +61,7 @@ void test_instruction_table(void){
   TEST_ASSERT_EQUAL_HEX8 (0x06,cpuRegisters->A);
   TEST_ASSERT_EQUAL_INT (2,length);
 
+// test for instruction load from Register to Memory expected counter pointer +3
 	memory[0x23]			= 0x42;
 	memory[0x24]			= 0xe5;
 	cpuRegisters->A 	= 0x11;
