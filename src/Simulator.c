@@ -1,4 +1,4 @@
-#include "instruction.h"
+#include "Simulator.h"
 #include "Raw_Operation.h"
 #include "add.h"
 #include "adc.h"

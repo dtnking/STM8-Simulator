@@ -1,5 +1,5 @@
 #include "unity.h"
-#include "instruction.h"
+#include "Simulator.h"
 #include "Raw_Operation.h"
 #include "mem_Location.h"
 #include "add.h"
