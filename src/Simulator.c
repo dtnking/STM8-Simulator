@@ -91,3 +91,8 @@ void raw_ld(uint8_t *srcAddrss, uint8_t *dstAddrss){
   cpuRegisters->CCR.Z = result==0?1:0;
   *dstAddrss = result;
 }
+
+void raw_mov(uint8_t *srcAddrss, uint8_t *dstAddrss){
+  uint8_t result = *srcAddrss;
+  *dstAddrss = result;
+}
