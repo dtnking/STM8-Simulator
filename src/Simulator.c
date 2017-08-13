@@ -307,7 +307,7 @@ int isOpcodePrefix(uint8_t *code){
   return 0;
 }
 
-int instruction(uint8_t **codePtr){
+int Simulator(uint8_t **codePtr){
   int (*execute)(uint8_t *code);
   uint8_t *code = *codePtr;
   if(!isOpcodePrefix(code)){

@@ -26,7 +26,7 @@ void test_raw_INC_overflow_given_0x7f_increment_by_1_get_0x80_expected_overflow(
   memory[0x10] = 0x7f;
   raw_inc(&memory[0x10]);
   TEST_ASSERT_EQUAL_HEX16(0x80,memory[0x10]);
-  TEST_ASSERT_EQUAL_HEX16(0x04,c|z|l|i0|h|i1|v);
+  TEST_ASSERT_EQUAL_HEX16(0x44,c|z|l|i0|h|i1|v);
 }
 
 
@@ -54,14 +54,13 @@ void test_raw_INC_overflow_given_0x80_increment_by_1_get_0x81_expected_no_overfl
 **                             |   ------------------
 **                             |         0000 1101   (13)
 **                             |    ------------------
-**  ( CCR flags = 0x45) ----> Overflow, Negative, Carry are set.
+**  ( CCR flags = 0x01) ----> None of the CCR is set.
 */
-void test_raw_INC_overflow_given_0x0C_increment_by_1_expected_no_overflow(void){
+void test_raw_INC_overflow_given_0x0C_increment_by_1_get_0x0D_expected_no_overflow(void){
   cpuRegisters->A = 0x0C;
-  cpuRegisters->CCR.C = 0x01;
   raw_inc(&cpuRegisters->A);
   TEST_ASSERT_EQUAL_HEX16(0x0D,cpuRegisters->A);
-  TEST_ASSERT_EQUAL_HEX16(0x01,c|z|l|i0|h|i1|v);
+  TEST_ASSERT_EQUAL_HEX16(0x00,c|z|l|i0|h|i1|v);
 }
 
 
@@ -120,14 +119,14 @@ void test_raw_INC_given_0x80_increment_by_1_get_0x81_expect_Negative(void){
 ** (ii)       0000 0001
 **       INC  0000 0001
 **       ------------------
-**            0000 0011
+**            0000 0010
 **       ------------------
 **            ^
 **        Negative (1 = Negative, 0 = Non-negative)
 **
 **  ( CCR flags = 0x00) ----> None of the CCR is set.
 */
-void test_raw_INC_given_0x01_increment_by_1_get_0x03_expect_Non_negative(void){
+void test_raw_INC_given_0x01_increment_by_1_get_0x02_expect_Non_negative(void){
   cpuRegisters->A = 0x01;
   raw_inc(&cpuRegisters->A);
   TEST_ASSERT_EQUAL_HEX16(0x02,cpuRegisters->A);

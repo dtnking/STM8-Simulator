@@ -1,6 +1,6 @@
 #ifndef _INC_H
 #define _INC_H
-#include<stdint.h>
+#include <stdint.h>
 
 void    inc_A             (uint8_t *opcodePtr);
 void    inc_byte          (uint8_t *opcodePtr);
