@@ -34,6 +34,16 @@
 #define A6        ((cpuRegisters->A) & 0x40)    >>  6
 #define A7        ((cpuRegisters->A) & 0x80)    >>  7
 
+// define bits of A (Accumulator)
+#define x0        ((*valptr) & 0x1)
+#define x1        ((*valptr) & 0x2)     >>  1
+#define x2        ((*valptr) & 0x4)     >>  2
+#define x3        ((*valptr) & 0x8)     >>  3
+#define x4        ((*valptr) & 0x10)    >>  4
+#define x5        ((*valptr) & 0x20)    >>  5
+#define x6        ((*valptr) & 0x40)    >>  6
+#define x7        ((*valptr) & 0x80)    >>  7
+
 // define bits of M (value)
 #define M0        (val & 0x1)
 #define M1        (val & 0x2)     >>  1
@@ -74,8 +84,8 @@ struct Stm8Registers {
 extern unsigned char memory[];
 extern Stm8Registers *cpuRegisters;
 
-uint8_t get_valueByte     (uint8_t *opcode);
-uint8_t get_shortmem      (uint8_t *opcode);
+uint8_t  get_valueByte    (uint8_t *opcode);
+uint8_t  get_shortmem     (uint8_t *opcode);
 uint16_t get_longmem      (uint8_t *opcode);
 uint16_t get_x_value      (void);
 uint16_t get_y_value      (void);
