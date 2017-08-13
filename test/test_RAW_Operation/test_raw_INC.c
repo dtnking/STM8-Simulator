@@ -54,7 +54,7 @@ void test_raw_INC_overflow_given_0x80_increment_by_1_get_0x81_expected_no_overfl
 **                             |   ------------------
 **                             |         0000 1101   (13)
 **                             |    ------------------
-**  ( CCR flags = 0x01) ----> None of the CCR is set.
+**  ( CCR flags = 0x00) ----> None of the CCR is set.
 */
 void test_raw_INC_overflow_given_0x0C_increment_by_1_get_0x0D_expected_no_overflow(void){
   cpuRegisters->A = 0x0C;
@@ -85,7 +85,7 @@ void test_raw_INC_zero_given_0xfe_increment_by_1_get_0xff_expect_non_zero(void){
 **       ------------------
 **          1 0000 0000   (zero,skipping the Carry bit)
 **       ------------------
-**  ( CCR flags = 0x03) ----> Zero is set.
+**  ( CCR flags = 0x02) ----> Zero is set.
 */
 void test_raw_INC_zero_given_0xff_increment_by_1_get_0x00_expect_zero(void){
   cpuRegisters->A = 0xff;
