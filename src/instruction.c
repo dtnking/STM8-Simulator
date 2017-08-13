@@ -1,5 +1,5 @@
 #include "instruction.h"
-#include "Simulator.h"
+#include "Raw_Operation.h"
 #include "add.h"
 #include "adc.h"
 #include "sub.h"
@@ -9,6 +9,7 @@
 #include "AND.h"
 #include "LD.h"
 #include "INC.h"
+#include "mov.h"
 #include "Memory.h"
 #include <stdint.h>
 #include <stdio.h>
@@ -114,6 +115,11 @@ Opcode opcodeTable[256] = {
   [0x9F] = {ldRegToReg_XL_to_A,1,1},
   [0x95] = {ldRegToReg_A_to_XH,1,1},
   [0x9E] = {ldRegToReg_XH_to_A,1,1},
+
+  //MOV
+  [0x35] = {mov_byte_longmem,4,1},
+  [0x45] = {mov_shortmem_shortmem,3,1},
+  [0x55] = {mov_longmem_longmem,5,1},
 };
 
 Opcode opcodeTable90[256] = {

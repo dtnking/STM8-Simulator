@@ -1,5 +1,5 @@
 #include "XOR.h"
-#include "Simulator.h"
+#include "Raw_Operation.h"
 #include "Memory.h"
 #include <stdint.h>
 #include <stdio.h>

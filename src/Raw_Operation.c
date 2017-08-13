@@ -1,6 +1,5 @@
-#include "Simulator.h"
+#include "Raw_Operation.h"
 #include "Memory.h"
-#include "add.h"
 #include <stdint.h>
 #include <stdio.h>
 
