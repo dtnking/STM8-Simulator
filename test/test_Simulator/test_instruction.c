@@ -1,7 +1,7 @@
 #include "unity.h"
 #include "instruction.h"
 #include "Raw_Operation.h"
-#include "Memory.h"
+#include "mem_Location.h"
 #include "add.h"
 #include "adc.h"
 #include "sub.h"
@@ -12,7 +12,7 @@
 #include "mov.h"
 #include "AND.h"
 #include "LD.h"
-#include "Memory.h"
+
 
 void setUp(void){}
 

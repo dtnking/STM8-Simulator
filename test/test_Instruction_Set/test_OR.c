@@ -1,6 +1,6 @@
 #include "unity.h"
 #include "OR.h"
-#include "Memory.h"
+#include "mem_Location.h"
 #include "Raw_Operation.h"
 #include <stdio.h>
 #include <stdint.h>

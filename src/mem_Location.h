@@ -74,27 +74,27 @@ struct Stm8Registers {
 extern unsigned char memory[];
 extern Stm8Registers *cpuRegisters;
 
-uint8_t get_valueByte(uint8_t *opcode);
-uint8_t get_shortmem(uint8_t *opcode);
-uint16_t get_longmem(uint8_t *opcode);
-uint16_t get_x_value(void);
-uint16_t get_y_value(void);
-uint16_t get_x_shortset(uint8_t *opcode);
-uint16_t get_y_shortset(uint8_t *opcode);
-uint16_t get_x_longset(uint8_t *opcode);
-uint16_t get_y_longset(uint8_t *opcode);
-uint16_t get_shortoff_SP(uint8_t *opcode);
-uint16_t get_shortptr_w(uint8_t *opcode);
-uint16_t get_longptr_w(uint8_t *opcode);
-uint16_t get_shortptr_w_X(uint8_t *opcode);
-uint16_t get_longptr_w_X(uint8_t *opcode);
-uint16_t get_shortptr_w_Y(uint8_t *opcode);
+uint8_t get_valueByte     (uint8_t *opcode);
+uint8_t get_shortmem      (uint8_t *opcode);
+uint16_t get_longmem      (uint8_t *opcode);
+uint16_t get_x_value      (void);
+uint16_t get_y_value      (void);
+uint16_t get_x_shortset   (uint8_t *opcode);
+uint16_t get_y_shortset   (uint8_t *opcode);
+uint16_t get_x_longset    (uint8_t *opcode);
+uint16_t get_y_longset    (uint8_t *opcode);
+uint16_t get_shortoff_SP  (uint8_t *opcode);
+uint16_t get_shortptr_w   (uint8_t *opcode);
+uint16_t get_longptr_w    (uint8_t *opcode);
+uint16_t get_shortptr_w_X (uint8_t *opcode);
+uint16_t get_longptr_w_X  (uint8_t *opcode);
+uint16_t get_shortptr_w_Y (uint8_t *opcode);
 
-void     set_X(uint8_t xh,uint8_t xl);
-void     set_Y(uint8_t yh,uint8_t yl);
-void     set_SP(uint8_t sph,uint8_t spl);
-void     clearCCRflag();
-
+void     set_X            (uint8_t xh,uint8_t xl);
+void     set_Y            (uint8_t yh,uint8_t yl);
+void     set_SP           (uint8_t sph,uint8_t spl);
+void     clearCCRflag     (void);
+uint16_t combineTwoAddrs  (uint8_t val1, uint8_t val2);
 
 
 

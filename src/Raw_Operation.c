@@ -1,13 +1,7 @@
 #include "Raw_Operation.h"
-#include "Memory.h"
+#include "mem_Location.h"
 #include <stdint.h>
 #include <stdio.h>
-
-uint16_t combineTwoAddrs(uint8_t val1, uint8_t val2){
-  uint16_t newVal1 = val1<<8;
-  uint16_t result  = newVal1 + val2;
-  return result;
-}
 
 void raw_add(uint8_t val){
   uint8_t result	    = cpuRegisters->A + val;
