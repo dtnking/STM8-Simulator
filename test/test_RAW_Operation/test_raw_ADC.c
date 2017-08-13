@@ -24,7 +24,7 @@ void tearDown(void){}
 **  ( CCR flags = 0x54) ----> Overflow, Negative , Half-Carry are set.
 */
 
-void test_raw_ADC_overflow_given_positive_plus_positive_value_get_negative_value_expected_overflow(void){
+void test_raw_ADC_overflow_given_0x7f_plus_0x03_with_carry_get_0x83_expected_overflow(void){
   cpuRegisters->A = 0x7f;
   cpuRegisters->CCR.C = 0x01;
   raw_adc(0x03);
@@ -42,7 +42,7 @@ void test_raw_ADC_overflow_given_positive_plus_positive_value_get_negative_value
 **                                |    ------------------
 **  ( CCR flags = 0x41) ----> Overflow, Carry are set.
 */
-void test_raw_ADC_overflow_given_negative_plus_negative_value_get_positive_value_expected_overflow(void){
+void test_raw_ADC_overflow_given_0x81_plus_0xfd_with_carry_get_0x7f_expected_overflow(void){
   cpuRegisters->A = 0x81;
   cpuRegisters->CCR.C = 0x01;
   raw_adc(0xFD);
@@ -61,7 +61,7 @@ void test_raw_ADC_overflow_given_negative_plus_negative_value_get_positive_value
 **                               |    ------------------
 **  ( CCR flags = 0x11) ----> Half-Carry, Carry are set.
 */
-void test_raw_ADC_overflow_given_negative_plus_positive_value_get_positive_value_expected_no_overflow(void){
+void test_raw_ADC_overflow_given_0xff_plus_0x78_with_carry_get_0x78_expected_no_overflow(void){
   cpuRegisters->A = 0xff;
   cpuRegisters->CCR.C = 0x01;
   raw_adc(0x78);
@@ -79,7 +79,7 @@ void test_raw_ADC_overflow_given_negative_plus_positive_value_get_positive_value
 **                               |    ------------------
 **  ( CCR flags = 0x14) ----> Half-Carry, Negative are set.
 */
-void test_raw_ADC_overflow_given_positive_plus_negative_value_get_negative_value_expected_no_overflow(void){
+void test_raw_ADC_overflow_given_0x3d_plus_0x88_with_carry_get_0xc6_expected_no_overflow(void){
   cpuRegisters->A = 0x3D;
   cpuRegisters->CCR.C = 0x01;
   raw_adc(0x88);
@@ -101,7 +101,7 @@ void test_raw_ADC_overflow_given_positive_plus_negative_value_get_negative_value
 **
 **  ( CCR flags = 0x41) ----> Overflow, Carry are set.
  */
-void test_raw_ADC_carry_given_value_0x80_plus_with_0x80_expected_Carry_is_set(void){
+void test_raw_ADC_carry_given_value_0x80_plus_0x80_with_carry_get_0x01_expected_Carry_is_set(void){
  cpuRegisters->A = 0x80;
  cpuRegisters->CCR.C = 0x01;
  raw_adc(0x80);
@@ -122,7 +122,7 @@ void test_raw_ADC_carry_given_value_0x80_plus_with_0x80_expected_Carry_is_set(vo
 **
 **  ( CCR flags = 0x00) ----> Overflow, Zero, Carry are set.
 */
-void test_raw_ADC_carry_given_value_0x00_plus_with_0x01_expected_no_Carry(void){
+void test_raw_ADC_carry_given_value_0x00_plus_0x01_with_carry_get_0x02_expected_no_Carry(void){
   cpuRegisters->A = 0x00;
   cpuRegisters->CCR.C = 0x01;
   raw_adc(0x01);
@@ -142,7 +142,7 @@ void test_raw_ADC_carry_given_value_0x00_plus_with_0x01_expected_no_Carry(void){
 **      ---------------
 **  ( CCR flags = 0x10) ----> Half-Carry is set.
 */
-void test_raw_ADC_half_carry_given_value_0x08_plus_with_0x08_expected_Half_Carry_is_set(void){
+void test_raw_ADC_half_carry_given_value_0x08_plus_0x08_with_carry_get_0x10_expected_Half_Carry_is_set(void){
   cpuRegisters->A = 0x08;
   cpuRegisters->CCR.C = 0x01;
   raw_adc(0x08);
@@ -160,7 +160,7 @@ void test_raw_ADC_half_carry_given_value_0x08_plus_with_0x08_expected_Half_Carry
 **      ---------------
 **  ( CCR flags = 0x10) ----> None of the CCR is set.
 */
-void test_raw_ADC_half_carry_given_value_0x00_plus_with_0x08_expected_no_Half_carry(void){
+void test_raw_ADC_half_carry_given_value_0x00_plus_0x08_with_carry_get_0x09_expected_no_Half_carry(void){
   cpuRegisters->A = 0x00;
   cpuRegisters->CCR.C = 0x01;
   raw_adc(0x08);
@@ -179,7 +179,7 @@ void test_raw_ADC_half_carry_given_value_0x00_plus_with_0x08_expected_no_Half_ca
 **       ------------------
 **  ( CCR flags = 0x04) ----> Negative is set.
 */
-void test_raw_ADC_zero_given_value_0xfe_plus_with_0x00_expected_no_zero(void){
+void test_raw_ADC_zero_given_value_0xfe_plus_0x00_with_carry_get_0xff_expected_no_zero(void){
   cpuRegisters->A = 0xfe;
   cpuRegisters->CCR.C = 0x01;
   raw_adc(0x00);
@@ -196,7 +196,7 @@ void test_raw_ADC_zero_given_value_0xfe_plus_with_0x00_expected_no_zero(void){
 **       ------------------
 **  ( CCR flags = 0x02) ----> Zero is set.
 */
-void test_raw_ADC_zero_given_value_0x00_plus_with_0x00_expected_zero(void){
+void test_raw_ADC_zero_given_value_0x00_plus_0x00_without_carry_get_0x00_expected_zero(void){
   cpuRegisters->A = 0x00;
   cpuRegisters->CCR.C = 0x00;
   raw_adc(0x00);
@@ -217,7 +217,7 @@ void test_raw_ADC_zero_given_value_0x00_plus_with_0x00_expected_zero(void){
 **
 **  ( CCR flags = 0x04) ----> Negative is set.
 */
-void test_raw_ADC_negative_given_value_0x80_plus_with_0x00_expected_negative(void){
+void test_raw_ADC_negative_given_value_0x80_plus_0x00_with_carry_get_0x81_expected_negative(void){
   cpuRegisters->A = 0x80;
   cpuRegisters->CCR.C = 0x01;
   raw_adc(0x00);
@@ -238,7 +238,7 @@ void test_raw_ADC_negative_given_value_0x80_plus_with_0x00_expected_negative(voi
 **
 **  ( CCR flags = 0x00) ----> None of the CCR is set.
 */
-void test_raw_ADC_negative_given_value_0x01_plus_with_0x01_expected_no_negative(void){
+void test_raw_ADC_negative_given_value_0x01_plus_0x01_with_carry_get_0x03_expected_no_negative(void){
   cpuRegisters->A = 0x01;
   cpuRegisters->CCR.C = 0x01;
   raw_adc(0x01);

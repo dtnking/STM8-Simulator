@@ -22,7 +22,7 @@ void tearDown(void){}
 **  ( CCR flags = 0x54) ----> Overflow, Negative , Half-Carry are set.
 */
 
-void test_raw_ADD_overflow_given_positive_plus_positive_value_get_negative_value_expected_overflow(void){
+void test_raw_ADD_overflow_given_0x7f_plus_0x03_get_0x54_expected_overflow(void){
   cpuRegisters->A = 0x7f;
   raw_add(0x03);
   TEST_ASSERT_EQUAL_HEX16(0x82,cpuRegisters->A);
@@ -38,7 +38,7 @@ void test_raw_ADD_overflow_given_positive_plus_positive_value_get_negative_value
 **                             |    ------------------
 **  ( CCR flags = 0x41) ----> Overflow, Carry are set.
 */
-void test_raw_ADD_overflow_given_negative_plus_negative_value_get_positive_value_expected_overflow(void){
+void test_raw_ADD_overflow_given_0x81_plus_0xfd_get_0x7E_expected_overflow(void){
   cpuRegisters->A = 0x81;
   raw_add(0xFD);
   TEST_ASSERT_EQUAL_HEX16(0x7E,cpuRegisters->A);
@@ -55,7 +55,7 @@ void test_raw_ADD_overflow_given_negative_plus_negative_value_get_positive_value
 **                               |    ------------------
 **  ( CCR flags = 0x11) ----> Half-Carry, Carry are set.
 */
-void test_raw_ADD_overflow_given_negative_plus_positive_value_get_positive_value_expected_no_overflow(void){
+void test_raw_ADD_overflow_given_0xff_plus_0x78_get_0x77_expected_no_overflow(void){
   cpuRegisters->A = 0xff;
   raw_add(0x78);
   TEST_ASSERT_EQUAL_HEX16(0x77,cpuRegisters->A);
@@ -71,7 +71,7 @@ void test_raw_ADD_overflow_given_negative_plus_positive_value_get_positive_value
 **                               |    ------------------
 **  ( CCR flags = 0x11) ----> Negative is set.
 */
-void test_raw_ADD_overflow_given_positive_plus_negative_value_get_negative_value_expected_no_overflow(void){
+void test_raw_ADD_overflow_given_0x01_plus_0x88_get_0x89_expected_no_overflow(void){
   cpuRegisters->A = 0x1;
   raw_add(0x88);
   TEST_ASSERT_EQUAL_HEX16(0x89,cpuRegisters->A);
@@ -92,7 +92,7 @@ void test_raw_ADD_overflow_given_positive_plus_negative_value_get_negative_value
 **
 **  ( CCR flags = 0x43) ----> Overflow, Zero, Carry are set.
  */
-void test_raw_ADD_carry_given_value_0x80_plus_with_0x80_expected_Carry_is_set(void){
+void test_raw_ADD_carry_given_value_0x80_plus_0x80_get_0x00_expected_Carry_is_set(void){
  cpuRegisters->A = 0x80;
  raw_add(0x80);
  TEST_ASSERT_EQUAL_HEX16(0,cpuRegisters->A);
@@ -111,7 +111,7 @@ void test_raw_ADD_carry_given_value_0x80_plus_with_0x80_expected_Carry_is_set(vo
 **
 **  ( CCR flags = 0x00) ----> Overflow, Zero, Carry are set.
 */
-void test_raw_ADD_carry_given_value_0x00_plus_with_0x01_expected_no_Carry(void){
+void test_raw_ADD_carry_given_value_0x00_plus_0x01_get_0x01_expected_no_Carry(void){
   cpuRegisters->A = 0x00;
   raw_add(0x01);
   TEST_ASSERT_EQUAL_HEX16(0x01,cpuRegisters->A);
@@ -129,7 +129,7 @@ void test_raw_ADD_carry_given_value_0x00_plus_with_0x01_expected_no_Carry(void){
 **      ---------------
 **  ( CCR flags = 0x10) ----> Half-Carry is set.
 */
-void test_raw_ADD_half_carry_given_value_0x08_plus_with_0x08_expected_Half_Carry_is_set(void){
+void test_raw_ADD_half_carry_given_value_0x08_plus_0x08_get_0x10_expected_Half_Carry_is_set(void){
   cpuRegisters->A = 0x08;
   raw_add(0x08);
   TEST_ASSERT_EQUAL_HEX16(0x10,cpuRegisters->A);
@@ -145,7 +145,7 @@ void test_raw_ADD_half_carry_given_value_0x08_plus_with_0x08_expected_Half_Carry
 **      ---------------
 **  ( CCR flags = 0x10) ----> None of the CCR is set.
 */
-void test_raw_ADD_half_carry_given_value_0x00_plus_with_0x08_expected_no_Half_carry(void){
+void test_raw_ADD_half_carry_given_value_0x00_plus_0x08_get_0x08_expected_no_Half_carry(void){
   cpuRegisters->A = 0x00;
   raw_add(0x08);
   TEST_ASSERT_EQUAL_HEX16(0x08,cpuRegisters->A);
@@ -162,7 +162,7 @@ void test_raw_ADD_half_carry_given_value_0x00_plus_with_0x08_expected_no_Half_ca
 **       ------------------
 **  ( CCR flags = 0x04) ----> Negative is set.
 */
-void test_raw_ADD_zero_given_value_0xff_plus_with_0x00_expected_no_zero(void){
+void test_raw_ADD_zero_given_value_0xff_plus_0x00_get_0xff_expected_non_zero(void){
   cpuRegisters->A = 0xff;
   raw_add(0x00);
   TEST_ASSERT_EQUAL_HEX16(0xff,cpuRegisters->A);
@@ -177,7 +177,7 @@ void test_raw_ADD_zero_given_value_0xff_plus_with_0x00_expected_no_zero(void){
 **       ------------------
 **  ( CCR flags = 0x02) ----> Zero is set.
 */
-void test_raw_ADD_zero_given_value_0x00_plus_with_0x00_expected_zero(void){
+void test_raw_ADD_zero_given_value_0x00_plus_0x00_get_0x00_expected_zero(void){
   cpuRegisters->A = 0x00;
   raw_add(0x00);
   TEST_ASSERT_EQUAL_HEX16(0x00,cpuRegisters->A);
@@ -196,7 +196,7 @@ void test_raw_ADD_zero_given_value_0x00_plus_with_0x00_expected_zero(void){
 **
 **  ( CCR flags = 0x04) ----> Negative is set.
 */
-void test_raw_ADD_negative_given_value_0x80_plus_with_0x00_expected_negative(void){
+void test_raw_ADD_negative_given_value_0x80_plus_0x00_get_0x80_expected_negative(void){
   cpuRegisters->A = 0x80;
   raw_add(0x00);
   TEST_ASSERT_EQUAL_HEX16(0x80,cpuRegisters->A);
@@ -215,7 +215,7 @@ void test_raw_ADD_negative_given_value_0x80_plus_with_0x00_expected_negative(voi
 **
 **  ( CCR flags = 0x00) ----> None of the CCR is set.
 */
-void test_raw_ADD_negative_given_value_0x01_plus_with_0x01_expected_no_negative(void){
+void test_raw_ADD_negative_given_value_0x01_plus_0x01_get_0x02_expected_no_negative(void){
   cpuRegisters->A = 0x01;
   raw_add(0x01);
   TEST_ASSERT_EQUAL_HEX16(0x02,cpuRegisters->A);

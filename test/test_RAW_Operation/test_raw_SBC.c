@@ -99,7 +99,6 @@ void test_raw_SBC_carry_given_0x01_minus_0x10_get_0xf1_expected_Carry_is_set(voi
   TEST_ASSERT_EQUAL_HEX16(0x05,c|z|l|i0|h|i1|v);
 }
 
-
 /*
  **  (ii)
  **          0001 0000 <-- enought to minus, no need to borrow from bit 9(carry bit).

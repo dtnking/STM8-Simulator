@@ -15,7 +15,6 @@ void test_adc_1_byte_given_A_0x01_with_0x55_expected_0x57(void){
   cpuRegisters->CCR.C = 0x1;
 	uint8_t instrc[] = {0xA9,0x55};											   // Opcode : 0xA955
 	adc_byte(instrc);
-
 	TEST_ASSERT_EQUAL_HEX8 (0x57,cpuRegisters->A);
 }
 

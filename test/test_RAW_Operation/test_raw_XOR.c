@@ -23,7 +23,7 @@ void tearDown(void){}
 **
 **  ( CCR flags = 0x04) ----> Negative is set.
 */
-void test_raw_XOR_negative_given_0x2a_XOR_0x55_expected_negative(void){
+void test_raw_XOR_negative_given_0x2a_XOR_0x55_get_0xff_expected_negative(void){
   cpuRegisters->A = 0x2a;
   raw_xor(0xd5);
   TEST_ASSERT_EQUAL_HEX16(0xff,cpuRegisters->A);
@@ -42,7 +42,7 @@ void test_raw_XOR_negative_given_0x2a_XOR_0x55_expected_negative(void){
 **
 **  ( CCR flags = 0x00) ----> None of the CCR is set.
 */
-void test_raw_XOR_negative_given_0x01_XOR_0x00_expected_no_negative(void){
+void test_raw_XOR_negative_given_0x01_XOR_0x00_get_0x01_expected_no_negative(void){
   cpuRegisters->A = 0x01;
   raw_xor(0x00);
   TEST_ASSERT_EQUAL_HEX16(0x01,cpuRegisters->A);
@@ -59,7 +59,7 @@ void test_raw_XOR_negative_given_0x01_XOR_0x00_expected_no_negative(void){
 **       ------------------
 **  ( CCR flags = 0x04) ----> Negative is set.
 */
-void test_raw_XOR_zero_given_0xFF_XOR_0x00_expected_no_zero(void){
+void test_raw_XOR_zero_given_0xFF_XOR_0x00_get_0xff_expected_no_zero(void){
   cpuRegisters->A = 0xff;
   raw_xor(0x00);
   TEST_ASSERT_EQUAL_HEX16(0xff,cpuRegisters->A);
@@ -73,7 +73,7 @@ void test_raw_XOR_zero_given_0xFF_XOR_0x00_expected_no_zero(void){
 **       ------------------
 **  ( CCR flags = 0x02) ----> Zero is set.
 */
-void test_raw_XOR_zero_given_0x00_XOR_0x00_expected_zero(void){
+void test_raw_XOR_zero_given_0x00_XOR_0x00_get_0x00_expected_zero(void){
   cpuRegisters->A = 0x00;
   raw_xor(0x00);
   TEST_ASSERT_EQUAL_HEX16(0x00,cpuRegisters->A);
