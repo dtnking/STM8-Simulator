@@ -54,6 +54,9 @@
 #define M6        (val & 0x40)    >>  6
 #define M7        (val & 0x80)    >>  7
 
+#define X         combineTwoAddrs(cpuRegisters->XH,cpuRegisters->XL)
+#define Y         combineTwoAddrs(cpuRegisters->YH,cpuRegisters->YL)
+
 // MACRO
 #define GET_MSB(x)   (x & 0xff00) >> 8
 #define GET_LSB(x)   (x & 0x00ff)
@@ -107,6 +110,7 @@ uint16_t get_longptr_w    (uint8_t *opcode);
 uint16_t get_shortptr_w_X (uint8_t *opcode);
 uint16_t get_longptr_w_X  (uint8_t *opcode);
 uint16_t get_shortptr_w_Y (uint8_t *opcode);
+
 
 void     set_X            (uint8_t xh,uint8_t xl);
 void     set_Y            (uint8_t yh,uint8_t yl);
