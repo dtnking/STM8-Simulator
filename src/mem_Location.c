@@ -23,6 +23,13 @@ uint16_t combineTwoAddrs(uint8_t val1, uint8_t val2){
   return result;
 }
 
+uint32_t combineThreeAddrs(uint8_t val1, uint8_t val2, uint8_t val3){
+  uint32_t newVal1 = val1 << 16;
+  uint32_t newVal2 = val2 << 8;
+  uint32_t result = newVal1 + newVal2 + val3;
+  return result;
+}
+
 void set_X(uint8_t xh,uint8_t xl){
   cpuRegisters->XH = xh;
   cpuRegisters->XL = xl;
@@ -36,6 +43,12 @@ void set_Y(uint8_t yh,uint8_t yl){
 void set_SP(uint8_t sph,uint8_t spl){
   cpuRegisters->SPH = sph;
   cpuRegisters->SPL = spl;
+}
+
+void set_PC(uint8_t pce,uint8_t pch,uint8_t pcl){
+  cpuRegisters->PCE = pce;
+  cpuRegisters->PCH = pch;
+  cpuRegisters->PCL = pcl;
 }
 
 uint8_t get_valueByte(uint8_t *opcode){
