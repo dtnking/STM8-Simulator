@@ -56,6 +56,7 @@
 
 #define X         combineTwoAddrs(cpuRegisters->XH,cpuRegisters->XL)
 #define Y         combineTwoAddrs(cpuRegisters->YH,cpuRegisters->YL)
+#define SP        combineTwoAddrs(cpuRegisters->SPH,cpuRegisters->SPL)
 
 // MACRO
 #define GET_MSB(x)   (x & 0xff00) >> 8
