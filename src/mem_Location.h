@@ -54,6 +54,10 @@
 #define M6        (val & 0x40)    >>  6
 #define M7        (val & 0x80)    >>  7
 
+// MACRO
+#define GET_MSB(x)   (x & 0xff00) >> 8
+#define GET_LSB(x)   (x & 0x00ff)
+
 typedef struct{
   uint8_t C:1;
   uint8_t Z:1;
