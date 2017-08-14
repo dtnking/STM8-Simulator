@@ -22,10 +22,10 @@ void test_get_shortmem_given_shortmem_0x10_expect_returned_0x10(void){
   TEST_ASSERT_EQUAL_HEX16(0x10,result);
 }
 
-void test_get_longmem_given_longmem_0x0110_expect_returned_0x10(void){
+void test_get_longmem_given_longmem_0x0110_expect_returned_0x0110(void){
   uint8_t instrc[] = {0x11,0x01,0x10};
-  uint8_t result   = get_longmem(instrc);
-  TEST_ASSERT_EQUAL_HEX16(0x10,result);
+  uint16_t result   = get_longmem(instrc);
+  TEST_ASSERT_EQUAL_HEX16(0x0110,result);
 }
 
 void test_get_xValue_given_XH_0x01_XL_0x10_expect_returned_0x0110(void){
@@ -58,12 +58,12 @@ void test_get_yShortset_given_shortmem_0x10_and_YH_0x10_YL_0x01_expect_returned_
   TEST_ASSERT_EQUAL_HEX16(0x1011,result);
 }
 
-void test_get_xLongset_given_longmem_0x0000_and_XH_0x01_XL_0x10_expect_returned_0x0110(void){
-  uint8_t instrc[]  = {0xAB,0x00,0x00};
-  cpuRegisters->XH  = 0x01;
-  cpuRegisters->XL  = 0x10;
+void test_get_xLongset_given_longmem_0x00ff_and_XH_0x00_XL_0x01_expect_returned_0x0100(void){
+  uint8_t instrc[]  = {0xAB,0x00,0xff};
+  cpuRegisters->XH  = 0x00;
+  cpuRegisters->XL  = 0x01;
   uint16_t result   = get_x_longset(instrc);
-  TEST_ASSERT_EQUAL_HEX16(0x0110,result);
+  TEST_ASSERT_EQUAL_HEX16(0x0100,result);
 }
 
 void test_get_yLongset_given_longmem_0x0000_and_YH_0x01_YL_0x10_expect_returned_0x0110(void){

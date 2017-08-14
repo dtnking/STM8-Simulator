@@ -21,3 +21,9 @@ void test_set_y_given_2_args_is_0x2a_0xa2_expected_YH_is_0x2a_and_YL_is_0xa2(voi
   TEST_ASSERT_EQUAL_HEX16(0x2a,cpuRegisters->YH);
   TEST_ASSERT_EQUAL_HEX16(0xa2,cpuRegisters->YL);
 }
+
+void test_set_SP_given_2_args_is_0xdd_0xff_expected_SPH_is_0xdd_and_SPL_is_0xff(void){
+  set_SP(0xdd,0xff);
+  TEST_ASSERT_EQUAL_HEX16(0xdd,cpuRegisters->SPH);
+  TEST_ASSERT_EQUAL_HEX16(0xff,cpuRegisters->SPL);
+}
