@@ -7,13 +7,13 @@ Stm8Registers *cpuRegisters=(Stm8Registers *)&memory[0x7f00];
 
 
 void clearCCRflag(){
-  cpuRegisters->CCR.C   = 0;
-  cpuRegisters->CCR.Z   = 0;
-  cpuRegisters->CCR.N   = 0;
-  cpuRegisters->CCR.I0  = 0;
-  cpuRegisters->CCR.H   = 0;
-  cpuRegisters->CCR.I1  = 0;
-  cpuRegisters->CCR.V   = 0;
+  cpuRegisters->CCR.bit.C   = 0;
+  cpuRegisters->CCR.bit.Z   = 0;
+  cpuRegisters->CCR.bit.N   = 0;
+  cpuRegisters->CCR.bit.I0  = 0;
+  cpuRegisters->CCR.bit.H   = 0;
+  cpuRegisters->CCR.bit.I1  = 0;
+  cpuRegisters->CCR.bit.V   = 0;
 }
 
 uint16_t combineTwoAddrs(uint8_t val1, uint8_t val2){
@@ -63,27 +63,27 @@ uint16_t get_y_value(void){
 }
 
 uint16_t get_x_shortset(uint8_t *opcode){
-  uint8_t val 		= opcode[1];
+  uint8_t offset 	= opcode[1];
 	uint16_t addrs 	= combineTwoAddrs(cpuRegisters->XH,cpuRegisters->XL);
-  return addrs+val;
+  return addrs+offset;
 }
 
 uint16_t get_y_shortset(uint8_t *opcode){
-  uint8_t val 		= opcode[2];
+  uint8_t offset 		= opcode[2];
 	uint16_t addrs 	= combineTwoAddrs(cpuRegisters->YH,cpuRegisters->YL);
-  return addrs+val;
+  return addrs+offset;
 }
 
 uint16_t get_x_longset(uint8_t *opcode){
-  uint16_t addrsOffset = combineTwoAddrs(opcode[1],opcode[2]);
+  uint16_t offset = combineTwoAddrs(opcode[1],opcode[2]);
   uint16_t addrsBase	 = combineTwoAddrs(cpuRegisters->XH,cpuRegisters->XL);
-  return addrsOffset+addrsBase;
+  return offset+addrsBase;
 }
 
 uint16_t get_y_longset(uint8_t *opcode){
-  uint16_t addrsOffset = combineTwoAddrs(opcode[2],opcode[3]);
+  uint16_t offset = combineTwoAddrs(opcode[2],opcode[3]);
 	uint16_t addrsBase	 = combineTwoAddrs(cpuRegisters->YH,cpuRegisters->YL);
-  return addrsOffset+addrsBase;
+  return offset+addrsBase;
 }
 
 uint16_t get_shortoff_SP(uint8_t *opcode){

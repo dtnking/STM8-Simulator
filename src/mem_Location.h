@@ -5,13 +5,13 @@
 #define KB 		1024
 
 //define CCR
-#define c         (cpuRegisters->CCR.C)
-#define z         (cpuRegisters->CCR.Z)   <<  1
-#define l         (cpuRegisters->CCR.N)   <<  2
-#define i0        (cpuRegisters->CCR.I0)  <<  3
-#define h         (cpuRegisters->CCR.H)   <<  4
-#define i1        (cpuRegisters->CCR.I1)  <<  5
-#define v         (cpuRegisters->CCR.V)   <<  6
+#define c         (cpuRegisters->CCR.bit.C)
+#define z         (cpuRegisters->CCR.bit.Z)   <<  1
+#define l         (cpuRegisters->CCR.bit.N)   <<  2
+#define i0        (cpuRegisters->CCR.bit.I0)  <<  3
+#define h         (cpuRegisters->CCR.bit.H)   <<  4
+#define i1        (cpuRegisters->CCR.bit.I1)  <<  5
+#define v         (cpuRegisters->CCR.bit.V)   <<  6
 
 // define bits of R (Result)
 #define R0        (result & 0x1)
@@ -54,8 +54,7 @@
 #define M6        (val & 0x40)    >>  6
 #define M7        (val & 0x80)    >>  7
 
-typedef struct flags flags;
-struct flags{
+typedef struct{
   uint8_t C:1;
   uint8_t Z:1;
   uint8_t N:1;
@@ -63,7 +62,12 @@ struct flags{
   uint8_t H:1;
   uint8_t I1:1;
   uint8_t V:1;
-};
+}Bits;
+
+typedef union{
+  Bits bit;
+  uint8_t CC;
+}flags;
 
 typedef struct Stm8Registers Stm8Registers;
 struct Stm8Registers {

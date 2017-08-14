@@ -131,7 +131,7 @@ void test_raw_SBC_carry_given_0x10_minus_0x01_get_0x0f_expected_no_carry(void){
   */
 void test_raw_SBC_carry_given_0x10_minus_0x01_with_borrow_bit_0x01_get_0x0e_expected_no_carry(void){
   cpuRegisters->A     = 0x10;
-  cpuRegisters->CCR.C = 0x01;
+  cpuRegisters->CCR.bit.C = 0x01;
   raw_sbc(0x01);
   TEST_ASSERT_EQUAL_HEX16(0x0e,cpuRegisters->A);
   TEST_ASSERT_EQUAL_HEX16(0x00,c|z|l|i0|h|i1|v);
