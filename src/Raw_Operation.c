@@ -45,6 +45,13 @@ void raw_sbc(uint8_t val){
   cpuRegisters->A     = result;
 }
 
+uint16_t raw_mul(uint8_t val){
+  uint16_t result = cpuRegisters->A * val;
+  cpuRegisters->CCR.bit.H = 0 ;
+  cpuRegisters->CCR.bit.C = 0 ;
+  return result;
+}
+
 void raw_inc(uint8_t *valptr){
   uint8_t result = *valptr + 0x01;
   uint8_t val    = 0x01;
@@ -102,15 +109,13 @@ void raw_mov(uint8_t *srcAddrss, uint8_t *dstAddrss){
 uint16_t raw_pop(uint8_t *dstAddrss){
   uint16_t stackPtr = combineTwoAddrs(cpuRegisters->SPH,cpuRegisters->SPL)+1; // The stack pointer is incremented by one.
   *dstAddrss = memory[stackPtr];                                              // Place the data byte from the stack to dstAddrss.
-  cpuRegisters->SPH = GET_MSB(stackPtr);
-  cpuRegisters->SPL = GET_LSB(stackPtr);
+  set_SP(GET_MSB(stackPtr),GET_LSB(stackPtr));        // update the SPH and SPL after incremented by 1
   return stackPtr;
 }
 
 uint16_t raw_push(uint8_t dstAddrss){
   uint16_t stackPtr = combineTwoAddrs(cpuRegisters->SPH,cpuRegisters->SPL)-1; // The stack pointer is decremented by one.
   memory[stackPtr] = dstAddrss ;                                              // Place the data byte from the stack to dstAddrss.
-  cpuRegisters->SPH = GET_MSB(stackPtr);
-  cpuRegisters->SPL = GET_LSB(stackPtr);
+  set_SP(GET_MSB(stackPtr),GET_LSB(stackPtr));        // update the SPH and SPL after incremented by 1
   return stackPtr;
 }
