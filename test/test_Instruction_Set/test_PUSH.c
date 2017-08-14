@@ -12,6 +12,12 @@ void setUp(void){
 
 void tearDown(void){}
 
+/*
+**    XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+**    X  Syntax : PUSH src              e.g.:PUSH A   X
+**    X   Operation: (SP--) <= dst              			X
+**    XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+*/
 
 void test_push_A_given_the_Accumulator_store_0xab_expected_the_decremented_SP_store_0xab(void){
   set_SP(0x10,0x01);                      // Set SPH as 0x10 and SPL as 0x01;

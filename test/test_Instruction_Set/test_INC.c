@@ -9,6 +9,13 @@ void setUp(void){}
 
 void tearDown(void){}
 
+/*
+**    xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+**    X   Syntax : INC dst        e.g. INC counter   X
+**    X   Operation : dst <= dst + 1                 X
+**    Xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+*/
+
 void test_INC_A_given_A_0x01_expect_0x02(void){
     cpuRegisters->A = 0x01;
     uint8_t instrc[]={0x4C};

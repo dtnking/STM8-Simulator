@@ -9,6 +9,12 @@ void setUp(void){}
 
 void tearDown(void){}
 
+/*
+**    XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+**    X  Syntax : OR A,src 				e.g. OR A,#%00110101   X
+**    X  Operation A <= A OR src               					 X
+**    XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+*/
 void test_OR_1_byte_given_A_0xFF_OR_0xFF_expected_0xFF(void){
 	cpuRegisters->A  = 0xFF;														// Accumulator = 0xFF.
 	uint8_t instrc[] = {0xAB,0xFF};											// Opcode : 0xABFF

@@ -10,6 +10,13 @@ void setUp(void){}
 void tearDown(void){}
 
 /*
+**    XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+**    X  Syntax : XOR A,src 				e.g. XOR A,#%00110101  X
+**		X	 Operation :  A <= A XOR src            					 X
+**    XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+*/
+
+/*
  **          0000 0000     |           0000 0000     |           1111 1111
  **    XOR   1111 1111     |    XOR    0000 0000     |     XOR   1111 1111
  **   -----------------    |   ------------------    |    -----------------

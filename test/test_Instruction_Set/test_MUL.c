@@ -9,6 +9,13 @@ void setUp(void){}
 
 void tearDown(void){}
 
+/*
+**    XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+**    X  Syntax : MUL dst,src           e.g. MUL X,A     X
+**    X  Operation : dst:src <= dst x src                X
+**    XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+*/
+
 void test_MUL_X_given_0x02_mul_0xab_expect_X_contain_0x156(void){
   cpuRegisters->A  = 0x02;
   cpuRegisters->XL = 0xab;

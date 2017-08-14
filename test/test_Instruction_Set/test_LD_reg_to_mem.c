@@ -9,6 +9,13 @@ void setUp(void){}
 
 void tearDown(void){}
 
+/*
+**    xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+**    X  Syntax : LD dst,src        e.g. LD A,#$15	 X
+**		X	 Operation : dst <= src                			 X
+**    xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+*/
+
 
 /*    Load byte from Accumulator to shortMemory
 **  =======================================

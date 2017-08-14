@@ -12,6 +12,12 @@ void setUp(void){
 
 void tearDown(void){}
 
+/*
+**    XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+**    X  Syntax : POP dst               e.g. POP CC   X
+**    X  Operation : dst <= (++SP)               			X
+**    XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+*/
 
 void test_pop_A_given_the_incremented_SP_store_0xab_expected_Accumulator_store_0xab(void){
   set_SP(0x10,0x01);                      // Set SPH as 0x10 and SPL as 0x01;

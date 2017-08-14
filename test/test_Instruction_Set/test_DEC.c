@@ -9,6 +9,12 @@ void setUp(void){}
 
 void tearDown(void){}
 
+/*
+**    xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+**    X     Syntax :  DEC dst                 X
+**    X     Operation : dst <= dst - 1        X
+**    xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxX
+*/
 
 void test_DEC_A_given_A_0x01_expect_0x00(void){
     cpuRegisters->A = 0x01;

@@ -9,6 +9,13 @@ void setUp(void){}
 
 void tearDown(void){}
 
+/*
+**    XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+**    X  Syntax :  MOV dst,src			 e.g. MOV $80,#$AA	 X
+**		X  Operation : dst<= src               						 X
+**    XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+*/
+
 /*  An immediate byte to a direct memory location
 ** ------------------------------------------------
 **  |              |              | Location : 0x1000 |

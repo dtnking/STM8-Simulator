@@ -9,6 +9,13 @@ void setUp(void){}
 
 void tearDown(void){}
 
+/*
+**	XxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxX
+** 	X		Syntax : AND A,src						 e.g. AND A,#%00110101  X
+** 	X		Operation : A <= A AND src														X
+** 	XxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxX
+*/
+
 void test_AND_1_byte_given_A_0x23_with_0x23_expected_0x23(void){
 	cpuRegisters->A  = 0x23;														// Accumulator = 0x23.
 	uint8_t instrc[] = {0xAB,0x23};											// Opcode : 0xAB55
@@ -16,6 +23,7 @@ void test_AND_1_byte_given_A_0x23_with_0x23_expected_0x23(void){
 
 	TEST_ASSERT_EQUAL_HEX8 (0x23,cpuRegisters->A);
 }
+
 
 void test_AND_1_byte_given_A_0x23_with_0x00_expected_0x00(void){
 	cpuRegisters->A  = 0x23;														// Accumulator = 0x23.
@@ -25,6 +33,7 @@ void test_AND_1_byte_given_A_0x23_with_0x00_expected_0x00(void){
 	TEST_ASSERT_EQUAL_HEX8 (0x00,cpuRegisters->A);
 }
 
+
 void test_AND_1_byte_given_A_0x00_with_0x00_expected_0x00(void){
 	cpuRegisters->A  = 0x00;														// Accumulator = 0x00.
 	uint8_t instrc[] = {0xAB,0x00};											// Opcode : 0xAB00
@@ -32,6 +41,7 @@ void test_AND_1_byte_given_A_0x00_with_0x00_expected_0x00(void){
 
 	TEST_ASSERT_EQUAL_HEX8 (0x00,cpuRegisters->A);
 }
+
 
 void test_AND_shortmen_given_A_0x55_with_0x55_within_addrs_0x10_expected_0x55(void){
 	cpuRegisters->A  = 0x55;															// Accumulator = 0x55.
@@ -42,6 +52,7 @@ void test_AND_shortmen_given_A_0x55_with_0x55_within_addrs_0x10_expected_0x55(vo
 	TEST_ASSERT_EQUAL_HEX8 (0x55, cpuRegisters->A);
 }
 
+
 void test_AND_shortmen_given_A_0x55_with_0x00_within_addrs_0x10_expected_0x00(void){
 	cpuRegisters->A  = 0x55;															// Accumulator = 0x55.
 	memory[0x10]		 =	0x00;															// store 0x55 into memory location 0x10.
@@ -51,6 +62,7 @@ void test_AND_shortmen_given_A_0x55_with_0x00_within_addrs_0x10_expected_0x00(vo
 	TEST_ASSERT_EQUAL_HEX8 (0x00, cpuRegisters->A);
 }
 
+
 void test_AND_shortmen_given_A_0x00_with_0x00_within_addrs_0x10_expected_0x00(void){
 	cpuRegisters->A  = 0x55;															// Accumulator = 0x00.
 	memory[0x10]		 =	0x00;															// store 0x00 into memory location 0x10.
@@ -59,6 +71,7 @@ void test_AND_shortmen_given_A_0x00_with_0x00_within_addrs_0x10_expected_0x00(vo
 
 	TEST_ASSERT_EQUAL_HEX8 (0x00, cpuRegisters->A);
 }
+
 
 void test_AND_longmem_given_A_0x77_with_0x77_within_addrs_0x1000_expected_0x77(void){
 	cpuRegisters->A  = 0x77;																// Accumulator = 0x01.
@@ -78,6 +91,7 @@ void test_AND_longmem_given_A_0x77_with_0x00_within_addrs_0x1000_expected_0x00(v
 	TEST_ASSERT_EQUAL_HEX16 (0x00, cpuRegisters->A);
 }
 
+
 void test_AND_longmem_given_A_0x00_with_0x00_within_addrs_0x1000_expected_0x00(void){
 	cpuRegisters->A  = 0x00;																// Accumulator = 0x00.
 	memory[0x1000]	 =	0x00;																// store 0x00 into memory location 0x1000.
@@ -86,6 +100,7 @@ void test_AND_longmem_given_A_0x00_with_0x00_within_addrs_0x1000_expected_0x00(v
 
 	TEST_ASSERT_EQUAL_HEX16 (0x00, cpuRegisters->A);
 }
+
 
 void test_AND_X_given_A_0x99_with_X_having_value_0x99_expected_0x99(void){
 	cpuRegisters->A 	= 0x99;
@@ -97,6 +112,7 @@ void test_AND_X_given_A_0x99_with_X_having_value_0x99_expected_0x99(void){
 	TEST_ASSERT_EQUAL_HEX16(0x99,cpuRegisters->A);
 }
 
+
 void test_AND_X_given_A_0x99_with_X_having_value_0x00_expected_0x00(void){
 	cpuRegisters->A 	= 0x99;
 	set_X(0x11,0x10);
@@ -106,6 +122,7 @@ void test_AND_X_given_A_0x99_with_X_having_value_0x00_expected_0x00(void){
 
 	TEST_ASSERT_EQUAL_HEX16(0x00,cpuRegisters->A);
 }
+
 
 void test_AND_X_given_A_0x00_with_X_having_value_0x00_expected_0x00(void){
 	cpuRegisters->A 	= 0x00;
@@ -128,6 +145,7 @@ void test_AND_Y_given_A_0xaa_with_Y_having_value_0xaa_expected_0xaa(void){
 	TEST_ASSERT_EQUAL_HEX16(0xaa,cpuRegisters->A);
 }
 
+
 void test_AND_Y_given_A_0xaa_with_Y_having_value_0x00_expected_0x00(void){
 	cpuRegisters->A 	= 0xaa;
 	set_Y(0x12,0x10);
@@ -138,6 +156,7 @@ void test_AND_Y_given_A_0xaa_with_Y_having_value_0x00_expected_0x00(void){
 	TEST_ASSERT_EQUAL_HEX16(0x00,cpuRegisters->A);
 }
 
+
 void test_AND_Y_given_A_0x00_with_Y_having_value_0x00_expected_0x00(void){
 	cpuRegisters->A 	= 0x00;
 	set_Y(0x12,0x10);
@@ -147,6 +166,7 @@ void test_AND_Y_given_A_0x00_with_Y_having_value_0x00_expected_0x00(void){
 
 	TEST_ASSERT_EQUAL_HEX16(0x00,cpuRegisters->A);
 }
+
 
 void test_AND_shortoff_with_x_given_A_0xab_and_the_value_of_the_address_0xab_expected_0xab(void){
 	cpuRegisters->A 	= 0xab;

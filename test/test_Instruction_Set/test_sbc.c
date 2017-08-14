@@ -11,6 +11,14 @@ void setUp(void)
 void tearDown(void)
 {
 }
+
+/*
+**    XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+**    X  Syntax : SBC A,src          e.g. SBC A,#$15  X
+**    X  Operation : A <= A- src - C              	  X
+**    XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+*/
+
 // 	sbc A,#$55		value of Accumulator - given value
 void test_sbc_1_byte_given_A_0x55_with_0x01_expected_0x53(void){
 	cpuRegisters->A  = 0x55;																// Accumulator = 0x01.

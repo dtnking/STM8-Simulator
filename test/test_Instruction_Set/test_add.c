@@ -9,6 +9,13 @@ void setUp(void){}
 
 void tearDown(void){}
 
+/*
+**    XxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxX
+**    X  Syntax : ADD A,src e.g. ADD A,#%11001010		X
+**		X	 Operation : A <= A+ src           					X
+**    xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxX
+*/
+
 // 	ADD A,#$55		value of Accumulator + given value
 void test_Add_1_byte_given_A_0x01_ADD_0x55_expected_0x56(void){
 	cpuRegisters->A  = 0x01;														// Accumulator = 0x01.

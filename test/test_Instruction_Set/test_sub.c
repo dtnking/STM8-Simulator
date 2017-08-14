@@ -9,6 +9,14 @@ void setUp(void){}
 
 void tearDown(void){}
 
+
+/*
+**    XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+**    X  Syntax : SUB A,src 		e.g. SUB A,#%11001010		X
+**		X	 Operation :	A <= A- src            						X
+**    XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+*/
+
 // 	sub A,#$55		value of Accumulator - given value
 void test_SUB_1_byte_given_A_0x55_with_0x01_expected_0x54(void){
 	cpuRegisters->A  = 0x55;																// Accumulator = 0x01.

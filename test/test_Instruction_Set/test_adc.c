@@ -9,6 +9,13 @@ void setUp(void){}
 
 void tearDown(void){}
 
+/*
+**    xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+**    X  Syntax : ADC A, src      e.g. ADC A,#$15    X
+**    X  Operation : A <= A+ src + C                 X
+**    xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+*/
+
 // 	adc A,#$55		value of Accumulator + given value
 void test_adc_1_byte_given_A_0x01_with_0x55_expected_0x57(void){
 	cpuRegisters->A  = 0x01;																// Accumulator = 0x01.

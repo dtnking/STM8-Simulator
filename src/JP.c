@@ -4,8 +4,6 @@
 #include <stdio.h>
 #include <stdint.h>
 
-
-
 void jp_longmem(uint8_t *opcodePtr){
   uint32_t addrs = get_longmem(opcodePtr);
   set_PC(GET_HMSB(addrs),GET_MSB(addrs),GET_LSB(addrs));
