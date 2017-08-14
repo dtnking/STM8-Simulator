@@ -15,3 +15,9 @@ void pop_CC(uint8_t *opcodePtr){
 void pop_longmem(uint8_t *opcodePtr){
   raw_pop(&memory[get_longmem(opcodePtr)]);
 }
+
+uint16_t SP_increment(){
+  uint16_t stack = combineTwoAddrs(cpuRegisters->SPH,cpuRegisters->SPL); // Combine SPH and SPL into one address(SP).
+  return stack;                               // The stack pointer is incremented by 1.
+
+}

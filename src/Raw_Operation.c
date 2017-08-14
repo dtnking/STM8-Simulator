@@ -99,8 +99,10 @@ void raw_mov(uint8_t *srcAddrss, uint8_t *dstAddrss){
   *dstAddrss = result;
 }
 
-void raw_pop(uint8_t *dstAddrss){
-  uint16_t stack = combineTwoAddrs(cpuRegisters->SPH,cpuRegisters->SPL);   // Combine SPH and SPL into one address(SP).
-  uint8_t *stackPtr = &memory[stack] + 1;                                  // The stack pointer is incremented by 1.
-  *dstAddrss = *stackPtr;                                                  // Place the data byte from the stack to dstAddrss.
+uint16_t raw_pop(uint8_t *dstAddrss){
+  uint16_t stack = combineTwoAddrs(cpuRegisters->SPH,cpuRegisters->SPL)+1; // Combine SPH and SPL into one address(SP).
+  *dstAddrss = memory[stack];                                             // Place the data byte from the stack to dstAddrss.
+  cpuRegisters->SPH = GET_MSB(stack);
+  cpuRegisters->SPL = GET_LSB(stack);
+  return stack;
 }
