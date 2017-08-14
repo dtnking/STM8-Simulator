@@ -27,3 +27,10 @@ void test_set_SP_given_2_args_is_0xdd_0xff_expected_SPH_is_0xdd_and_SPL_is_0xff(
   TEST_ASSERT_EQUAL_HEX16(0xdd,cpuRegisters->SPH);
   TEST_ASSERT_EQUAL_HEX16(0xff,cpuRegisters->SPL);
 }
+
+void test_set_PC_given_3_args_is_0x11_0x22_0x33_expected_PCE_is_0x11_PCH_is_0x22_and_PCL_is_0x33(void){
+  set_PC(0x11,0x22,0x33);
+  TEST_ASSERT_EQUAL_HEX16(0x11,cpuRegisters->PCE);
+  TEST_ASSERT_EQUAL_HEX16(0x22,cpuRegisters->PCH);
+  TEST_ASSERT_EQUAL_HEX16(0x33,cpuRegisters->PCL);
+}

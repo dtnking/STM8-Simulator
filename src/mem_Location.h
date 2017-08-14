@@ -54,13 +54,14 @@
 #define M6        (val & 0x40)    >>  6
 #define M7        (val & 0x80)    >>  7
 
-#define X         combineTwoAddrs(cpuRegisters->XH,cpuRegisters->XL)
-#define Y         combineTwoAddrs(cpuRegisters->YH,cpuRegisters->YL)
-#define SP        combineTwoAddrs(cpuRegisters->SPH,cpuRegisters->SPL)
-
+#define X         combineTwoAddrs   (cpuRegisters->XH,cpuRegisters->XL)
+#define Y         combineTwoAddrs   (cpuRegisters->YH,cpuRegisters->YL)
+#define SP        combineTwoAddrs   (cpuRegisters->SPH,cpuRegisters->SPL)
+#define pc        combineThreeAddrs (cpuRegisters->PCE,cpuRegisters->PCH,cpuRegisters->PCL)
 // MACRO
-#define GET_MSB(x)   (x & 0xff00) >> 8
-#define GET_LSB(x)   (x & 0x00ff)
+#define GET_HMSB(x)  (x & 0xff0000) >> 16
+#define GET_MSB(x)   (x & 0x00ff00) >> 8
+#define GET_LSB(x)   (x & 0x0000ff)
 
 typedef struct{
   uint8_t C:1;
@@ -96,28 +97,30 @@ struct Stm8Registers {
 extern unsigned char memory[];
 extern Stm8Registers *cpuRegisters;
 
-uint8_t  get_valueByte    (uint8_t *opcode);
-uint8_t  get_shortmem     (uint8_t *opcode);
-uint16_t get_longmem      (uint8_t *opcode);
-uint16_t get_x_value      (void);
-uint16_t get_y_value      (void);
-uint16_t get_x_shortset   (uint8_t *opcode);
-uint16_t get_y_shortset   (uint8_t *opcode);
-uint16_t get_x_longset    (uint8_t *opcode);
-uint16_t get_y_longset    (uint8_t *opcode);
-uint16_t get_shortoff_SP  (uint8_t *opcode);
-uint16_t get_shortptr_w   (uint8_t *opcode);
-uint16_t get_longptr_w    (uint8_t *opcode);
-uint16_t get_shortptr_w_X (uint8_t *opcode);
-uint16_t get_longptr_w_X  (uint8_t *opcode);
-uint16_t get_shortptr_w_Y (uint8_t *opcode);
 
+uint8_t  get_valueByte      (uint8_t *opcode);
+uint8_t  get_shortmem       (uint8_t *opcode);
+uint16_t get_longmem        (uint8_t *opcode);
+uint16_t get_x_value        (void);
+uint16_t get_y_value        (void);
+uint16_t get_x_shortset     (uint8_t *opcode);
+uint16_t get_y_shortset     (uint8_t *opcode);
+uint16_t get_x_longset      (uint8_t *opcode);
+uint16_t get_y_longset      (uint8_t *opcode);
+uint16_t get_shortoff_SP    (uint8_t *opcode);
+uint16_t get_shortptr_w     (uint8_t *opcode);
+uint16_t get_longptr_w      (uint8_t *opcode);
+uint16_t get_shortptr_w_X   (uint8_t *opcode);
+uint16_t get_longptr_w_X    (uint8_t *opcode);
+uint16_t get_shortptr_w_Y   (uint8_t *opcode);
 
-void     set_X            (uint8_t xh,uint8_t xl);
-void     set_Y            (uint8_t yh,uint8_t yl);
-void     set_SP           (uint8_t sph,uint8_t spl);
-void     clearCCRflag     (void);
-uint16_t combineTwoAddrs  (uint8_t val1, uint8_t val2);
+void     clearCCRflag       (void);
+void     set_X              (uint8_t xh,uint8_t xl);
+void     set_Y              (uint8_t yh,uint8_t yl);
+void     set_SP             (uint8_t sph,uint8_t spl);
+void     set_PC             (uint8_t pce,uint8_t pch,uint8_t pcl);
+uint16_t combineTwoAddrs    (uint8_t val1, uint8_t val2);
+uint32_t combineThreeAddrs  (uint8_t val1, uint8_t val2, uint8_t val3);
 
 
 

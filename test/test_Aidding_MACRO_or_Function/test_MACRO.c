@@ -20,3 +20,8 @@ void test_MACRO_getLSB_given_0xabcd_expected_result_0xcd(void){
   uint8_t result = GET_LSB(0xabcd);
   TEST_ASSERT_EQUAL_HEX16(0xcd,result);
 }
+
+void test_MACRO_getHMSB_given_0x11abcd_expected_result_0x11(void){
+  uint8_t result = GET_HMSB(0x11abcd);
+  TEST_ASSERT_EQUAL_HEX16(0x11,result);
+}
