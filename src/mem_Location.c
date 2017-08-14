@@ -87,9 +87,9 @@ uint16_t get_y_longset(uint8_t *opcode){
 }
 
 uint16_t get_shortoff_SP(uint8_t *opcode){
-  uint8_t addrsSP			 = opcode[1];
+  uint8_t offset			 = opcode[1];
   uint16_t addrsBase	 = combineTwoAddrs(cpuRegisters->SPH,cpuRegisters->SPL);
-  return addrsBase+addrsSP;
+  return addrsBase+offset;
 }
 
 uint16_t get_shortptr_w(uint8_t *opcode){
