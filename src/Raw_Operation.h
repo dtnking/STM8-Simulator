@@ -14,5 +14,6 @@ void raw_or   (uint8_t val);
 void raw_xor  (uint8_t val);
 void raw_ld   (uint8_t *srcAddrss, uint8_t *dstAddrss);
 void raw_mov  (uint8_t *srcAddrss, uint8_t *dstAddrss);
+void raw_pop  (uint8_t *dstAddrss);
 
 #endif // _RAW_OPERATION_H
