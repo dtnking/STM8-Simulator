@@ -10,6 +10,11 @@
 #include "LD.h"
 #include "INC.h"
 #include "mov.h"
+#include "JP.h"
+#include "MUL.h"
+#include "pop.h"
+#include "PUSH.h"
+#include "CCF.h"
 #include "mem_Location.h"
 #include <stdint.h>
 #include <stdio.h>
@@ -120,6 +125,29 @@ Opcode opcodeTable[256] = {
   [0x35] = {mov_byte_longmem,4,1},
   [0x45] = {mov_shortmem_shortmem,3,1},
   [0x55] = {mov_longmem_longmem,5,1},
+
+  //CCF
+  [0x8C] = {ccf,1,1},
+
+  //MUL
+  [0x42] = {mul_X,1,4},
+
+  //POP
+  [0x84] = {pop_A,1,1},
+  [0x86] = {pop_CC,1,1},
+  [0x36] = {pop_longmem,3,1},
+
+  //PUSH
+  [0x88] = {push_A,1,1},
+  [0x8A] = {push_CC,1,1},
+  [0x4B] = {push_byte,2,1},
+  [0x3B] = {push_longmem,3,1},
+
+  //JP
+  [0xCC] = {jp_longmem,3,1},
+  [0xFC] = {jp_X,1,1},
+  [0xEC] = {jp_X_shortset,2,1},
+  [0xDC] = {jp_X_longset,3,1},
 };
 
 Opcode opcodeTable90[256] = {
@@ -178,6 +206,14 @@ Opcode opcodeTable90[256] = {
   [0x9F] = {ldRegToReg_YL_to_A,2,1},
   [0x95] = {ldRegToReg_A_to_YH,2,1},
   [0x9E] = {ldRegToReg_YH_to_A,2,1},
+
+  //MUL
+  [0x42] = {mul_Y,2,4},
+
+  //JP
+  [0xFC] = {jp_Y,2,1},
+  [0xEC] = {jp_Y_shortset,3,2},
+  [0xDC] = {jp_Y_longset,4,2},
 };
 
 Opcode opcodeTable92[256] = {
@@ -221,7 +257,9 @@ Opcode opcodeTable92[256] = {
   [0xC7] = {ldRegToMem_shortptr_w,3,4},
   [0xD7] = {ldRegToMem_shortptr_w_X,3,4},
 
-
+  //JP
+  [0xCC] = {jp_shortptr_W,3,5},
+  [0xDC] = {jp_shortptr_W_X,3,5},
 };
 
 Opcode opcodeTable72[256] = {
@@ -264,6 +302,10 @@ Opcode opcodeTable72[256] = {
   //LD Reg to Memory
   [0xC7] = {ldRegToMem_longptr_w,4,4},
   [0xD7] = {ldRegToMem_longptr_w_X,4,4},
+
+  //JP
+  [0xCC] = {jp_longptr_W,4,5},
+  [0xDC] = {jp_longptr_W_X,4,5},
 };
 
 Opcode opcodeTable91[256] = {
@@ -296,6 +338,9 @@ Opcode opcodeTable91[256] = {
 
   //LD Reg to Memory
   [0xD7] = {ldRegToMem_shortptr_w_Y,3,4},
+
+  //JP
+  [0xDC] = {jp_longptr_W,4,5},
 };
 
 

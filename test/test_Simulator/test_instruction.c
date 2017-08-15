@@ -12,6 +12,11 @@
 #include "mov.h"
 #include "AND.h"
 #include "LD.h"
+#include "JP.h"
+#include "MUL.h"
+#include "pop.h"
+#include "PUSH.h"
+#include "CCF.h"
 
 void setUp(void){}
 
