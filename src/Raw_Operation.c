@@ -119,3 +119,10 @@ uint16_t raw_push(uint8_t dstAddrss){
   set_SP(GET_MSB(stackPtr),GET_LSB(stackPtr));  // update the SPH and SPL after incremented by 1
   return stackPtr;
 }
+
+void raw_clr(uint8_t *valptr){
+  *valptr = 0;
+
+  cpuRegisters->CCR.bit.N = 0;
+  cpuRegisters->CCR.bit.Z = 1;
+}

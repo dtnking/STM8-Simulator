@@ -15,6 +15,7 @@
 #include "pop.h"
 #include "PUSH.h"
 #include "CCF.h"
+#include "SCF.h"
 #include "mem_Location.h"
 #include <stdint.h>
 #include <stdio.h>
@@ -148,6 +149,9 @@ Opcode opcodeTable[256] = {
   [0xFC] = {jp_X,1,1},
   [0xEC] = {jp_X_shortset,2,1},
   [0xDC] = {jp_X_longset,3,1},
+
+  //SCF
+  [0x99] = {scf,1,1},
 };
 
 Opcode opcodeTable90[256] = {

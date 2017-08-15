@@ -17,7 +17,7 @@
 #include "pop.h"
 #include "PUSH.h"
 #include "CCF.h"
-
+#include "SCF.h"
 #include <stdio.h>
 #include <stdint.h>
 

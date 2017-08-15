@@ -17,6 +17,7 @@
 #include "pop.h"
 #include "PUSH.h"
 #include "CCF.h"
+#include "SCF.h"
 
 void setUp(void){}
 
