@@ -2,7 +2,7 @@
 #define _CLR_H
 #include <stdint.h>
 
-void    clr_byte          (uint8_t *opcodePtr);
+void    clr_A             (uint8_t *opcodePtr);
 void    clr_shortmem      (uint8_t *opcodePtr);
 void    clr_longmem       (uint8_t *opcodePtr);
 void    clr_x             (uint8_t *opcodePtr);
