@@ -18,6 +18,7 @@
 #include "PUSH.h"
 #include "CCF.h"
 #include "SCF.h"
+#include "CLR.h"
 
 void setUp(void){}
 

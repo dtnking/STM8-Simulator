@@ -16,6 +16,7 @@
 #include "PUSH.h"
 #include "CCF.h"
 #include "SCF.h"
+#include "CLR.h"
 #include "mem_Location.h"
 #include <stdint.h>
 #include <stdio.h>
@@ -152,6 +153,13 @@ Opcode opcodeTable[256] = {
 
   //SCF
   [0x99] = {scf,1,1},
+
+  //CLR
+  [0x4F] = {clr_A,1,1},
+  [0x3F] = {clr_shortmem,2,1},
+  [0x7F] = {clr_x,1,1},
+  [0x6F] = {clr_x_shortset,2,1},
+  [0x0F] = {clr_shortoff_SP,2,1},
 };
 
 Opcode opcodeTable90[256] = {
@@ -218,6 +226,11 @@ Opcode opcodeTable90[256] = {
   [0xFC] = {jp_Y,2,1},
   [0xEC] = {jp_Y_shortset,3,2},
   [0xDC] = {jp_Y_longset,4,2},
+
+  //CLR
+  [0x4F] = {clr_y_longset,4,1},
+  [0x7F] = {clr_y_shortset,3,1},
+  [0x6F] = {clr_x_shortset,2,1},
 };
 
 Opcode opcodeTable92[256] = {
@@ -264,6 +277,11 @@ Opcode opcodeTable92[256] = {
   //JP
   [0xCC] = {jp_shortptr_W,3,5},
   [0xDC] = {jp_shortptr_W_X,3,5},
+
+  //CLR
+  [0x3F] = {clr_shortptr_w,3,4},
+  [0x6F] = {clr_shortptr_w_X,3,4},
+
 };
 
 Opcode opcodeTable72[256] = {
@@ -310,6 +328,12 @@ Opcode opcodeTable72[256] = {
   //JP
   [0xCC] = {jp_longptr_W,4,5},
   [0xDC] = {jp_longptr_W_X,4,5},
+
+  //CLR
+  [0x5F] = {clr_longmem,4,1},
+  [0x4F] = {clr_x_longset,4,1},
+  [0x3F] = {clr_longptr_w,4,4},
+  [0x6F] = {clr_longptr_w_X,4,4},
 };
 
 Opcode opcodeTable91[256] = {
@@ -345,6 +369,9 @@ Opcode opcodeTable91[256] = {
 
   //JP
   [0xDC] = {jp_longptr_W,4,5},
+
+  //CLR
+  [0x6F] = {clr_shortptr_w_Y,3,4},
 };
 
 

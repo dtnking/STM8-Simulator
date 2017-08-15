@@ -18,8 +18,10 @@
 #include "PUSH.h"
 #include "CCF.h"
 #include "SCF.h"
+#include "CLR.h"
 #include <stdio.h>
 #include <stdint.h>
+
 
 void setUp(void){
   clearCCRflag();
