@@ -4,7 +4,7 @@
 #include "Raw_Operation.h"
 #include <stdio.h>
 #include <stdint.h>
-//*DOCUMENTATION
+
 void setUp(void){}
 
 void tearDown(void){}
