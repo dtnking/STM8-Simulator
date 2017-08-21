@@ -21,7 +21,7 @@ void tearDown(void)
 
 // 	sbc A,#$55		value of Accumulator - given value
 void test_sbc_1_byte_given_A_0x55_with_0x01_expected_0x53(void){
-	cpuRegisters->A  = 0x55;																// Accumulator = 0x01.
+	cpuRegisters->A  = 0x55;														// Accumulator = 0x01.
   cpuRegisters->CCR.bit.C = 0x1;
 	uint8_t instrc[] = {0xA2,0x01};											// Opcode : 0xAB55
 	sbc_byte(instrc);

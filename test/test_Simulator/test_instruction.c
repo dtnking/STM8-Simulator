@@ -11,6 +11,7 @@
 #include "OR.h"
 #include "mov.h"
 #include "AND.h"
+#include "DEC.h"
 #include "LD.h"
 #include "JP.h"
 #include "MUL.h"
@@ -39,6 +40,10 @@ void test_instruction_table(void){
   memory[9] = 0x92;             //ld Reg to Mem(using opcodeTable92)
   memory[10]= 0xC7;
   memory[11]= 0x23;
+  memory[12]= 0x72;            //dec_longoff_X(using opcodeTable72)
+  memory[13]= 0x4A;
+  memory[14]= 0x11;
+  memory[15]= 0x11;
 
 // test for instruction add 1 byte directly into Accumulator expected counter pointer +2
   cpuRegisters->A  = 0x01;
@@ -75,6 +80,13 @@ void test_instruction_table(void){
   length = Simulator(&code);
   TEST_ASSERT_EQUAL_HEX8 (0x11,memory[0x42e5]);
   TEST_ASSERT_EQUAL_INT (3,length);
+
+// test for instruction dec_longoff_X expected counter pointer +4
+  set_X(0x34,0x34);
+  memory[0x4545]  = 0x10;
+  length = Simulator(&code);
+  TEST_ASSERT_EQUAL_HEX8 (0x0f,memory[0x4545]);
+  TEST_ASSERT_EQUAL_INT (4,length);
 
 
 }

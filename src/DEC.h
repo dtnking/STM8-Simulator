@@ -3,7 +3,6 @@
 #include <stdint.h>
 
 void    dec_A             (uint8_t *opcodePtr);
-void    dec_byte          (uint8_t *opcodePtr);
 void    dec_shortmem      (uint8_t *opcodePtr);
 void    dec_longmem       (uint8_t *opcodePtr);
 void    dec_X             (uint8_t *opcodePtr);
