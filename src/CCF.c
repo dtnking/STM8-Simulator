@@ -6,4 +6,5 @@
 
 void ccf(uint8_t *opcodePtr){
   cpuRegisters->CCR.bit.C = ~cpuRegisters->CCR.bit.C;
+  UPDATE_PC(1);
 }

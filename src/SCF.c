@@ -6,4 +6,5 @@
 
 void scf(uint8_t *opcodePtr){
   cpuRegisters->CCR.bit.C = 1;
+  UPDATE_PC(1);
 }
