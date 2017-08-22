@@ -103,7 +103,7 @@ void test_XOR_longmem_given_A_0xFF_XOR_0x00_expected_0xFF(void){
 
 void test_XOR_X_given_A_0xFF_XOR_X_having_value_0xFF_expected_0x00(void){
 	cpuRegisters->A 	= 0xFF;
-	set_X(0x11,0x10);
+	set_X(0x1110);
 	memory[0x1110] 		= 0xFF;
 	uint8_t instrc[] 	= {0xF8};									// 	Opcode : FB
 	xor_x(instrc);
@@ -113,7 +113,7 @@ void test_XOR_X_given_A_0xFF_XOR_X_having_value_0xFF_expected_0x00(void){
 
 void test_XOR_X_given_A_0x00_XOR_X_having_value_0x00_expected_0x00(void){
 	cpuRegisters->A 	= 0x00;
-	set_X(0x11,0x10);
+	set_X(0x1110);
 	memory[0x1110] 		= 0x00;
 	uint8_t instrc[] 	= {0xF8};									// 	Opcode : FB
 	xor_x(instrc);
@@ -123,7 +123,7 @@ void test_XOR_X_given_A_0x00_XOR_X_having_value_0x00_expected_0x00(void){
 
 void test_XOR_X_given_A_0xff_XOR_X_having_value_0x00_expected_0xFF(void){
 	cpuRegisters->A 	= 0xFF;
-	set_X(0x11,0x10);
+	set_X(0x1110);
 	memory[0x1110] 		= 0x00;
 	uint8_t instrc[] 	= {0xF8};									// 	Opcode : FB
 	xor_x(instrc);
@@ -133,7 +133,7 @@ void test_XOR_X_given_A_0xff_XOR_X_having_value_0x00_expected_0xFF(void){
 
 void test_XOR_Y_given_A_0xFF_XOR_Y_having_value_0xFF_expected_0x00(void){
 	cpuRegisters->A 	= 0xFF;
-	set_Y(0x12,0x10);
+	set_Y(0x1210);
 	memory[0x1210] 		= 0xFF;
 	uint8_t instrc[] 	= {0x90,0xF8};					// 	Opcode : 90FB
 	xor_y(instrc);
@@ -143,7 +143,7 @@ void test_XOR_Y_given_A_0xFF_XOR_Y_having_value_0xFF_expected_0x00(void){
 
 void test_XOR_Y_given_A_0x00_XOR_Y_having_value_0x00_expected_0x00(void){
 	cpuRegisters->A 	= 0x00;
-	set_Y(0x12,0x10);
+	set_Y(0x1210);
 	memory[0x1210] 		= 0x00;
 	uint8_t instrc[] 	= {0x90,0xF8};					// 	Opcode : 90FB
 	xor_y(instrc);
@@ -153,7 +153,7 @@ void test_XOR_Y_given_A_0x00_XOR_Y_having_value_0x00_expected_0x00(void){
 
 void test_XOR_Y_given_A_0xFF_XOR_Y_having_value_0x00_expected_0xFF(void){
 	cpuRegisters->A 	= 0xFF;
-	set_Y(0x12,0x10);
+	set_Y(0x1210);
 	memory[0x1210] 		= 0x00;
 	uint8_t instrc[] 	= {0x90,0xF8};					// 	Opcode : 90FB
 	xor_y(instrc);
@@ -163,7 +163,7 @@ void test_XOR_Y_given_A_0xFF_XOR_Y_having_value_0x00_expected_0xFF(void){
 
 void test_XOR_shortoff_with_x_given_A_0xFF_XOR_the_value_of_the_address_0xFF_expected_0x00(void){
 	cpuRegisters->A 	= 0xFF;
-	set_X(0x12,0x12);
+	set_X(0x1212);
 	uint8_t instrc[] 	= {0xE8,0x01};			// 	Opcode : EB01
 	memory[0x1213] 		= 0xFF;								//	X: 0x1212   offset: 0x01   (X + offset = 0x1213)
 	xor_x_shortset(instrc);
@@ -173,7 +173,7 @@ void test_XOR_shortoff_with_x_given_A_0xFF_XOR_the_value_of_the_address_0xFF_exp
 
 void test_XOR_shortoff_with_x_given_A_0x00_XOR_the_value_of_the_address_0x00_expected_0x00(void){
 	cpuRegisters->A 	= 0x00;
-	set_X(0x12,0x12);
+	set_X(0x1212);
 	uint8_t instrc[] 	= {0xE8,0x01};			// 	Opcode : EB01
 	memory[0x1213] 		= 0x00;								//	X: 0x1212   offset: 0x01   (X + offset = 0x1213)
 	xor_x_shortset(instrc);
@@ -183,7 +183,7 @@ void test_XOR_shortoff_with_x_given_A_0x00_XOR_the_value_of_the_address_0x00_exp
 
 void test_XOR_shortoff_with_x_given_A_0xFF_XOR_the_value_of_the_address_0x00_expected_0xFF(void){
 	cpuRegisters->A 	= 0xFF;
-	set_X(0x12,0x12);
+	set_X(0x1212);
 	uint8_t instrc[] 	= {0xE8,0x01};			// 	Opcode : EB01
 	memory[0x1213] 		= 0x00;								//	X: 0x1212   offset: 0x01   (X + offset = 0x1213)
 	xor_x_shortset(instrc);
@@ -193,7 +193,7 @@ void test_XOR_shortoff_with_x_given_A_0xFF_XOR_the_value_of_the_address_0x00_exp
 
 void test_XOR_shortoff_with_y_given_A_0xFF_XOR_the_value_of_the_address_0xFF_expected_0xFF(void){
 	cpuRegisters->A 	= 0xFF;
-	set_Y(0x23,0x23);
+	set_Y(0x2323);
 	uint8_t instrc[] 	= {0x90,0xE8,0x22};		// 	Opcode : 90EB22
 	memory[0x2345] 		= 0xFF; 								//	Y: 0x2323   offset: 0x22   (Y + offset = 0x2345)
 	xor_y_shortset(instrc);
@@ -203,7 +203,7 @@ void test_XOR_shortoff_with_y_given_A_0xFF_XOR_the_value_of_the_address_0xFF_exp
 
 void test_XOR_shortoff_with_y_given_A_0x00_XOR_the_value_of_the_address_0x00_expected_0x00(void){
 	cpuRegisters->A 	= 0x00;
-	set_Y(0x23,0x23);
+	set_Y(0x2323);
 	uint8_t instrc[] 	= {0x90,0xE8,0x22};		// 	Opcode : 90EB22
 	memory[0x2345] 		= 0x00; 								//	Y: 0x2323   offset: 0x22   (Y + offset = 0x2345)
 	xor_y_shortset(instrc);
@@ -213,7 +213,7 @@ void test_XOR_shortoff_with_y_given_A_0x00_XOR_the_value_of_the_address_0x00_exp
 
 void test_XOR_shortoff_with_y_given_A_0xFF_XOR_the_value_of_the_address_0x00_expected_0xFF(void){
 	cpuRegisters->A 	= 0xFF;
-	set_Y(0x23,0x23);
+	set_Y(0x2323);
 	uint8_t instrc[] 	= {0x90,0xE8,0x22};		// 	Opcode : 90EB22
 	memory[0x2345] 		= 0x00; 								//	Y: 0x2323   offset: 0x22   (Y + offset = 0x2345)
 	xor_y_shortset(instrc);
@@ -223,7 +223,7 @@ void test_XOR_shortoff_with_y_given_A_0xFF_XOR_the_value_of_the_address_0x00_exp
 
 void test_XOR_longoff_with_X_given_A_0xFF_XOR_the_value_of_the_address_0xFF_expected_0x00(void){
 	cpuRegisters->A 	= 0xFF;
-	set_X(0x34,0x34);
+	set_X(0x3434);
 	uint8_t instrc[] 	= {0xD0,0x18,0x10};
 	memory[0x4C44]		=	0xFF;
 	xor_x_longset(instrc);
@@ -233,7 +233,7 @@ void test_XOR_longoff_with_X_given_A_0xFF_XOR_the_value_of_the_address_0xFF_expe
 
 void test_XOR_longoff_with_X_given_A_0x00_XOR_the_value_of_the_address_0x00_expected_0x00(void){
 	cpuRegisters->A 	= 0x00;
-	set_X(0x34,0x34);
+	set_X(0x3434);
 	uint8_t instrc[] 	= {0xD0,0x18,0x10};
 	memory[0x4C44]		=	0x00;
 	xor_x_longset(instrc);
@@ -243,7 +243,7 @@ void test_XOR_longoff_with_X_given_A_0x00_XOR_the_value_of_the_address_0x00_expe
 
 void test_XOR_longoff_with_X_given_A_0xFF_XOR_the_value_of_the_address_0x00_expected_0xFF(void){
 	cpuRegisters->A 	= 0xFF;
-	set_X(0x34,0x34);
+	set_X(0x3434);
 	uint8_t instrc[] 	= {0xD0,0x18,0x10};
 	memory[0x4C44]		=	0x00;
 	xor_x_longset(instrc);
@@ -253,7 +253,7 @@ void test_XOR_longoff_with_X_given_A_0xFF_XOR_the_value_of_the_address_0x00_expe
 
 void test_XOR_longoff_with_Y_given_A_0xFF_XOR_the_value_of_the_address_0xFF_expected_0x00(void){
 	cpuRegisters->A 	= 0xFF;
-	set_Y(0x34,0x34);
+	set_Y(0x3434);
 	uint8_t instrc[] 	= {0x90,0xD8,0x29,0x29};
 	memory[0x5d5d]		=	0xFF;
 	xor_y_longset(instrc);
@@ -263,7 +263,7 @@ void test_XOR_longoff_with_Y_given_A_0xFF_XOR_the_value_of_the_address_0xFF_expe
 
 void test_XOR_longoff_with_Y_given_A_0x00_XOR_the_value_of_the_address_0x00_expected_0x00(void){
 	cpuRegisters->A 	= 0x00;
-	set_Y(0x34,0x34);
+	set_Y(0x3434);
 	uint8_t instrc[] 	= {0x90,0xD8,0x29,0x29};
 	memory[0x5d5d]		=	0x00;
 	xor_y_longset(instrc);
@@ -273,7 +273,7 @@ void test_XOR_longoff_with_Y_given_A_0x00_XOR_the_value_of_the_address_0x00_expe
 
 void test_XOR_longoff_with_Y_given_A_0xFF_XOR_the_value_of_the_address_0x00_expected_0xFF(void){
 	cpuRegisters->A 	= 0xFF;
-	set_Y(0x34,0x34);
+	set_Y(0x3434);
 	uint8_t instrc[] 	= {0x90,0xD8,0x29,0x29};
 	memory[0x5d5d]		=	0x00;
 	xor_y_longset(instrc);
@@ -283,7 +283,7 @@ void test_XOR_longoff_with_Y_given_A_0xFF_XOR_the_value_of_the_address_0x00_expe
 
 void test_XOR_shortoff_SP_given_A_0xFF_XOR_the_value_of_the_SP_0xFF_expected_0x00(void){
 	cpuRegisters->A		= 0xFF;
-	set_SP(0x88,0x88);
+	set_SP(0x8888);
 	uint8_t instrc[]	= {0x18,0x22};
 	memory[0x88AA]		=	0xFF;
 	xor_shortoff_SP(instrc);
@@ -293,7 +293,7 @@ void test_XOR_shortoff_SP_given_A_0xFF_XOR_the_value_of_the_SP_0xFF_expected_0x0
 
 void test_XOR_shortoff_SP_given_A_0x00_XOR_the_value_of_the_SP_0x00_expected_0x00(void){
 	cpuRegisters->A		= 0x00;
-	set_SP(0x88,0x88);
+	set_SP(0x8888);
 	uint8_t instrc[]	= {0x18,0x22};
 	memory[0x88AA]		=	0x00;
 	xor_shortoff_SP(instrc);
@@ -303,7 +303,7 @@ void test_XOR_shortoff_SP_given_A_0x00_XOR_the_value_of_the_SP_0x00_expected_0x0
 
 void test_XOR_shortoff_SP_given_A_0xFF_XOR_the_value_of_the_SP_0x00_expected_0x00(void){
 	cpuRegisters->A		= 0xFF;
-	set_SP(0x88,0x88);
+	set_SP(0x8888);
 	uint8_t instrc[]	= {0x18,0x22};
 	memory[0x88AA]		=	0x00;
 	xor_shortoff_SP(instrc);
@@ -379,7 +379,7 @@ void test_XOR_longptr_w_given_A_0xFF_XOR_the_value_of_the_address_0x00_expected_
 
 void test_XOR_shortptr_w_X_given_A_0xFF_XOR_the_value_of_the_address_0xFF_expected_0x00(void){
 	cpuRegisters->A 	= 0xFF;
-	set_X(0x00,0x03);
+	set_X(0x0003);
 	uint8_t instrc[]	= {0x92,0xD8,0x89};
 	memory[0x89]			= 0x08;
 	memory[0x8a]			= 0x01;
@@ -391,7 +391,7 @@ void test_XOR_shortptr_w_X_given_A_0xFF_XOR_the_value_of_the_address_0xFF_expect
 
 void test_XOR_shortptr_w_X_given_A_0x00_XOR_the_value_of_the_address_0x00_expected_0x00(void){
 	cpuRegisters->A 	= 0x00;
-	set_X(0x00,0x03);
+	set_X(0x0003);
 	uint8_t instrc[]	= {0x92,0xD8,0x89};
 	memory[0x89]			= 0x08;
 	memory[0x8a]			= 0x01;
@@ -403,7 +403,7 @@ void test_XOR_shortptr_w_X_given_A_0x00_XOR_the_value_of_the_address_0x00_expect
 
 void test_XOR_shortptr_w_X_given_A_0xFF_XOR_the_value_of_the_address_0x00_expected_0xFF(void){
 	cpuRegisters->A 	= 0xFF;
-	set_X(0x00,0x03);
+	set_X(0x0003);
 	uint8_t instrc[]	= {0x92,0xD8,0x89};
 	memory[0x89]			= 0x08;
 	memory[0x8a]			= 0x01;
@@ -415,7 +415,7 @@ void test_XOR_shortptr_w_X_given_A_0xFF_XOR_the_value_of_the_address_0x00_expect
 
 void test_XOR_longptr_w_X_given_A_0xFF_XOR_the_value_of_the_address_0xFF_expected_0x00(void){
 	cpuRegisters->A 	= 0xFF;
-	set_X(0x01,0x03);
+	set_X(0x0103);
 	uint8_t instrc[]	= {0x72,0xD8,0x10,0x89};
 	memory[0x1089]		= 0x18;
 	memory[0x108a]		= 0x01;
@@ -427,7 +427,7 @@ void test_XOR_longptr_w_X_given_A_0xFF_XOR_the_value_of_the_address_0xFF_expecte
 
 void test_XOR_longptr_w_X_given_A_0x00_XOR_the_value_of_the_address_0x00_expected_0x00(void){
 	cpuRegisters->A 	= 0x00;
-	set_X(0x01,0x03);
+	set_X(0x0103);
 	uint8_t instrc[]	= {0x72,0xD8,0x10,0x89};
 	memory[0x1089]		= 0x18;
 	memory[0x108a]		= 0x01;
@@ -439,7 +439,7 @@ void test_XOR_longptr_w_X_given_A_0x00_XOR_the_value_of_the_address_0x00_expecte
 
 void test_XOR_longptr_w_X_given_A_0xFF_XOR_the_value_of_the_address_0x00_expected_0xFF(void){
 	cpuRegisters->A 	= 0xFF;
-	set_X(0x01,0x03);
+	set_X(0x0103);
 	uint8_t instrc[]	= {0x72,0xD8,0x10,0x89};
 	memory[0x1089]		= 0x18;
 	memory[0x108a]		= 0x01;
@@ -451,7 +451,7 @@ void test_XOR_longptr_w_X_given_A_0xFF_XOR_the_value_of_the_address_0x00_expecte
 
 void test_XOR_shortptr_w_Y_given_A_0xFF_XOR_the_value_of_the_address_0xFF_expected_0x00(void){
 	cpuRegisters->A 	= 0xFF;
-	set_Y(0x11,0x11);
+	set_Y(0x1111);
 	uint8_t instrc[]	= {0x91,0xD8,0x89};
 	memory[0x89]			= 0x18;
 	memory[0x8a]			= 0x11;
@@ -463,7 +463,7 @@ void test_XOR_shortptr_w_Y_given_A_0xFF_XOR_the_value_of_the_address_0xFF_expect
 
 void test_XOR_shortptr_w_Y_given_A_0x0_XOR_the_value_of_the_address_0x0_expected_0x00(void){
 	cpuRegisters->A 	= 0x00;
-	set_Y(0x11,0x11);
+	set_Y(0x1111);
 	uint8_t instrc[]	= {0x91,0xD8,0x89};
 	memory[0x89]			= 0x18;
 	memory[0x8a]			= 0x11;
@@ -475,7 +475,7 @@ void test_XOR_shortptr_w_Y_given_A_0x0_XOR_the_value_of_the_address_0x0_expected
 
 void test_XOR_shortptr_w_Y_given_A_0xFF_XOR_the_value_of_the_address_0x0_expected_0xFF(void){
 	cpuRegisters->A 	= 0xFF;
-	set_Y(0x11,0x11);
+	set_Y(0x1111);
 	uint8_t instrc[]	= {0x91,0xD8,0x89};
 	memory[0x89]			= 0x18;
 	memory[0x8a]			= 0x11;

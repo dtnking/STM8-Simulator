@@ -115,10 +115,10 @@ uint16_t get_longptr_w_X    (uint8_t *opcode);
 uint16_t get_shortptr_w_Y   (uint8_t *opcode);
 
 void     clearCCRflag       (void);
-void     set_X              (uint8_t xh,uint8_t xl);
-void     set_Y              (uint8_t yh,uint8_t yl);
-void     set_SP             (uint8_t sph,uint8_t spl);
-void     set_PC             (uint8_t pce,uint8_t pch,uint8_t pcl);
+void     set_X              (uint16_t xAddress);
+void     set_Y              (uint16_t yAddress);
+void     set_SP             (uint16_t spAddress);
+void     set_PC             (uint32_t pcAddress);
 uint16_t combineTwoAddrs    (uint8_t val1, uint8_t val2);
 uint32_t combineThreeAddrs  (uint8_t val1, uint8_t val2, uint8_t val3);
 

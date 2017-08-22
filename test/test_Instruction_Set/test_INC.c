@@ -38,7 +38,7 @@ void test_INC_longmem_given_value_0xaa_expect_0xab(void){
 }
 
 void test_INC_X_given_value_0xaa_expect_0xab(void){
-    set_X(0x11,0x10);
+    set_X(0x1110);
     memory[0x1110]  = 0xaa;
     uint8_t instrc[]={0x7C,0x02};
     inc_X(instrc);
@@ -46,7 +46,7 @@ void test_INC_X_given_value_0xaa_expect_0xab(void){
 }
 
 void test_INC_shortoff_X_given_value_0xa0_expect_0xa1(void){
-    set_X(0x12,0x12);
+    set_X(0x1212);
     uint8_t instrc[]={0x6C,0x01};
     memory[0x1213]  = 0xa0;
     inc_shortoff_X(instrc);
@@ -54,7 +54,7 @@ void test_INC_shortoff_X_given_value_0xa0_expect_0xa1(void){
 }
 
 void test_INC_longoff_X_given_value_0x09_expect_0x0a(void){
-    set_X(0x34,0x34);
+    set_X(0x3434);
     uint8_t instrc[]={0x72,0x4C,0x10,0x10};
     memory[0x4444]  = 0x09;
     inc_longoff_X(instrc);
@@ -62,7 +62,7 @@ void test_INC_longoff_X_given_value_0x09_expect_0x0a(void){
 }
 
 void test_INC_Y_given_value_0x05_expect_0x06(void){
-    set_Y(0x12,0x10);
+    set_Y(0x1210);
     memory[0x1210]  = 0x05;
     uint8_t instrc[]={0x90,0x7c};
     inc_Y(instrc);
@@ -70,7 +70,7 @@ void test_INC_Y_given_value_0x05_expect_0x06(void){
 }
 
 void test_INC_shortoff_Y_given_value_0x7D_expect_0x7E(void){
-    set_Y(0x23,0x23);
+    set_Y(0x2323);
     uint8_t instrc[]={0x90,0x6C,0x22};
     memory[0x2345]  = 0x7D;
       inc_shortoff_Y(instrc);
@@ -78,7 +78,7 @@ void test_INC_shortoff_Y_given_value_0x7D_expect_0x7E(void){
 }
 
 void test_INC_longoff_Y_given_value_0x99_expect_0x9a(void){
-    set_Y(0x34,0x34);
+    set_Y(0x3434);
     uint8_t instrc[]={0x90,0x4C,0x29,0x29};
     memory[0x5d5d]  = 0x99;
     inc_longoff_Y(instrc);
@@ -86,7 +86,7 @@ void test_INC_longoff_Y_given_value_0x99_expect_0x9a(void){
 }
 
 void test_INC_shortoff_SP_given_value_0xaa_expect_0xab(void){
-    set_SP(0x88,0x88);
+    set_SP(0x8888);
     uint8_t instrc[]={0x0C,0x22};
     memory[0x88AA]  = 0xaa;
     inc_shortoff_SP(instrc);
@@ -112,7 +112,7 @@ void test_INC_longptr_w_given_value_0xaa_expect_0xab(void){
 }
 
 void test_INC_shortptr_w_X_given_value_0x40_expect_0x41(void){
-    set_X(0x00,0x03);
+    set_X(0x0003);
     uint8_t instrc[]={0x92,0x6C,0x89};
     memory[0x89]  = 0x08;
     memory[0x8a]  = 0x01;
@@ -122,7 +122,7 @@ void test_INC_shortptr_w_X_given_value_0x40_expect_0x41(void){
 }
 
 void test_INC_longptr_w_X_given_value_0x40_expect_0x41(void){
-    set_X(0x01,0x03);
+    set_X(0x0103);
     uint8_t instrc[]={0x72,0x6C,0x10,0x89};
     memory[0x1089]  = 0x18;
     memory[0x108a]  = 0x01;
@@ -132,7 +132,7 @@ void test_INC_longptr_w_X_given_value_0x40_expect_0x41(void){
 }
 
 void test_INC_shortptr_w_Y_given_value_0x40_expect_0x41(void){
-    set_Y(0x11,0x11);
+    set_Y(0x1111);
     uint8_t instrc[]={0x91,0x6C,0x89};
     memory[0x89]  = 0x18;
     memory[0x8a]  = 0x11;

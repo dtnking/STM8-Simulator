@@ -30,25 +30,25 @@ uint32_t combineThreeAddrs(uint8_t val1, uint8_t val2, uint8_t val3){
   return result;
 }
 
-void set_X(uint8_t xh,uint8_t xl){
-  cpuRegisters->XH = xh;
-  cpuRegisters->XL = xl;
+void set_X(uint16_t xAddress){
+  cpuRegisters->XH = GET_MSB(xAddress);
+  cpuRegisters->XL = GET_LSB(xAddress);
 }
 
-void set_Y(uint8_t yh,uint8_t yl){
-  cpuRegisters->YH = yh;
-  cpuRegisters->YL = yl;
+void set_Y(uint16_t yAddress){
+  cpuRegisters->YH = GET_MSB(yAddress);
+  cpuRegisters->YL = GET_LSB(yAddress);
 }
 
-void set_SP(uint8_t sph,uint8_t spl){
-  cpuRegisters->SPH = sph;
-  cpuRegisters->SPL = spl;
+void set_SP(uint16_t spAddress){
+  cpuRegisters->SPH = GET_MSB(spAddress);
+  cpuRegisters->SPL = GET_LSB(spAddress);
 }
 
-void set_PC(uint8_t pce,uint8_t pch,uint8_t pcl){
-  cpuRegisters->PCE = pce;
-  cpuRegisters->PCH = pch;
-  cpuRegisters->PCL = pcl;
+void set_PC(uint32_t pcAddress){
+  cpuRegisters->PCE = GET_HMSB(pcAddress);
+  cpuRegisters->PCH = GET_MSB(pcAddress);
+  cpuRegisters->PCL = GET_LSB(pcAddress);
 }
 
 uint8_t get_valueByte(uint8_t *opcode){

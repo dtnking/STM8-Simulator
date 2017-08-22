@@ -107,16 +107,16 @@ void raw_mov(uint8_t *srcAddrss, uint8_t *dstAddrss){
 }
 
 uint16_t raw_pop(uint8_t *dstAddrss){
-  uint16_t stackPtr = SP+1;                      // The stack pointer is incremented by one.
-  *dstAddrss = memory[stackPtr];                 // Place the data byte from the stack to dstAddrss.
-  set_SP(GET_MSB(stackPtr),GET_LSB(stackPtr));   // update the SPH and SPL after incremented by 1
+  uint16_t stackPtr = SP+1;                // The stack pointer is incremented by one.
+  *dstAddrss = memory[stackPtr];           // Place the data byte from the stack to dstAddrss.
+  set_SP(stackPtr);                        // update the SPH and SPL after incremented by 1
   return stackPtr;
 }
 
 uint16_t raw_push(uint8_t dstAddrss){
-  uint16_t stackPtr = SP-1;                     // The stack pointer is decremented by one.
-  memory[stackPtr] = dstAddrss ;                // Place the data byte from the stack to dstAddrss.
-  set_SP(GET_MSB(stackPtr),GET_LSB(stackPtr));  // update the SPH and SPL after incremented by 1
+  uint16_t stackPtr = SP-1;               // The stack pointer is decremented by one.
+  memory[stackPtr] = dstAddrss ;          // Place the data byte from the stack to dstAddrss.
+  set_SP(stackPtr);                       // update the SPH and SPL after incremented by 1
   return stackPtr;
 }
 

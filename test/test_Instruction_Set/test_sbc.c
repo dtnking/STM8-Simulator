@@ -55,7 +55,7 @@ void test_sbc_longmem_given_A_0x10_with_0x08_within_addrs_0x1000_expected_0x07(v
 void test_sbc_X_given_A_0x55_with_X_having_value_0x54_expected_0x00(void){
 	cpuRegisters->A 	= 0x55;
   cpuRegisters->CCR.bit.C = 0x1;
-	set_X(0x11,0x10);
+	set_X(0x1110);
 	memory[0x1110] 		= 0x54;
 	uint8_t instrc[] 	= {0xF2};									// 	Opcode : FB
 	sbc_x(instrc);
@@ -67,7 +67,7 @@ void test_sbc_X_given_A_0x55_with_X_having_value_0x54_expected_0x00(void){
 void test_sbc_Y_given_A_0x01_with_Y_having_value_0x05_expected_0xfb(void){
 	cpuRegisters->A 	= 0x01;
   cpuRegisters->CCR.bit.C = 0x1;
-	set_Y(0x12,0x10);
+	set_Y(0x1210);
 	memory[0x1210] 		= 0x05;
 	uint8_t instrc[] 	= {0x90,0xF2};					// 	Opcode : 90FB
 	sbc_y(instrc);
@@ -84,7 +84,7 @@ void test_sbc_Y_given_A_0x01_with_Y_having_value_0x05_expected_0xfb(void){
 void test_sbc_shortoff_with_x_given_A_0xA0_and_the_value_of_the_address_0x02_expected_0x9d(void){
 	cpuRegisters->A 	= 0xA0;
   cpuRegisters->CCR.bit.C = 0x1;
-	set_X(0x12,0x12);
+	set_X(0x1212);
 	uint8_t instrc[] 	= {0xE2,0x01};			// 	Opcode : EB01
 	memory[0x1213] 		= 0x02;								//	X: 0x1212   offset: 0x01   (X - offset = 0x1213)
 	sbc_x_shortset(instrc);
@@ -96,7 +96,7 @@ void test_sbc_shortoff_with_x_given_A_0xA0_and_the_value_of_the_address_0x02_exp
 void test_sbc_shortoff_with_y_given_A_0xAD_and_the_value_of_the_address_0x01_expected_0xAb(void){
 	cpuRegisters->A 	= 0xAD;
   cpuRegisters->CCR.bit.C = 0x1;
-	set_Y(0x23,0x23);
+	set_Y(0x2323);
 	uint8_t instrc[] 	= {0x90,0xE2,0x22};		// 	Opcode : 90EB22
 	memory[0x2345] 		= 0x01; 								//	Y: 0x2323   offset: 0x22   (Y - offset = 0x2345)
 	sbc_y_shortset(instrc);
@@ -108,7 +108,7 @@ void test_sbc_shortoff_with_y_given_A_0xAD_and_the_value_of_the_address_0x01_exp
 void test_sbc_longoff_with_X_given_A_0x02_and_the_value_of_the_address_0x01_expected_0x00(void){
 	cpuRegisters->A 	= 0x02;
   cpuRegisters->CCR.bit.C = 0x1;
-	set_X(0x34,0x34);
+	set_X(0x3434);
 	uint8_t instrc[] 	= {0xD2,0x10,0x10};
 	memory[0x4444]		=	0x01;
 	sbc_x_longset(instrc);
@@ -120,7 +120,7 @@ void test_sbc_longoff_with_X_given_A_0x02_and_the_value_of_the_address_0x01_expe
 void test_sbc_longoff_with_Y_given_A_0x02_and_the_value_of_the_address_0x1_expected_0x00(void){
 	cpuRegisters->A 	= 0x2;
   cpuRegisters->CCR.bit.C = 0x1;
-	set_Y(0x5d,0x5d);
+	set_Y(0x5d5d);
 	uint8_t instrc[] 	= {0x90,0xD2,0x29,0x29};
 	memory[0x8686]		=	0x01;
 	sbc_y_longset(instrc);
@@ -132,7 +132,7 @@ void test_sbc_longoff_with_Y_given_A_0x02_and_the_value_of_the_address_0x1_expec
 void test_sbc_shortoff_SP_given_A_0xAB_and_the_value_of_the_SP_0xA0_expected_0x0a(void){
 	cpuRegisters->A		= 0xAB;
   cpuRegisters->CCR.bit.C = 0x1;
-	set_SP(0x88,0x88);
+	set_SP(0x8888);
 	uint8_t instrc[]	= {0x12,0x22};
 	memory[0x88AA]		=	0xa0;
 	sbc_shortoff_SP(instrc);
@@ -170,7 +170,7 @@ void test_sbc_longptr_w_given_A_0x11_and_the_value_of_the_address_0x01_expected_
 void test_sbc_shortptr_w_X_given_A_0xFF_and_the_value_of_the_address_0x01_expected_0xFd(void){
 	cpuRegisters->A 	= 0xFF;
   cpuRegisters->CCR.bit.C = 0x1;
-	set_X(0x00,0x03);
+	set_X(0x0003);
 	uint8_t instrc[]	= {0x92,0xD2,0x89};
 	memory[0x89]			= 0x08;
 	memory[0x8a]			= 0x01;
@@ -184,7 +184,7 @@ void test_sbc_shortptr_w_X_given_A_0xFF_and_the_value_of_the_address_0x01_expect
 void test_sbc_longptr_w_X_given_A_0x90_and_the_value_of_the_address_0x05_expected_0x8a(void){
 	cpuRegisters->A 	= 0x90;
   cpuRegisters->CCR.bit.C = 0x1;
-	set_X(0x01,0x03);
+	set_X(0x0103);
 	uint8_t instrc[]	= {0x72,0xD2,0x10,0x89};
 	memory[0x1089]		= 0x18;
 	memory[0x108a]		= 0x01;
@@ -198,7 +198,7 @@ void test_sbc_longptr_w_X_given_A_0x90_and_the_value_of_the_address_0x05_expecte
 void test_sbc_shortptr_w_Y_given_A_0x8B_and_the_value_of_the_address_0x08_expected_0x82(void){
 	cpuRegisters->A 	= 0x8B;
   cpuRegisters->CCR.bit.C = 0x1;
-	set_Y(0x11,0x11);
+	set_Y(0x1111);
 	uint8_t instrc[]	= {0x91,0xD2,0x89};
 	memory[0x89]			= 0x18;
 	memory[0x8a]			= 0x11;

@@ -54,7 +54,7 @@ void test_LD_reg_to_mem_longmen_0xCC_expected_0xCC(void){
 **   |  Value   : 0xDD        |--(load)----^
 */
 void test_LD_reg_to_mem_X_0xDD_expected_0xDD(void){
-  set_X(0x11,0x10);
+  set_X(0x1110);
   cpuRegisters->A	 	= 0xDD;            // store 0xDD into Accumulator
 	uint8_t instrc[]  = {0xF7};					 // Opcode : 0xF7
 	ldRegToMem_x(instrc);
@@ -70,7 +70,7 @@ void test_LD_reg_to_mem_X_0xDD_expected_0xDD(void){
 **   |  Value   : 0xEE        |--(load)----^
 */
 void test_LD_reg_to_mem_Y_0xEE_expected_0xEE(void){
-  set_Y(0x12,0x10);
+  set_Y(0x1210);
   cpuRegisters->A	 	= 0xEE;            // store 0xEE into Accumulator.
 	uint8_t instrc[]  = {0x90,0xF6};		 // Opcode : 0x90F7
 	ldRegToMem_y(instrc);
@@ -86,7 +86,7 @@ void test_LD_reg_to_mem_Y_0xEE_expected_0xEE(void){
 **   |  Value   : 0xFF            |--(load)----^
 */
 void test_LD_reg_to_mem_shortoff_X_0xFF_expected_0xFF(void){
-  set_X(0x12,0x12);
+  set_X(0x1212);
 	uint8_t instrc[] 	= {0xE7,0x01};				// Opcode : 0xE701
   cpuRegisters->A 	= 0xFF;               // store 0xFF into Accumulator.
   ldRegToMem_x_shortset(instrc);
@@ -102,7 +102,7 @@ void test_LD_reg_to_mem_shortoff_X_0xFF_expected_0xFF(void){
 **   |  Value   : 0x7D            |--(load)----^
 */
 void test_LD_reg_to_mem_shortoff_Y_0x7D_expected_0x7D(void){
-  set_Y(0x23,0x23);
+  set_Y(0x2323);
 	uint8_t instrc[] 	= {0x90,0xE7,0x22};		  // Opcode : 0x90E722
   cpuRegisters->A 	= 0x7D;               // store 0x7D into Accumulator.
   ldRegToMem_y_shortset(instrc);
@@ -118,7 +118,7 @@ void test_LD_reg_to_mem_shortoff_Y_0x7D_expected_0x7D(void){
 **   |  Value   : 0xBB             |--(load)----^
 */
 void test_LD_reg_to_mem_longoff_X_0xBB_expected_0xBB(void){
-  set_X(0x23,0x23);
+  set_X(0x2323);
 	uint8_t instrc[] 	= {0xD7,0x11,0x11};				// Opcode : 0xD71111
   cpuRegisters->A		= 0xBB;                   // store 0xBB into Accumulator.
   ldRegToMem_x_longset(instrc);
@@ -134,7 +134,7 @@ void test_LD_reg_to_mem_longoff_X_0xBB_expected_0xBB(void){
 **   |  Value   : 0x12             |---(load)--^
 */
 void test_LD_reg_to_mem_longoff_Y_0x12_expected_0x12(void){
-  set_Y(0x34,0x34);
+  set_Y(0x3434);
 	uint8_t instrc[] 	= {0x90,0xD7,0x22,0x22};		 // Opcode : 0x90D72222
   cpuRegisters->A		= 0x12;                    // store 0x12 into Accumulator.
   ldRegToMem_y_longset(instrc);
@@ -150,7 +150,7 @@ void test_LD_reg_to_mem_longoff_Y_0x12_expected_0x12(void){
 **   |  Value   : 0xac             |--(load)---^
 */
 void test_LD_reg_to_mem_shortoff_SP_0xac_expected_0xac(void){
-  set_SP(0x88,0x88);
+  set_SP(0x8888);
 	uint8_t instrc[] 	= {0x6B,0x22};				// Opcode : 0x6B22
   cpuRegisters->A		= 0xac;                // store 0xac into Accumulator
   ldRegToMem_shortoff_SP(instrc);
@@ -199,7 +199,7 @@ void test_LD_reg_to_mem_longptr_W_0x13_expected_0x13(void){
 **   |  Value   : 0x40               |--(load)----^
 */
 void test_LD_reg_to_mem_shortptr_W_X_0x40_expected_0x40(void){
-  set_X(0x00,0x03);
+  set_X(0x0003);
   uint8_t instrc[] = {0x92,0xd7,0x89};    // Opcode : 0x92d789
 	memory[0x89]		 = 0x08;                // (0x89 hold 0x08)+(0x89+1 hold 0x01)
 	memory[0x8a]		 = 0x01;                //               [^--(combine)----^]=0x0801 + 0x03[offset]
@@ -216,7 +216,7 @@ void test_LD_reg_to_mem_shortptr_W_X_0x40_expected_0x40(void){
 **   |  Value   : 0x42          |--(load)----^
 */
 void test_LD_reg_to_mem_longptr_W_X_0x42_expected_0x42(void){
-  set_X(0x00,0x10);
+  set_X(0x0010);
   uint8_t instrc[] = {0x72,0xd7,0x10,0x89};   // Opcode : 0x72d71089
 	memory[0x1089]	 = 0x18;                 // (0x1089 hold 0x18)+(0x1089+1 hold 0x01)
 	memory[0x108a]	 = 0x01;                 //                [^--(combine)-------^]=0x1801 + 0x10[offset]
@@ -233,7 +233,7 @@ void test_LD_reg_to_mem_longptr_W_X_0x42_expected_0x42(void){
 **   |  Value   : 0xaa           |--(load)----^
 */
 void test_LD_reg_to_mem_shortptr_W_Y_0xaa_expected_0xaa(void){
-  set_Y(0x11,0x11);
+  set_Y(0x1111);
   uint8_t instrc[] = {0x91,0xd7,0x89};  // Opcode : 0x91d789
 	memory[0x89]		 = 0x08;              // (0x89 hold 0x08)+(0x89+1 hold 0x01)
 	memory[0x8a]		 = 0x01;              //             [^--(combine)----^]=0x0801 + 0x1111[offset]

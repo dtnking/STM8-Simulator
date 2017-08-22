@@ -45,6 +45,7 @@ void test_instruction_table(void){
   memory[14]= 0x11;
   memory[15]= 0x11;
 
+
 // test for instruction add 1 byte directly into Accumulator expected counter pointer +2
   cpuRegisters->A  = 0x01;
   length = Simulator(&code);
@@ -67,7 +68,7 @@ void test_instruction_table(void){
 
 // test for instruction subtract with offset Y expected counter pointer +2
   cpuRegisters->A 	= 0x0b;
-	set_Y(0x22,0x20);
+	set_Y(0x2220);
 	memory[0x2220] 		= 0x05;
   length = Simulator(&code);
   TEST_ASSERT_EQUAL_HEX8 (0x06,cpuRegisters->A);
@@ -82,7 +83,7 @@ void test_instruction_table(void){
   TEST_ASSERT_EQUAL_INT (3,length);
 
 // test for instruction dec_longoff_X expected counter pointer +4
-  set_X(0x34,0x34);
+  set_X(0x3434);
   memory[0x4545]  = 0x10;
   length = Simulator(&code);
   TEST_ASSERT_EQUAL_HEX8 (0x0f,memory[0x4545]);

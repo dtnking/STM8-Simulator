@@ -12,7 +12,7 @@ void tearDown(void){}
 /*
 **    xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 **    X  Syntax : LD dst,src        e.g. LD A,#$15	 X
-**		X	 Operation : dst <= src                			 X	
+**		X	 Operation : dst <= src                			 X
 **    xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 */
 
@@ -68,7 +68,7 @@ void test_LD_mem_to_reg_longmen_0xCC_expected_0xCC(void){
 **   |  Value   : 0xDD   |--(load)----^
 */
 void test_LD_mem_to_reg_X_0xDD_expected_0xDD(void){
-  set_X(0x11,0x10);
+  set_X(0x1110);
   memory[0x1110] 		= 0xDD;         // store 0xDD into register location 0x1110.
 	uint8_t instrc[]  = {0xF6};				 // Opcode : 0xF6
 	ldMemToReg_x(instrc);
@@ -84,7 +84,7 @@ void test_LD_mem_to_reg_X_0xDD_expected_0xDD(void){
 **   |  Value   : 0xEE   |--(load)----^
 */
 void test_LD_mem_to_reg_Y_0xEE_expected_0xEE(void){
-  set_Y(0x12,0x10);
+  set_Y(0x1210);
   memory[0x1210] 		= 0xEE;         // store 0xEE into register location 0x1210.
 	uint8_t instrc[]  = {0x90,0xF6};	 // Opcode : 0x90F6
 	ldMemToReg_y(instrc);
@@ -100,7 +100,7 @@ void test_LD_mem_to_reg_Y_0xEE_expected_0xEE(void){
 **   |  Value   : 0xFF            |--(load)----^
 */
 void test_LD_mem_to_reg_shortoff_X_0xFF_expected_0xFF(void){
-  set_X(0x12,0x12);
+  set_X(0x1212);
 	uint8_t instrc[] 	= {0xE6,0x01};		 // Opcode : 0xE601
   memory[0x1213] 		= 0xFF;            // store 0xFF into register location 0x1213.
   ldMemToReg_x_shortset(instrc);
@@ -116,7 +116,7 @@ void test_LD_mem_to_reg_shortoff_X_0xFF_expected_0xFF(void){
 **   |  Value   : 0x7D            |--(load)----^
 */
 void test_LD_mem_to_reg_shortoff_Y_0x7D_expected_0x7D(void){
-  set_Y(0x23,0x23);
+  set_Y(0x2323);
 	uint8_t instrc[] 	= {0x90,0xE6,0x22};			// Opcode : 0x90E622
   memory[0x2345] 		= 0x7D;               // store 0x7D into register location 0x2345.
   ldMemToReg_y_shortset(instrc);
@@ -132,7 +132,7 @@ void test_LD_mem_to_reg_shortoff_Y_0x7D_expected_0x7D(void){
 **   |  Value   : 0xBB             |--(load)----^
 */
 void test_LD_mem_to_reg_longoff_X_0xBB_expected_0xBB(void){
-  set_X(0x23,0x23);
+  set_X(0x2323);
 	uint8_t instrc[] 	= {0xD6,0x11,0x11};			 // Opcode : 0xD61111
   memory[0x3434] 		= 0xBB;                   // store 0xBB into register location 0x3434.
   ldMemToReg_x_longset(instrc);
@@ -148,7 +148,7 @@ void test_LD_mem_to_reg_longoff_X_0xBB_expected_0xBB(void){
 **   |  Value   : 0x12             |---(load)--^
 */
 void test_LD_mem_to_reg_longoff_Y_0x12_expected_0x12(void){
-  set_Y(0x34,0x34);
+  set_Y(0x3434);
 	uint8_t instrc[] 	= {0x90,0xD6,0x22,0x22};		// Opcode : 0x90D62222
   memory[0x5656] 		= 0x12;                 // store 0x12 into register location 0x5656.
   ldMemToReg_y_longset(instrc);
@@ -164,7 +164,7 @@ void test_LD_mem_to_reg_longoff_Y_0x12_expected_0x12(void){
 **   |  Value   : 0xac             |--(load)---^
 */
 void test_LD_mem_to_reg_shortoff_SP_0xac_expected_0xac(void){
-  set_SP(0x88,0x88);
+  set_SP(0x8888);
 	uint8_t instrc[] 	= {0x7B,0x22};				// Opcode : 0x7B22
   memory[0x88aa] 		= 0xac;               // store 0xac into register location 0x88aa.
   ldMemToReg_shortoff_SP(instrc);
@@ -217,7 +217,7 @@ void test_LD_mem_to_reg_longptr_W_0x13_expected_0x13(void){
 **   |  Value   : 0x40                                                   |--(load)----^
 */
 void test_LD_mem_to_reg_shortptr_W_X_0x40_expected_0x40(void){
-  set_X(0x00,0x03);
+  set_X(0x0003);
   uint8_t instrc[] = {0x92,0xd6,0x89};       // Opcode : 0x92d689
 	memory[0x89]		 = 0x08;
 	memory[0x8a]		 = 0x01;
@@ -236,7 +236,7 @@ void test_LD_mem_to_reg_shortptr_W_X_0x40_expected_0x40(void){
 **   |  Value   : 0x42                                                       |--(load)----^
 */
 void test_LD_mem_to_reg_longptr_W_X_0x42_expected_0x42(void){
-  set_X(0x00,0x10);
+  set_X(0x0010);
   uint8_t instrc[] = {0x72,0xd6,0x10,0x89};    // Opcode : 0x72d61089
 	memory[0x1089]	 = 0x18;
 	memory[0x108a]	 = 0x01;
@@ -255,7 +255,7 @@ void test_LD_mem_to_reg_longptr_W_X_0x42_expected_0x42(void){
 **   |  Value   : 0xaa                                                    |--(load)----^
 */
 void test_LD_mem_to_reg_shortptr_W_Y_0xaa_expected_0xaa(void){
-  set_Y(0x11,0x11);
+  set_Y(0x1111);
   uint8_t instrc[] = {0x91,0xd6,0x89};         // Opcode : 0x91d689
 	memory[0x89]		 = 0x08;
 	memory[0x8a]		 = 0x01;
