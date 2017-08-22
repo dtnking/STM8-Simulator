@@ -26,43 +26,44 @@ void setUp(void){}
 void tearDown(void){}
 
 void test_instruction_table(void){
-  uint8_t *code = memory;
+  PC = 0;
+
   int length = 0;
-  memory[0] = 0xAB;             //add_byte(using opcodeTable)
-  memory[1] = 0x23;
-  memory[2] = 0XBB;             //add_shortmem(using opcodeTable)
-  memory[3] = 0x30;
-  memory[4] = 0xCB;             //add_longmem(using opcodeTable)
-  memory[5] = 0x10;
-  memory[6] = 0x00;
-  memory[7] = 0x90;             //sub_y(using opcodeTable90)
-  memory[8] = 0xF0;
-  memory[9] = 0x92;             //ld Reg to Mem(using opcodeTable92)
-  memory[10]= 0xC7;
-  memory[11]= 0x23;
-  memory[12]= 0x72;            //dec_longoff_X(using opcodeTable72)
-  memory[13]= 0x4A;
-  memory[14]= 0x11;
-  memory[15]= 0x11;
+  memory[0x00] = 0xAB;             //add_byte(using opcodeTable)
+  memory[0x01] = 0x23;
+  memory[0x02] = 0XBB;             //add_shortmem(using opcodeTable)
+  memory[0x03] = 0x30;
+  memory[0x04] = 0xCB;             //add_longmem(using opcodeTable)
+  memory[0x05] = 0x10;
+  memory[0x06] = 0x00;
+  memory[0x07] = 0x90;             //sub_y(using opcodeTable90)
+  memory[0x08] = 0xF0;
+  memory[0x09] = 0x92;             //ld Reg to Mem(using opcodeTable92)
+  memory[0x0a] = 0xC7;
+  memory[0x0b] = 0x23;
+  memory[0x0c] = 0x72;            //dec_longoff_X(using opcodeTable72)
+  memory[0x0d] = 0x4A;
+  memory[0x0e] = 0x11;
+  memory[0x0f] = 0x11;
 
 
 // test for instruction add 1 byte directly into Accumulator expected counter pointer +2
   cpuRegisters->A  = 0x01;
-  length = Simulator(&code);
+  length = Simulator();
 	TEST_ASSERT_EQUAL_HEX8 (0x24,cpuRegisters->A);
   TEST_ASSERT_EQUAL_INT (2,length);
 
 // test for instruction add with shortmemory expected counter pointer +2
   cpuRegisters->A  = 0x02;
   memory[0x30]		 =	0x55;
-  length = Simulator(&code);
+  length = Simulator();
 	TEST_ASSERT_EQUAL_HEX8 (0x57,cpuRegisters->A);
   TEST_ASSERT_EQUAL_INT (2,length);
 
 // test for instruction add with longmemory expected counter pointer +3
   cpuRegisters->A  = 0x03;
   memory[0x1000]	 =	0x10;
-  length = Simulator(&code);
+  length = Simulator();
   TEST_ASSERT_EQUAL_HEX8 (0x13,cpuRegisters->A);
   TEST_ASSERT_EQUAL_INT (3,length);
 
@@ -70,7 +71,7 @@ void test_instruction_table(void){
   cpuRegisters->A 	= 0x0b;
 	set_Y(0x2220);
 	memory[0x2220] 		= 0x05;
-  length = Simulator(&code);
+  length = Simulator();
   TEST_ASSERT_EQUAL_HEX8 (0x06,cpuRegisters->A);
   TEST_ASSERT_EQUAL_INT (2,length);
 
@@ -78,16 +79,14 @@ void test_instruction_table(void){
 	memory[0x23]			= 0x42;
 	memory[0x24]			= 0xe5;
 	cpuRegisters->A 	= 0x11;
-  length = Simulator(&code);
+  length = Simulator();
   TEST_ASSERT_EQUAL_HEX8 (0x11,memory[0x42e5]);
   TEST_ASSERT_EQUAL_INT (3,length);
 
 // test for instruction dec_longoff_X expected counter pointer +4
   set_X(0x3434);
   memory[0x4545]  = 0x10;
-  length = Simulator(&code);
+  length = Simulator();
   TEST_ASSERT_EQUAL_HEX8 (0x0f,memory[0x4545]);
   TEST_ASSERT_EQUAL_INT (4,length);
-
-
 }

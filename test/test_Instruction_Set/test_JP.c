@@ -18,7 +18,7 @@ void tearDown(void){}
 void test_JP_longmem_given_longmem_is_0x1000_expected_PC_contain_0x1000(void){
   uint8_t instrc[] = {0xCC,0x10,0x00};
   jp_longmem(instrc);
-  TEST_ASSERT_EQUAL_HEX16(0x1000,pc);
+  TEST_ASSERT_EQUAL_HEX32(0x1000,GET_PC);
 }
 
 // Asm : JP(X)           |  dst : (X)
@@ -26,7 +26,7 @@ void test_JP_X_given_X_is_0xabab_expected_PC_contain_0xabab(void){
   uint8_t instrc[] = {0xFC};
   set_X(0xabab);
   jp_X(instrc);
-  TEST_ASSERT_EQUAL_HEX16(0xabab,pc);
+  TEST_ASSERT_EQUAL_HEX32(0xabab,GET_PC);
 }
 
 // Asm : JP($10,X)        |  dst : (shortoff,X)
@@ -34,7 +34,7 @@ void test_JP_X_shortset_given_X_is_0xabab_with_offset_0x01_expected_PC_contain_0
   uint8_t instrc[] = {0xEC,0x01};
   set_X(0xabab);
   jp_X_shortset(instrc);
-  TEST_ASSERT_EQUAL_HEX16(0xabac,pc);
+  TEST_ASSERT_EQUAL_HEX32(0xabac,GET_PC);
 }
 
 // Asm : JP($1000,X)      |  dst : (longoff,X)
@@ -42,7 +42,7 @@ void test_JP_X_longset_given_X_is_0xbaba_with_offset_0x0101_expected_PC_contain_
   uint8_t instrc[] = {0xEC,0x01,0x01};
   set_X(0xbaba);
   jp_X_longset(instrc);
-  TEST_ASSERT_EQUAL_HEX16(0xbbbb,pc);
+  TEST_ASSERT_EQUAL_HEX32(0xbbbb,GET_PC);
 }
 
 // Asm : JP(Y)          |  dst : (Y)
@@ -50,7 +50,7 @@ void test_JP_Y_given_Y_is_0x1111_expected_PC_contain_0x1111(void){
   uint8_t instrc[] = {0x90,0xFC};
   set_Y(0x1111);
   jp_Y(instrc);
-  TEST_ASSERT_EQUAL_HEX16(0x1111,pc);
+  TEST_ASSERT_EQUAL_HEX32(0x1111,GET_PC);
 }
 
 // Asm : JP($10,Y)        |  dst : (shortoff,Y)
@@ -58,7 +58,7 @@ void test_JP_Y_shortset_given_Y_is_0xaabb_with_offset_0x02_expected_PC_contain_0
   uint8_t instrc[] = {0x90,0xEC,0x02};
   set_Y(0xaabb);
   jp_Y_shortset(instrc);
-  TEST_ASSERT_EQUAL_HEX16(0xaabd,pc);
+  TEST_ASSERT_EQUAL_HEX32(0xaabd,GET_PC);
 }
 
 // Asm : JP($1000,Y)       |  dst : (longoff,Y)
@@ -66,7 +66,7 @@ void test_JP_Y_longset_given_Y_is_0xbbaa_with_offset_0x1010_expected_PC_contain_
   uint8_t instrc[] = {0x90,0xDC,0x10,0x10};
   set_Y(0xbbaa);
   jp_Y_longset(instrc);
-  TEST_ASSERT_EQUAL_HEX16(0xcbba,pc);
+  TEST_ASSERT_EQUAL_HEX32(0xcbba,GET_PC);
 }
 
 // Asm : JP[$10.w]         |  dst : [shortptr.w]
@@ -75,7 +75,7 @@ void test_JP_shortptr_W_given_shortptr_point_to_0x42e5_expected_PC_contain_0x42e
 	memory[0x40]			= 0x42;
 	memory[0x41]			= 0xe5;
   jp_shortptr_W(instrc);
-  TEST_ASSERT_EQUAL_HEX16(0x42e5,pc);
+  TEST_ASSERT_EQUAL_HEX32(0x42e5,GET_PC);
 }
 
 // Asm : JP[$1000.w]         |  dst : [longptr.w]
@@ -84,7 +84,7 @@ void test_JP_longptr_W_given_longptr_point_to_0x42e5_expected_PC_contain_0x42e5(
 	memory[0x1040]			= 0x42;
 	memory[0x1041]			= 0xe5;
   jp_longptr_W(instrc);
-  TEST_ASSERT_EQUAL_HEX16(0x42e5,pc);
+  TEST_ASSERT_EQUAL_HEX32(0x42e5,GET_PC);
 }
 
 // Asm : JP([$10.w],X)         |  dst : ([shortptr.w],X)
@@ -94,7 +94,7 @@ void test_JP_shortptr_w_X_given_shortptr_point_to_0x0801_with_X_0x0010_expected_
   memory[0x89]			= 0x08;
   memory[0x8a]			= 0x01;
   jp_shortptr_W_X(instrc);
-  TEST_ASSERT_EQUAL_HEX16(0x0811,pc);
+  TEST_ASSERT_EQUAL_HEX32(0x0811,GET_PC);
 }
 
 // Asm : JP([$1000.w],X)         |  dst : ([longptr.w],X)
@@ -104,7 +104,7 @@ void test_JP_longptr_w_X_given_longptr_point_to_0x0801_with_X_0x1110_expected_PC
   memory[0x1089]			= 0x08;
   memory[0x108a]			= 0x01;
   jp_longptr_W_X(instrc);
-  TEST_ASSERT_EQUAL_HEX16(0x1911,pc);
+  TEST_ASSERT_EQUAL_HEX32(0x1911,GET_PC);
 }
 
 // Asm : JP([$10.w],Y)         |  dst : ([shortptr.w],Y)
@@ -114,5 +114,5 @@ void test_JP_shortptr_w_Y_given_shortptr_point_to_0x1111_with_Y_0x1111_expected_
   memory[0x21]			= 0x11;
   memory[0x22]			= 0x11;
   jp_shortptr_W_Y(instrc);
-  TEST_ASSERT_EQUAL_HEX16(0x2222,pc);
+  TEST_ASSERT_EQUAL_HEX32(0x2222,GET_PC);
 }

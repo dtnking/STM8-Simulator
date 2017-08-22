@@ -54,10 +54,15 @@
 #define M6        (val & 0x40)    >>  6
 #define M7        (val & 0x80)    >>  7
 
+
 #define X         combineTwoAddrs   (cpuRegisters->XH,cpuRegisters->XL)
 #define Y         combineTwoAddrs   (cpuRegisters->YH,cpuRegisters->YL)
 #define SP        combineTwoAddrs   (cpuRegisters->SPH,cpuRegisters->SPL)
-#define pc        combineThreeAddrs (cpuRegisters->PCE,cpuRegisters->PCH,cpuRegisters->PCL)
+#define GET_PC    combineThreeAddrs (cpuRegisters->PCE,cpuRegisters->PCH,cpuRegisters->PCL)
+
+#define UPDATE_PC(lgth)         (set_PC(PC+lgth))
+
+
 // MACRO
 #define GET_HMSB(x)  (x & 0xff0000) >> 16
 #define GET_MSB(x)   (x & 0x00ff00) >> 8
@@ -93,9 +98,9 @@ struct Stm8Registers {
   flags CCR;
 };
 
-//typedef unsigned char	uint8_t;
 extern unsigned char memory[];
 extern Stm8Registers *cpuRegisters;
+extern uint32_t PC;
 
 
 uint8_t  get_valueByte      (uint8_t *opcode);

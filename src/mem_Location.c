@@ -4,7 +4,7 @@
 
 unsigned char memory[20*KB];
 Stm8Registers *cpuRegisters = (Stm8Registers *)&memory[0x7f00];
-
+uint32_t PC;
 
 void clearCCRflag(){
   cpuRegisters->CCR.bit.C  = 0;
