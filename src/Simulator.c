@@ -409,33 +409,33 @@ int isOpcodePrefix(uint8_t *code){
   return 0;
 }
 
-int Simulator(uint8_t **codePtr){
+int Simulator(){
   int (*execute)(uint8_t *code);
-  uint8_t *code = *codePtr;
+  uint8_t *code = &memory[PC];
   if(!isOpcodePrefix(code)){
     opcodeTable[*code].execute(code);
-    *codePtr += opcodeTable[*code].length;
+    PC = GET_PC;
     return opcodeTable[*code].length;
   }
   else{
     if(*code == 0x90){
       opcodeTable90[*(code+1)].execute(code);
-      *codePtr += opcodeTable90[*(code+1)].length;
+      PC = GET_PC;
       return opcodeTable90[*(code+1)].length;
     }
     else if(*code == 0x91){
       opcodeTable91[*(code+1)].execute(code);
-      *codePtr += opcodeTable91[*(code+1)].length;
+      PC = GET_PC;
       return opcodeTable91[*(code+1)].length;
     }
     else if(*code == 0x72){
       opcodeTable72[*(code+1)].execute(code);
-      *codePtr += opcodeTable72[*(code+1)].length;
+      PC = GET_PC;
       return opcodeTable72[*(code+1)].length;
     }
     else if(*code == 0x92){
       opcodeTable92[*(code+1)].execute(code);
-      *codePtr += opcodeTable92[*(code+1)].length;
+      PC = GET_PC;
       return opcodeTable92[*(code+1)].length;
     }
   }

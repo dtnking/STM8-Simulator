@@ -3,6 +3,6 @@
 #include <stdint.h>
 
 int isOpcodePrefix  (uint8_t *code);
-int Simulator       (uint8_t **codePtr);
+int Simulator       (void);
 
 #endif // _INSTRUCTION_H
