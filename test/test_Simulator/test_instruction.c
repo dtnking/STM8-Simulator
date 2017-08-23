@@ -12,6 +12,7 @@
 #include "mov.h"
 #include "AND.h"
 #include "DEC.h"
+#include "JRXX.h"
 #include "LD.h"
 #include "JP.h"
 #include "MUL.h"

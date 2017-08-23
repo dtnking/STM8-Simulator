@@ -10,6 +10,7 @@
 #include "XOR.h"
 #include "OR.h"
 #include "mov.h"
+#include "JRXX.h"
 #include "AND.h"
 #include "LD.h"
 #include "DEC.h"

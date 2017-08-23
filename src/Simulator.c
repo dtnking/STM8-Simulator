@@ -15,6 +15,7 @@
 #include "pop.h"
 #include "PUSH.h"
 #include "CCF.h"
+#include "JRXX.h"
 #include "SCF.h"
 #include "CLR.h"
 #include "DEC.h"
@@ -29,7 +30,7 @@ struct Opcode{
   int cycle;
 };
 
-
+//*************************************************************************//
 Opcode opcodeTable[256] = {
   //ADD
   [0xAB] = {add_byte,2,1},
@@ -168,8 +169,28 @@ Opcode opcodeTable[256] = {
   [0x7A] = {dec_X,1,1},
   [0x6A] = {dec_shortoff_X,2,1},
   [0x0A] = {dec_shortoff_SP,2,1},
+
+  //JRXX
+  [0x25] = {jrc,2},
+  [0x27] = {jreq,2},
+  [0x21] = {jrf,2},
+  [0x2B] = {jrmi,2},
+  [0x24] = {jrnc,2},
+  [0x26] = {jrne,2},
+  [0x28] = {jrnv,2},
+  [0x2A] = {jrpl,2},
+  [0x2E] = {jrsge,2},
+  [0x2C] = {jrsgt,2},
+  [0x2D] = {jrsle,2},
+  [0x2F] = {jrslt,2},
+  [0x20] = {jrt,2},
+  [0x24] = {jruge,2},
+  [0x22] = {jrugt,2},
+  [0x23] = {jrule,2},
+  [0x29] = {jrv,2},
 };
 
+//*************************************************************************//
 Opcode opcodeTable90[256] = {
   //ADD
   [0xFB] = {add_y,2,1},
@@ -244,8 +265,15 @@ Opcode opcodeTable90[256] = {
   [0x7A] = {dec_Y,2,1},
   [0x6A] = {dec_shortoff_Y,3,1},
   [0x4A] = {dec_longoff_Y,4,1},
+
+  //JRxx
+  [0x29] = {jrh,3},
+  [0x2D] = {jrm,3},
+  [0x28] = {jrnh,3},
+  [0x2C] = {jrnm,3},
 };
 
+// *******************************************************************************//
 Opcode opcodeTable92[256] = {
   //ADD
   [0xCB] = {add_shortptr_w,3,4},
@@ -301,6 +329,7 @@ Opcode opcodeTable92[256] = {
 
 };
 
+//*************************************************************************//
 Opcode opcodeTable72[256] = {
   //ADD
   [0xCB] = {add_longptr_w,4,4},
@@ -359,6 +388,7 @@ Opcode opcodeTable72[256] = {
   [0x6A] = {dec_longptr_w_X,4,4},
 };
 
+//*******************************************************************************//
 Opcode opcodeTable91[256] = {
   //ADD
   [0xDB] = {add_shortptr_w_Y,3,4},
