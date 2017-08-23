@@ -6,7 +6,7 @@
 // check condition and opcode prefix,
 // condition is needed to determine PC = PC + lgth(False) or PC <= PC + dst(True)
 // opcode prefix is needed to determine the length of the opcode if the condition is false
-#define JRXX(condition,opcodePrefix)   condition? set_PC(get_valueByte(opcodePtr)): UPDATE_PC(opcodePrefix? 3:2)
+#define JRXX(condition,opcodePrefix)   condition? set_PC(get_valueByte(opcodePtr) + PC + (opcodePrefix?3:2)): UPDATE_PC(opcodePrefix? 3:2)
 
 
 void  jrc       (uint8_t *opcodePtr);

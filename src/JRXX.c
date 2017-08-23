@@ -74,7 +74,7 @@ void jrslt(uint8_t *opcodePtr){
 }
 
 void jrt(uint8_t *opcodePtr){
-  set_PC(get_valueByte(opcodePtr));
+  set_PC(get_valueByte(opcodePtr)+ PC + 2);
 }
 
 void jruge(uint8_t *opcodePtr){
