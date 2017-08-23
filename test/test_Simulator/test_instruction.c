@@ -88,7 +88,7 @@ void test_instruction_table(void){
   length = Simulator();
   TEST_ASSERT_EQUAL_HEX8 (0x0f,memory[0x4545]);
 
-// test for instruction jp_shortptr_w_Y expected it to jump to memory 0x02 and
+// test for instruction jp_shortptr_w_Y expected PC to jump to memory 0x02 and
 // execute instruction add with shortmem, then PC + 4
   set_Y(0x0001);
   cpuRegisters->A  = 0x02;
@@ -97,5 +97,5 @@ void test_instruction_table(void){
   Simulator();   // this simulate is doing the JP instruction, PC is pointed to a memory 0x02
   Simulator();   // After JP instruction is executed, the Simulator will executed the instruction where PC is pointed
   TEST_ASSERT_EQUAL_HEX8 (0x57,cpuRegisters->A);
-  TEST_ASSERT_EQUAL_INT (2,length);
+  TEST_ASSERT_EQUAL_INT (4,length);
 }

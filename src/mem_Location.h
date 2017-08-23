@@ -54,7 +54,7 @@
 #define M6        (val & 0x40)    >>  6
 #define M7        (val & 0x80)    >>  7
 
-
+#define I         (cpuRegisters->CCR.bit.I0 & cpuRegisters->CCR.bit.I1)
 #define X         combineTwoAddrs   (cpuRegisters->XH,cpuRegisters->XL)
 #define Y         combineTwoAddrs   (cpuRegisters->YH,cpuRegisters->YL)
 #define SP        combineTwoAddrs   (cpuRegisters->SPH,cpuRegisters->SPL)
