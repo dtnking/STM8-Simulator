@@ -391,7 +391,7 @@ Opcode opcodeTable91[256] = {
   [0xD7] = {ldRegToMem_shortptr_w_Y,3,4},
 
   //JP
-  [0xDC] = {jp_longptr_W,4,5},
+  [0xDC] = {jp_shortptr_W_Y,4,5},
 
   //CLR
   [0x6F] = {clr_shortptr_w_Y,3,4},

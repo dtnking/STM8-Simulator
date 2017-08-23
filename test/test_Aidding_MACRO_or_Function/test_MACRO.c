@@ -26,11 +26,18 @@ void test_MACRO_getHMSB_given_0x11abcd_expected_result_0x11(void){
   TEST_ASSERT_EQUAL_HEX16(0x11,result);
 }
 
-void test_GET_PC_given_PCE_0x01_PCH_0x02_PCH_0x03_expected_to_get_0x010203(void){
+void test_sp_given_PCE_0x01_PCH_0x02_PCH_0x03_expected_to_get_0x010203(void){
   cpuRegisters->PCE = 0x01;
   cpuRegisters->PCH = 0x02;
   cpuRegisters->PCL = 0x03;
 
+  TEST_ASSERT_EQUAL_HEX(0x010203,GET_PC);
+}
+
+void test_GET_PC_given_PCE_0x01_PCH_0x02_PCH_0x03_expected_to_get_0x010203(void){
+  cpuRegisters->PCE = 0x01;
+  cpuRegisters->PCH = 0x02;
+  cpuRegisters->PCL = 0x03;
 
   TEST_ASSERT_EQUAL_HEX(0x010203,GET_PC);
 }
