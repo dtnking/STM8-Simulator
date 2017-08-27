@@ -6,12 +6,15 @@
 # This sample, therefore, only demonstrates running a collection of unit tests.
 
 :project:
-  :use_exceptions: FALSE
+  :use_exceptions: TRUE
   :use_test_preprocessor: TRUE
   :use_auxiliary_dependencies: TRUE
   :build_root: build
 #  :release_build: TRUE
   :test_file_prefix: test_
+  :which_ceedling: vendor/ceedling
+  :default_tasks:
+    - test:all
 
 #:release_build:
 #  :output: MyApp.out
@@ -42,9 +45,14 @@
   :test:
     - *common_defines
     - TEST
+    - CEXCEPTION_USE_CONFIG_FILE
+    # The following macro is to ensure vsnprintf() returns the length of
+    # bytes needed to write when it fails due to buffer being too small
+    - _ISOC99_SOURCE
   :test_preprocess:
     - *common_defines
     - TEST
+
 
 :cmock:
   :mock_prefix: mock_
@@ -59,6 +67,9 @@
     uint32:   UINT32
     int8:     INT8
     bool:     UINT8
+
+:gcov:
+    :html_report_type: basic
 
 #:tools:
 # Ceedling defaults to using gcc for compiling, linking, etc.
@@ -84,4 +95,3 @@
   :enabled:
     - stdout_pretty_tests_report
     - module_generator
-...

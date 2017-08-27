@@ -20,8 +20,13 @@
 #include "CLR.h"
 #include "DEC.h"
 #include "mem_Location.h"
+#include "CExceptionConfig.h"
+#include "Exception.h"
+#include <stdarg.h>
+#include <ctype.h>
 #include <stdint.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 typedef struct Opcode Opcode;
 struct Opcode{
@@ -431,6 +436,7 @@ Opcode opcodeTable91[256] = {
 };
 
 
+
 int isOpcodePrefix(uint8_t *code){
   uint8_t opcode = *code;
   if(opcode == 0x90 || opcode == 0x91 || opcode== 0x92 ||     \
@@ -439,34 +445,73 @@ int isOpcodePrefix(uint8_t *code){
   return 0;
 }
 
+
+
 int Simulator(){
   int (*execute)(uint8_t *code);
   uint8_t *code = &memory[PC];
   if(!isOpcodePrefix(code)){
+    if(opcodeTable[*code].execute==NULL){
+      throwException(ERR_INVALID_OPERAND,   \
+                     "invalid instruction 0x%x,", 			  \
+                     *code);
+    }else{
     opcodeTable[*code].execute(code);
     PC = GET_PC;
     return opcodeTable[*code].length;
+    }
   }
+
   else{
     if(*code == 0x90){
-      opcodeTable90[*(code+1)].execute(code);
-      PC = GET_PC;
+      if(opcodeTable90[*(code+1)].execute==NULL){            // if the opcode is not inside
+        throwException(ERR_INVALID_OPERAND,   \
+                       "invalid instruction 0x%x", 			   \
+                       *(code+1));
+      }else{
+      opcodeTable90[*(code+1)].execute(code);                // if it is inside the opcodeTable90
+      PC = GET_PC;                                           // then perform the task.
       return opcodeTable90[*(code+1)].length;
+      }
     }
+
+
     else if(*code == 0x91){
+      if(opcodeTable91[*(code+1)].execute==NULL){
+        throwException(ERR_INVALID_OPERAND,    \
+                       "invalid instruction 0x%x", 			    \
+                       *(code+1));
+      }else{
       opcodeTable91[*(code+1)].execute(code);
       PC = GET_PC;
       return opcodeTable91[*(code+1)].length;
+      }
     }
+
+
     else if(*code == 0x72){
+      if(opcodeTable72[*(code+1)].execute==0){
+        throwException(ERR_INVALID_OPERAND,    \
+                       "invalid instruction 0x%x", 			    \
+                       *(code+1));
+      }else{
       opcodeTable72[*(code+1)].execute(code);
       PC = GET_PC;
       return opcodeTable72[*(code+1)].length;
+      }
     }
+
+
     else if(*code == 0x92){
+      if(opcodeTable92[*(code+1)].execute==0){
+        throwException(ERR_INVALID_OPERAND,    \
+                       "invalid instruction 0x%x", 			    \
+                       *(code+1));
+      }else{
       opcodeTable92[*(code+1)].execute(code);
       PC = GET_PC;
       return opcodeTable92[*(code+1)].length;
+      }
     }
   }
 

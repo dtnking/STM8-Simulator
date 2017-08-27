@@ -1,7 +1,12 @@
 #include "unity.h"
 #include "Simulator.h"
+#include "Exception.h"
+#include "CException.h"
+#include <stdarg.h>
+#include "CExceptionConfig.h"
 #include "Raw_Operation.h"
 #include "mem_Location.h"
+#include <stdio.h>
 #include "add.h"
 #include "adc.h"
 #include "sub.h"
@@ -26,7 +31,9 @@ void setUp(void){}
 
 void tearDown(void){}
 
-void test_instruction_table(void){
+CEXCEPTION_T ex ;
+
+void test_Simulate_given_multiple_instruction_set_expected_successfully_executed_each(void){
   PC = 0;
 
   int length = 0;
@@ -51,11 +58,11 @@ void test_instruction_table(void){
   memory[0x12] = 0x21;
 
 
-
 // test for instruction add 1 byte directly into Accumulator expected PC +2
   cpuRegisters->A  = 0x01;
   length = Simulator();
 	TEST_ASSERT_EQUAL_HEX8 (0x24,cpuRegisters->A);
+
 
 // test for instruction add with shortmemory expected PC +2
   cpuRegisters->A  = 0x02;
@@ -63,11 +70,14 @@ void test_instruction_table(void){
   length = Simulator();
 	TEST_ASSERT_EQUAL_HEX8 (0x57,cpuRegisters->A);
 
+
 // test for instruction add with longmemory expected PC +3
   cpuRegisters->A  = 0x03;
   memory[0x1000]	 =	0x10;
   length = Simulator();
   TEST_ASSERT_EQUAL_HEX8 (0x13,cpuRegisters->A);
+
+
 
 // test for instruction subtract with offset Y expected PC +2
   cpuRegisters->A 	= 0x0b;
@@ -76,6 +86,8 @@ void test_instruction_table(void){
   length = Simulator();
   TEST_ASSERT_EQUAL_HEX8 (0x06,cpuRegisters->A);
 
+
+
 // test for instruction load from Register to Memory expected PC +3
 	memory[0x23]			= 0x42;
 	memory[0x24]			= 0xe5;
@@ -83,11 +95,14 @@ void test_instruction_table(void){
   length = Simulator();
   TEST_ASSERT_EQUAL_HEX8 (0x11,memory[0x42e5]);
 
+
+
 // test for instruction dec_longoff_X expected PC +4
   set_X(0x3434);
   memory[0x4545]  = 0x10;
   length = Simulator();
   TEST_ASSERT_EQUAL_HEX8 (0x0f,memory[0x4545]);
+
 
 // test for instruction jp_shortptr_w_Y expected PC to jump to memory 0x02 and
 // execute instruction add with shortmem, then PC + 4
@@ -99,4 +114,19 @@ void test_instruction_table(void){
   Simulator();   // After JP instruction is executed, the Simulator will executed the instruction where PC is pointed
   TEST_ASSERT_EQUAL_HEX8 (0x57,cpuRegisters->A);
   TEST_ASSERT_EQUAL_INT (4,length);
+}
+
+
+void test_Simulate_given_invalid_opcode_expected_exception_catched(void){
+  PC=0;
+
+  int length = 0;
+  memory[0x00] = 0xFF;             //Invalid opcode
+  memory[0x01] = 0x23;
+
+  Try{
+  Simulator();
+  }Catch(ex){
+    dumpErrorMessage(ex);
+  }
 }

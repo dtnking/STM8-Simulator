@@ -2,6 +2,9 @@
 #include "Simulator.h"
 #include "Raw_Operation.h"
 #include "mem_Location.h"
+#include "Exception.h"
+#include "CException.h"
+#include "CExceptionConfig.h"
 #include "add.h"
 #include "adc.h"
 #include "sub.h"
@@ -23,7 +26,7 @@
 #include "CLR.h"
 #include <stdio.h>
 #include <stdint.h>
-
+#include <stdarg.h>
 
 void setUp(void){
   clearCCRflag();
