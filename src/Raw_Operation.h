@@ -5,6 +5,7 @@
 
 void      raw_add     (uint8_t val);
 void      raw_adc     (uint8_t val);
+void      raw_addw    (uint16_t src, uint8_t *dstMSB, uint8_t *dstLSB);
 void      raw_sub     (uint8_t val);
 void      raw_sbc     (uint8_t val);
 void      raw_inc     (uint8_t *addrs);

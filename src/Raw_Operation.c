@@ -4,7 +4,8 @@
 #include <stdio.h>
 
 void raw_add(uint8_t val){
-  uint8_t result	    = cpuRegisters->A + val;
+  uint8_t a = cpuRegisters->A;
+  uint8_t result = cpuRegisters->A + val;
 
   cpuRegisters->CCR.bit.H = A3&M3|M3&(!(R3))|A3&(!(R3));
   cpuRegisters->CCR.bit.N = R7;
@@ -15,7 +16,8 @@ void raw_add(uint8_t val){
 }
 
 void raw_adc(uint8_t val){
-  uint8_t result	    = cpuRegisters->A + val + cpuRegisters->CCR.bit.C;
+  uint8_t a = cpuRegisters->A;
+  uint8_t result  = a + val + cpuRegisters->CCR.bit.C;
 
   cpuRegisters->CCR.bit.H = A3&M3|M3&(!(R3))|A3&(!(R3));
   cpuRegisters->CCR.bit.N = R7;
@@ -25,8 +27,22 @@ void raw_adc(uint8_t val){
   cpuRegisters->A     = result;
 }
 
+void raw_addw(uint16_t val, uint8_t *dstMSB, uint8_t *dstLSB){
+  uint16_t a = combineTwoAddrs(*dstMSB,*dstLSB);
+  uint16_t result = val + a;
+  *dstMSB = result >> 8;
+  *dstLSB = result & 0x00ff;
+
+  cpuRegisters->CCR.bit.N = R15;
+  cpuRegisters->CCR.bit.Z = (result == 0 ? 1 : 0);
+  cpuRegisters->CCR.bit.H = A7&M7|A7&(!(R7))|(!(R7))&A7;
+  cpuRegisters->CCR.bit.C = A15&M15|M15& (!(R15))|(!(R15))&A15;
+  cpuRegisters->CCR.bit.V = cpuRegisters->CCR.bit.C ^ (A14&M14|M14&(!(R14))|(!(R14))&A14);
+}
+
 void raw_sub(uint8_t val){
-  uint8_t result   	= cpuRegisters->A - val;
+  uint8_t a = cpuRegisters->A;
+  uint8_t result = a - val;
 
   cpuRegisters->CCR.bit.V = ((!(A7)) & M7|(!(A7)) & R7|A7 & M7 & R7)^((!(A6)) & M6|(!(A6)) & R6|A6 & M6 & R6);
   cpuRegisters->CCR.bit.N = R7;
@@ -36,7 +52,8 @@ void raw_sub(uint8_t val){
 }
 
 void raw_sbc(uint8_t val){
-  uint8_t result	    = cpuRegisters->A - val - cpuRegisters->CCR.bit.C;
+  uint8_t a = cpuRegisters->A;
+  uint8_t result	= a - val - cpuRegisters->CCR.bit.C;
 
   cpuRegisters->CCR.bit.V = ((!(A7)) & M7|(!(A7)) & R7|A7 & M7 & R7)^((!(A6)) & M6|(!(A6)) & R6|A6 & M6 & R6);
   cpuRegisters->CCR.bit.N = R7;
@@ -46,48 +63,54 @@ void raw_sbc(uint8_t val){
 }
 
 uint16_t raw_mul(uint8_t val){
-  uint16_t result = cpuRegisters->A * val;
+  uint8_t a = cpuRegisters->A;
+  uint16_t result = a * val;
   cpuRegisters->CCR.bit.H = 0 ;
   cpuRegisters->CCR.bit.C = 0 ;
   return result;
 }
 
 void raw_inc(uint8_t *valptr){
-  uint8_t result = *valptr + 0x01;
+  uint8_t a      = *valptr;
+  uint8_t result = a + 0x01;
   uint8_t val    = 0x01;
 
-  cpuRegisters->CCR.bit.V = (x7&M7|M7&(!(R7))|(!(R7))&x7)^(x6&M6|M6&(!(R6))|(!(R6))&x6);
+  cpuRegisters->CCR.bit.V = (A7&M7|M7&(!(R7))|(!(R7))&A7)^(A6&M6|M6&(!(R6))|(!(R6))&A6);
   cpuRegisters->CCR.bit.N = R7;
   cpuRegisters->CCR.bit.Z = result==0?1:0;
-  *valptr        = result;
+  *valptr = result;
 }
 
 void raw_dec(uint8_t *valptr){
-  uint8_t result = *valptr - 0x01;
+  uint8_t a      = *valptr;
+  uint8_t result = a - 0x01;
   uint8_t val    = 0x01;
 
-  cpuRegisters->CCR.bit.V = (x7&M7|M7&(!(R7))|(!(R7))&x7)^(x6&M6|M6&(!(R6))|(!(R6))&x6);
+  cpuRegisters->CCR.bit.V = (A7&M7|M7&(!(R7))|(!(R7))&A7)^(A6&M6|M6&(!(R6))|(!(R6))&A6);
   cpuRegisters->CCR.bit.N = R7;
   cpuRegisters->CCR.bit.Z = result==0?1:0;
   *valptr        = result;
 }
 
 void raw_and(uint8_t val){
-  uint8_t result = cpuRegisters->A & val;
+  uint8_t a = cpuRegisters->A;
+  uint8_t result = a & val;
   cpuRegisters->CCR.bit.N = R7;
   cpuRegisters->CCR.bit.Z = result==0?1:0;
   cpuRegisters->A     = result;
 }
 
 void raw_or(uint8_t val){
-  uint8_t result = cpuRegisters->A | val;
+  uint8_t a = cpuRegisters->A;
+  uint8_t result = a | val;
   cpuRegisters->CCR.bit.N = R7;
   cpuRegisters->CCR.bit.Z = result==0?1:0;
   cpuRegisters->A     = result;
 }
 
 void raw_xor(uint8_t val){
-  uint8_t result = cpuRegisters->A ^ val;
+  uint8_t a = cpuRegisters->A;
+  uint8_t result = a ^ val;
   cpuRegisters->CCR.bit.N = R7;
   cpuRegisters->CCR.bit.Z = result==0?1:0;
   cpuRegisters->A     = result;
