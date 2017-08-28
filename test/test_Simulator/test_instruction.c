@@ -1,12 +1,10 @@
 #include "unity.h"
-#include "Simulator.h"
 #include "Exception.h"
 #include "CException.h"
-#include <stdarg.h>
 #include "CExceptionConfig.h"
+#include "Simulator.h"
 #include "Raw_Operation.h"
 #include "mem_Location.h"
-#include <stdio.h>
 #include "add.h"
 #include "adc.h"
 #include "sub.h"
@@ -26,6 +24,8 @@
 #include "CCF.h"
 #include "SCF.h"
 #include "CLR.h"
+#include <stdarg.h>
+#include <stdio.h>
 
 void setUp(void){}
 
@@ -33,27 +33,27 @@ void tearDown(void){}
 
 CEXCEPTION_T ex ;
 
-void test_Simulate_given_multiple_instruction_set_expected_successfully_executed_each(void){
+void test_Simulate_given_multiple_instruction_set_expected_successfully_executed_all(void){
   PC = 0;
 
   int length = 0;
-  memory[0x00] = 0xAB;             //add_byte(using opcodeTable)
+  memory[0x00] = 0xAB;      //add_byte(using opcodeTable)
   memory[0x01] = 0x23;
-  memory[0x02] = 0XBB;             //add_shortmem(using opcodeTable)
+  memory[0x02] = 0XBB;      //add_shortmem(using opcodeTable)
   memory[0x03] = 0x30;
-  memory[0x04] = 0xCB;             //add_longmem(using opcodeTable)
+  memory[0x04] = 0xCB;      //add_longmem(using opcodeTable)
   memory[0x05] = 0x10;
   memory[0x06] = 0x00;
-  memory[0x07] = 0x90;             //sub_y(using opcodeTable90)
+  memory[0x07] = 0x90;      //sub_y(using opcodeTable90)
   memory[0x08] = 0xF0;
-  memory[0x09] = 0x92;             //ld Reg to Mem(using opcodeTable92)
+  memory[0x09] = 0x92;      //ld Reg to Mem(using opcodeTable92)
   memory[0x0a] = 0xC7;
   memory[0x0b] = 0x23;
-  memory[0x0c] = 0x72;            //dec_longoff_X(using opcodeTable72)
+  memory[0x0c] = 0x72;      //dec_longoff_X(using opcodeTable72)
   memory[0x0d] = 0x4A;
   memory[0x0e] = 0x11;
   memory[0x0f] = 0x11;
-  memory[0x10] = 0x91;             // jp_shortptr_w_Y( using opcodeTable 91)
+  memory[0x10] = 0x91;      // jp_shortptr_w_Y( using opcodeTable 91)
   memory[0x11] = 0xDC;
   memory[0x12] = 0x21;
 
@@ -62,21 +62,21 @@ void test_Simulate_given_multiple_instruction_set_expected_successfully_executed
   cpuRegisters->A  = 0x01;
   length = Simulator();
 	TEST_ASSERT_EQUAL_HEX8 (0x24,cpuRegisters->A);
-
+  TEST_ASSERT_EQUAL_HEX8 (0x02,length); // PC +2
 
 // test for instruction add with shortmemory expected PC +2
   cpuRegisters->A  = 0x02;
   memory[0x30]		 =	0x55;
   length = Simulator();
 	TEST_ASSERT_EQUAL_HEX8 (0x57,cpuRegisters->A);
-
+  TEST_ASSERT_EQUAL_HEX8 (0x02,length); // PC +2
 
 // test for instruction add with longmemory expected PC +3
   cpuRegisters->A  = 0x03;
   memory[0x1000]	 =	0x10;
   length = Simulator();
   TEST_ASSERT_EQUAL_HEX8 (0x13,cpuRegisters->A);
-
+  TEST_ASSERT_EQUAL_HEX8 (0x03,length); // PC +3
 
 
 // test for instruction subtract with offset Y expected PC +2
@@ -85,7 +85,7 @@ void test_Simulate_given_multiple_instruction_set_expected_successfully_executed
 	memory[0x2220] 		= 0x05;
   length = Simulator();
   TEST_ASSERT_EQUAL_HEX8 (0x06,cpuRegisters->A);
-
+  TEST_ASSERT_EQUAL_HEX8 (0x02,length); // PC +2
 
 
 // test for instruction load from Register to Memory expected PC +3
@@ -94,7 +94,7 @@ void test_Simulate_given_multiple_instruction_set_expected_successfully_executed
 	cpuRegisters->A 	= 0x11;
   length = Simulator();
   TEST_ASSERT_EQUAL_HEX8 (0x11,memory[0x42e5]);
-
+  TEST_ASSERT_EQUAL_HEX8 (0x03,length); // PC +3
 
 
 // test for instruction dec_longoff_X expected PC +4
@@ -102,19 +102,22 @@ void test_Simulate_given_multiple_instruction_set_expected_successfully_executed
   memory[0x4545]  = 0x10;
   length = Simulator();
   TEST_ASSERT_EQUAL_HEX8 (0x0f,memory[0x4545]);
+  TEST_ASSERT_EQUAL_HEX8 (0x04,length); // PC + 4
 
 
 // test for instruction jp_shortptr_w_Y expected PC to jump to memory 0x02 and
-// execute instruction add with shortmem, then PC + 4
+// execute instruction add with shortmem, then PC + 2
   set_Y(0x0001);
   cpuRegisters->A  = 0x02;
   memory[0x21] = 0x00;
   memory[0x22] = 0x01;
-  Simulator();   // this simulate is doing the JP instruction, PC is pointed to a memory 0x02
-  Simulator();   // After JP instruction is executed, the Simulator will executed the instruction where PC is pointed
+  Simulator();  // this simulate is doing the JP instruction, PC is pointed to memory 0x02
+
+  length = Simulator(); // After JP instruction is executed, the Simulator will executed the instruction where PC is pointed
   TEST_ASSERT_EQUAL_HEX8 (0x57,cpuRegisters->A);
-  TEST_ASSERT_EQUAL_INT (4,length);
+  TEST_ASSERT_EQUAL_INT (2,length);  // PC +2
 }
+
 
 
 void test_Simulate_given_invalid_opcode_expected_exception_catched(void){
@@ -128,5 +131,7 @@ void test_Simulate_given_invalid_opcode_expected_exception_catched(void){
   Simulator();
   }Catch(ex){
     dumpErrorMessage(ex);
+    TEST_ASSERT_EQUAL(ERR_INVALID_OPERAND,errorcode);
+    TEST_ASSERT_EQUAL_STRING("invalid instruction 0xff,",message);
   }
 }

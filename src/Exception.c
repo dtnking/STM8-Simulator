@@ -36,8 +36,6 @@ void freeException(Exception *e) {
 }
 
 void dumpErrorMessage(Exception *e) {
-  printf("%s\n\t",e->msg);
   message = e->msg;
   errorcode = e->errorCode;
-
 }
