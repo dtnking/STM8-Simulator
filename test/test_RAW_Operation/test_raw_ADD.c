@@ -22,7 +22,7 @@ void tearDown(void){}
 **  ( CCR flags = 0x54) ----> Overflow, Negative , Half-Carry are set.
 */
 
-void test_raw_ADD_overflow_given_0x7f_plus_0x03_get_0x54_expected_overflow(void){
+void test_raw_ADD_overflow_given_0x7f_plus_0x03_get_0x82_expected_overflow(void){
   cpuRegisters->A = 0x7f;
   raw_add(0x03);
   TEST_ASSERT_EQUAL_HEX16(0x82,cpuRegisters->A);
