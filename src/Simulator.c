@@ -2,6 +2,7 @@
 #include "Raw_Operation.h"
 #include "add.h"
 #include "adc.h"
+#include "addw.h"
 #include "sub.h"
 #include "sbc.h"
 #include "OR.h"
@@ -54,6 +55,9 @@ Opcode opcodeTable[256] = {
   [0xE9] = {adc_x_shortset,2,1},
   [0xD9] = {adc_x_longset,3,1},
   [0x19] = {adc_shortoff_SP,2,1},
+
+  [0x1C] = {addw_word_X,3,2},
+  [0x5B] = {addw_byte_SP,2,2},
 
   //INC
   [0x4C] = {inc_A,1,1},
@@ -343,6 +347,14 @@ Opcode opcodeTable72[256] = {
   //ADC
   [0xC9] = {adc_longptr_w,4,4},
   [0xD9] = {adc_longptr_w_X,4,4},
+
+  //ADDW
+  [0xBB] = {addw_longmem_X,4,2},
+  [0xFB] = {addw_shortoff_SP_X,3,2},
+  [0xA9] = {addw_word_Y,4,2},
+  [0xB9] = {addw_longmem_Y,4,2},
+  [0xF9] = {addw_shortoff_SP_Y,3,2},
+
 
   //INC
   [0x3C] = {inc_longptr_w,4,4},

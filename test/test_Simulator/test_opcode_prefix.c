@@ -7,6 +7,7 @@
 #include "mem_Location.h"
 #include "add.h"
 #include "adc.h"
+#include "addw.h"
 #include "sub.h"
 #include "sbc.h"
 #include "INC.h"
